@@ -30,7 +30,7 @@ YggdrasilRefreshResponse rep = null;
 
 ### Launching Minecraft
 ```java
-`GameLauncher gl = new GameLauncher("(example)1.7.10", new File(
+GameLauncher gl = new GameLauncher("(example)1.7.10", new File(
 					"C:/MyMinecraftFiles"), "My Minecraft", refRep.getSelectedProfile().getName(), refRep.getAccessToken(), refRep.getSelectedProfile().getId(), new String[] {"-Xms512M", "-Xmx1024M"}, true);
 			try {
 				Process p = gl.launchMinecraft();
