@@ -2,7 +2,6 @@
 An easy minecraft launcher library
 
 ## How to use it ?
----------------------------------
 ### Authentification
 ```java
 YggdrasilRefreshResponse rep = null;
