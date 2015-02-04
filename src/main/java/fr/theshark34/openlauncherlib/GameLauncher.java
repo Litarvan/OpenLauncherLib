@@ -57,6 +57,11 @@ public class GameLauncher {
 	private String accessToken;
 
 	/**
+	 * The UUID
+	 */
+	private String uuid;
+
+	/**
 	 * Arguments for jvm (ex: -Xms512M & -Xmx1024M)
 	 */
 	private String[] jvmArgs;
@@ -79,19 +84,22 @@ public class GameLauncher {
 	 *            Player's username
 	 * @param accessToken
 	 *            The access token obtained when authenticating
+	 * @param uuid
+	 *            The UUID obtained when authenticating
 	 * @param jvmArgs
 	 *            Arguments for jvm (ex: -Xms512M & -Xmx1024M)
 	 * @param forgeSupport
 	 *            If the launcher add forge support
 	 */
 	public GameLauncher(String gameVersion, File gameDir, String gameTitle,
-			String username, String accessToken, String[] jvmArgs,
+			String username, String accessToken, String uuid, String[] jvmArgs,
 			boolean forgeSupport) {
 		this.gameVersion = gameVersion;
 		this.gameDir = gameDir;
 		this.gameTitle = gameTitle;
 		this.username = username;
 		this.accessToken = accessToken;
+		this.uuid = uuid;
 		this.jvmArgs = jvmArgs;
 		this.forgeSupport = forgeSupport;
 	}
@@ -162,6 +170,8 @@ public class GameLauncher {
 		commands.add(gameVersion);
 		commands.add("--userProperties");
 		commands.add("{}");
+		commands.add("--uuid");
+		commands.add(uuid);
 		commands.add("--userType");
 		commands.add("legacy");
 
