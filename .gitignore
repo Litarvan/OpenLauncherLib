@@ -1,0 +1,8 @@
+target/classes
+target/maven-archiver
+target/maven-status
+target/site
+target/surefire-reports
+target/test-classes
+Thumbs.db
+*/Thumbs.db
