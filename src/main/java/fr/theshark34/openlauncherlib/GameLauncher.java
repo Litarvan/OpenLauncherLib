@@ -154,7 +154,10 @@ public class GameLauncher {
 		commands.add(getClassPath());
 
 		// Adding main class
-		commands.add("net.minecraft.launchwrapper.Launch");
+		if (forgeSupport)
+			commands.add("net.minecraft.launchwrapper.Launch");
+		else
+			commands.add("net.minecraft.client.main.Main");
 
 		// Adding minecraft arguments
 		commands.add("--username=" + username);
