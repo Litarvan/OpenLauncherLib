@@ -176,8 +176,8 @@ public class GameLauncher {
 		commands.add("--gameDir");
 		commands.add(gameDir.getAbsolutePath());
 		commands.add("--assetsDir");
+		commands.add(gameDir.getAbsolutePath() + "/assets");
 		if(!legacyAssets) {
-			commands.add(gameDir.getAbsolutePath() + "/assets");
 			commands.add("--assetIndex");
 			commands.add(gameVersion);
 		}
