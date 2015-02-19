@@ -70,6 +70,11 @@ public class GameLauncher {
 	 * If the launcher add forge support
 	 */
 	private boolean forgeSupport;
+	
+	/**
+	 * If the version need the legacy assets system
+	 */
+	private boolean legacyAssets;
 
 	/**
 	 * Base constructor
@@ -90,10 +95,12 @@ public class GameLauncher {
 	 *            Arguments for jvm (ex: -Xms512M & -Xmx1024M)
 	 * @param forgeSupport
 	 *            If the launcher add forge support
+	 * @param legacyAssets
+	 * 			  If the assets use the legacy system
 	 */
 	public GameLauncher(String gameVersion, File gameDir, String gameTitle,
 			String username, String accessToken, String uuid, String[] jvmArgs,
-			boolean forgeSupport) {
+			boolean forgeSupport, boolean legacyAssets) {
 		this.gameVersion = gameVersion;
 		this.gameDir = gameDir;
 		this.gameTitle = gameTitle;
@@ -102,6 +109,7 @@ public class GameLauncher {
 		this.uuid = uuid;
 		this.jvmArgs = jvmArgs;
 		this.forgeSupport = forgeSupport;
+		this.legacyAssets = legacyAssets;
 	}
 
 	/**
@@ -168,9 +176,13 @@ public class GameLauncher {
 		commands.add("--gameDir");
 		commands.add(gameDir.getAbsolutePath());
 		commands.add("--assetsDir");
-		commands.add(gameDir.getAbsolutePath() + "/assets");
-		commands.add("--assetIndex");
-		commands.add(gameVersion);
+		if(legacyAssets)
+			commands.add(gameDir.getAbsolutePath() + "/assets/virtual/legacy");
+		else {
+			commands.add(gameDir.getAbsolutePath() + "/assets");
+			commands.add("--assetIndex");
+			commands.add(gameVersion);
+		}
 		commands.add("--userProperties");
 		commands.add("{}");
 		commands.add("--uuid");
