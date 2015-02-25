@@ -1,6 +1,9 @@
 # OpenLauncherLib
 An easy minecraft launcher library
 
+## How to test it ?
+Clone this repo, compile with maven to have all libs, and in command line, launch demo.bat/bash
+
 ## How to use it ?
 ### Authentification
 ```java
