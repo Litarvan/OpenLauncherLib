@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 group = 'fr.theshark34.openlauncherlib'
-version = '0.0.1-ALPHA'
+version = '1.0-RELEASE'
 archivesBaseName = 'openlauncherlib'
 
 sourceCompatibility = 1.6
