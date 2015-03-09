@@ -77,6 +77,11 @@ public class GameLauncher {
 	private boolean legacyAssets;
 
 	/**
+	 * If it need to have the new tweak class (>= Minecraft 1.8 + Forge)
+	 */
+	private boolean newTweakClass;
+
+	/**
 	 * Base constructor
 	 * 
 	 * @param gameVersion
@@ -97,10 +102,12 @@ public class GameLauncher {
 	 *            If the launcher add forge support
 	 * @param legacyAssets
 	 * 			  If the assets use the legacy system
+	 * @param newTweakClass
+	 *            If the launched Minecraft user Forge 1.8, set it to true
 	 */
 	public GameLauncher(String gameVersion, File gameDir, String gameTitle,
 			String username, String accessToken, String uuid, String[] jvmArgs,
-			boolean forgeSupport, boolean legacyAssets) {
+			boolean forgeSupport, boolean legacyAssets, boolean newTweakClass) {
 		this.gameVersion = gameVersion;
 		this.gameDir = gameDir;
 		this.gameTitle = gameTitle;
@@ -191,7 +198,10 @@ public class GameLauncher {
 		// Adding forge support
 		if (forgeSupport) {
 			commands.add("--tweakClass");
-			commands.add("cpw.mods.fml.common.launcher.FMLTweaker");
+			if(newTweakClass)
+				commands.add("net.minecraftforge.fml.common.launcher.FMLTweaker");
+			else
+				commands.add("cpw.mods.fml.common.launcher.FMLTweaker");
 		}
 		return commands;
 	}

@@ -237,7 +237,7 @@ public class Demo {
 					((YggdrasilAuthenticateResponse) rep).getAccessToken(),
 					((YggdrasilAuthenticateResponse) rep).getSelectedProfile()
 							.getId(), new String[] { "-Xms512M", "-Xmx1024M" },
-					true, false);
+					true, false, false);
 		else
 			/* Else, initializing the GameLauncher with casts as a Refresh response, and args :
 			 *  - Version		: 1.7.10
@@ -254,7 +254,7 @@ public class Demo {
 					((YggdrasilRefreshResponse) rep).getAccessToken(),
 					((YggdrasilRefreshResponse) rep).getSelectedProfile()
 							.getId(), new String[] { "-Xms512M", "-Xmx1024M" },
-					true, false);
+					true, false, false);
 		try {
 			// Starting minecraft
 			Process p = gl.launchMinecraft();
