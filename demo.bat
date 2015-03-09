@@ -1,1 +1,0 @@
-java -cp "target\openlauncherlib-0.0.1-ALPHA.jar;%userprofile%\.m2\repository\net\kronos\mclauncher-library\mclauncher-library\1.0\mclauncher-library-1.0.jar;%userprofile%\.m2\repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;%userprofile%\.m2\repository\fr\theshark34\s-update\s-update\0.1.3-ALPHA\s-update-0.1.3-ALPHA.jar" fr.theshark34.openlauncherlib.Demo

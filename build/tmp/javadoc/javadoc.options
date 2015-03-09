@@ -1,0 +1,8 @@
+-classpath 'C:\\Users\\Adrien\\Documents\\openlauncherlib\\build\\classes\\main;C:\\Users\\Adrien\\Documents\\openlauncherlib\\build\\resources\\main;C:\\Users\\Adrien\\.gradle\\caches\\modules-2\\files-2.1\\net.kronos.mclauncher-library\\mclauncher-library\\1.0\\d912767e73aa7fbe576450b094002070c8a42ff8\\mclauncher-library-1.0.jar;C:\\Users\\Adrien\\.gradle\\caches\\modules-2\\files-2.1\\fr.theshark34.s-update\\s-update\\0.1.3-ALPHA\\a5565656b32c4465b53d3c77ea43e3a5a5455cbe\\s-update-0.1.3-ALPHA.jar;C:\\Users\\Adrien\\.gradle\\caches\\modules-2\\files-2.1\\com.google.code.gson\\gson\\2.2.4\\a60a5e993c98c864010053cb901b7eab25306568\\gson-2.2.4.jar'
+-d 'C:\\Users\\Adrien\\Documents\\openlauncherlib\\build\\docs\\javadoc'
+-doctitle 'openlauncherlib 1.0-RELEASE API'
+-quiet 
+-windowtitle 'openlauncherlib 1.0-RELEASE API'
+'C:\\Users\\Adrien\\Documents\\openlauncherlib\\src\\main\\java\\fr\\theshark34\\openlauncherlib\\Authenticator.java'
+'C:\\Users\\Adrien\\Documents\\openlauncherlib\\src\\main\\java\\fr\\theshark34\\openlauncherlib\\Demo.java'
+'C:\\Users\\Adrien\\Documents\\openlauncherlib\\src\\main\\java\\fr\\theshark34\\openlauncherlib\\GameLauncher.java'
