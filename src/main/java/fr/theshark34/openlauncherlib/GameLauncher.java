@@ -117,6 +117,7 @@ public class GameLauncher {
 		this.jvmArgs = jvmArgs;
 		this.forgeSupport = forgeSupport;
 		this.legacyAssets = legacyAssets;
+		this.newTweakClass = newTweakClass;
 	}
 
 	/**
