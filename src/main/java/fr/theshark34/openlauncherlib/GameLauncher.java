@@ -131,6 +131,7 @@ public class GameLauncher {
 	 */
 	public Process launchMinecraft() throws InterruptedException, IOException {
 		ProcessBuilder pb = new ProcessBuilder();
+		pb.directory(this.gameDir);
 		pb.command(getLaunchCommand());
 		Process process = pb.start();
 		return process;
