@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="fr.theshark34.openlauncherlib.AppTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-03-12T17:41:37" hostname="Shark-Windows" time="0.0">
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="fr.theshark34.openlauncherlib.AppTest" tests="1" failures="0" errors="0" timestamp="2015-04-14T11:00:00" hostname="Shark-Portable-Linux" time="0.002">
   <properties/>
-  <testcase name="testApp" classname="fr.theshark34.openlauncherlib.AppTest" time="0.0"/>
+  <testcase name="testApp" classname="fr.theshark34.openlauncherlib.AppTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

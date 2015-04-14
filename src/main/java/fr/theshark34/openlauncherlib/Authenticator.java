@@ -53,6 +53,10 @@ public class Authenticator {
 		AuthYggdrasil auth = new AuthYggdrasil(false);
 		YggdrasilAuthenticateResponse rep = auth.authenticate(
 				YggdrasilAgent.AGENT_MINECRAFT, username, password, "");
+		if(rep == null)
+			return null;
+		if(rep.getAccessToken() == null)
+			return rep;
 		File tokenFile = new File(gameDir, "token.txt");
 		tokenFile.getParentFile().mkdirs();
 		try {
