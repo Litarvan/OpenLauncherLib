@@ -25,51 +25,51 @@ package fr.theshark34.openlauncherlib;
  *     The main class to launch the game with a game version and
  *     a game folder.
  * </p>
- * 
+ *
  * @author TheShark34
  * @version 2.0-SNAPSHOT
  */
-public class GameLauncher {
+public class AuthInfos {
 
     /**
-     * The Game Infos like the server name and if forge is enabled
+     * The player username
      */
-    private GameInfos gameInfos;
+    private String username;
 
-	/**
-	 * The Game Folder containing game folder organisation
-	 */
-	private GameFolder gameFolder;
+    /**
+     * The access token given by the authentication
+     */
+    private String accessToken;
 
-	/**
-	 * Basic Constructor
-	 *
-     * @param gameInfos
-     *            The Game Infos like the server name and if forge is enabled
-	 * @param gameFolder
-	 *            The Game Folder containing game folder organisation
-	 */
-	public GameLauncher(GameInfos gameInfos, GameFolder gameFolder, AuthInfos authInfos) {
-		this.gameInfos = gameInfos;
-		this.gameFolder = gameFolder;
-	}
+    /**
+     * Basic constructor
+     *
+     * @param username
+     *             The player username
+     * @param accessToken
+     *             The access token given by the authentication
+     */
+    public AuthInfos(String username, String accessToken) {
+        this.username = username;
+        this.accessToken = accessToken;
+    }
 
-	/**
-	 * Returns the Game Folder containing the game folder organisation
-	 *
-	 * @return The Game Folder
-	 */
-	public GameFolder getGameFolder() {
-		return gameFolder;
-	}
+    /**
+     * Returns the player username
+     *
+     * @return The player username
+     */
+    public String getUsername() {
+        return this.username;
+    }
 
-	/**
-	 * Returns the Game Infos like the server name and if forge is enabled
-	 *
-	 * @return The Game Infos
-	 */
-	public GameInfos getGameInfos() {
-		return gameInfos;
-	}
+    /**
+     * Returns the access token given by the authentication
+     * 
+     * @return The access token
+     */
+    public String getAccessToken() {
+        return this.accessToken;
+    }
 
 }
