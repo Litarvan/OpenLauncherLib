@@ -1,4 +1,4 @@
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.launcher;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

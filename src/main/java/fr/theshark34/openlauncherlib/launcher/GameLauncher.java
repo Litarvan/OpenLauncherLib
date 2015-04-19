@@ -16,7 +16,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.launcher;
+
+import java.io.IOException;
 
 /**
  * The Game Launcher
@@ -80,7 +82,7 @@ public class GameLauncher {
 
     /**
      * Returns the Auth Infos like the player username or the access token
-     * 
+     *
      * @return The Auth Infos
      */
     public AuthInfos getAuthInfos() {

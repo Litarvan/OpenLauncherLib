@@ -16,14 +16,14 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.launcher;
 
 /**
- * The Game Launcher
+ * The Auth Infos
  *
  * <p>
- *     The main class to launch the game with a game version and
- *     a game folder.
+ *     The Auth Infos containing the player username, and the access token given
+ *     by the authentication.
  * </p>
  *
  * @author TheShark34
