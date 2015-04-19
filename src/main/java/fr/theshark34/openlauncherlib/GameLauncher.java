@@ -41,6 +41,11 @@ public class GameLauncher {
 	 */
 	private GameFolder gameFolder;
 
+    /**
+     * The Auth Infos like the player username or the access token
+     */
+    private AuthInfos authInfos;
+
 	/**
 	 * Basic Constructor
 	 *
@@ -52,6 +57,7 @@ public class GameLauncher {
 	public GameLauncher(GameInfos gameInfos, GameFolder gameFolder, AuthInfos authInfos) {
 		this.gameInfos = gameInfos;
 		this.gameFolder = gameFolder;
+        this.authInfos = authInfos;
 	}
 
 	/**
@@ -71,5 +77,14 @@ public class GameLauncher {
 	public GameInfos getGameInfos() {
 		return gameInfos;
 	}
+
+    /**
+     * Returns the Auth Infos like the player username or the access token
+     * 
+     * @return The Auth Infos
+     */
+    public AuthInfos getAuthInfos() {
+        return authInfos;
+    }
 
 }

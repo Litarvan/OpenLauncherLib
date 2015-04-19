@@ -65,7 +65,7 @@ public class AuthInfos {
 
     /**
      * Returns the access token given by the authentication
-     * 
+     *
      * @return The access token
      */
     public String getAccessToken() {
