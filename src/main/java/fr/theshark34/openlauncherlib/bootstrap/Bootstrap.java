@@ -94,11 +94,13 @@ public class Bootstrap {
         commands.add(getJavaPath());
         if (System.getProperty("os.name").toLowerCase().contains("mac"))
             commands.addAll(Arrays.asList(getMacArgs()));
-        commands.addAll(Arrays.asList(launchInfos.getVmArgs()));
+        if(launchInfos != null)
+            commands.addAll(Arrays.asList(launchInfos.getVmArgs()));
         commands.add("-cp");
         commands.add(constructClasspath());
         commands.add(launcherInfos.getMainClass());
-        commands.addAll(Arrays.asList(launchInfos.getArgs()));
+        if(launchInfos != null)
+            commands.addAll(Arrays.asList(launchInfos.getArgs()));
 
         String entireCommand = "";
         for(String cmd : commands)
@@ -131,13 +133,15 @@ public class Bootstrap {
         System.out.println("[OpenLauncherLib]    Launcher Infos :");
         System.out.println("[OpenLauncherLib]        Server Name  : " + launcherInfos.getServerName());
         System.out.println("[OpenLauncherLib]        Main Class   : " + launcherInfos.getMainClass());
-        System.out.println("[OpenLauncherLib]    Launch Infos :");
-        System.out.print("[OpenLauncherLib]        Arguments    : ");
-        for(String arg : launchInfos.getArgs())
-            System.out.print(arg);
-        System.out.print("\n[OpenLauncherLib]        VM Arguments : ");
-        for(String arg : launchInfos.getVmArgs())
-            System.out.print(arg);
+        if(launchInfos != null) {
+            System.out.println("[OpenLauncherLib]    Launch Infos :");
+            System.out.print("[OpenLauncherLib]        Arguments    : ");
+            for (String arg : launchInfos.getArgs())
+                System.out.print(arg);
+            System.out.print("\n[OpenLauncherLib]        VM Arguments : ");
+            for (String arg : launchInfos.getVmArgs())
+                System.out.print(arg);
+        }
         System.out.println("[OpenLauncherLib] Generating launch command...");
     }
 

@@ -62,7 +62,7 @@ public class ErrorUtil {
         e.printStackTrace();
         String str = "\nLe crash report se trouve dans le dossier "
                 + gameDir.getAbsolutePath()
-                + "/Launcher/bootstrap-crash-(NOMBRE).txt";
+                + "bootstrap-crash-(NOMBRE).txt";
         try {
             writeError(e);
         } catch (IOException e2) {
@@ -85,9 +85,12 @@ public class ErrorUtil {
     private void writeError(Exception e) throws IOException {
         File file;
         int number = 0;
-        while ((file = new File(gameDir, "Launcher/bootstrap-crash-"
+        while ((file = new File(gameDir, "bootstrap-crash-"
                 + number + ".txt")).exists())
             number++;
+
+        System.out.println("[OpenLauncherLib] Writing crash report to : " + file.getAbsolutePath());
+
         FileWriter fw = new FileWriter(file);
         fw.write(e.toString());
         StackTraceElement[] stackTrace = e.getStackTrace();
