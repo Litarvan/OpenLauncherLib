@@ -43,7 +43,7 @@ public class Util {
      */
     public static ArrayList<File> list(File folder) {
         ArrayList<File> files = new ArrayList<File>();
-        if(folder.isDirectory())
+        if(!folder.isDirectory())
             return files;
 
         File[] folderFiles = folder.listFiles();
