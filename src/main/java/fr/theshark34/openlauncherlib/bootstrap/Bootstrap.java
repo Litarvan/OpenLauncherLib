@@ -18,6 +18,13 @@
  */
 package fr.theshark34.openlauncherlib.bootstrap;
 
+import fr.theshark34.openlauncherlib.util.Util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * The Bootstrap main class
  *
@@ -41,14 +48,128 @@ public class Bootstrap {
     private LauncherInfos launcherInfos;
 
     /**
+     * The launch infos containing the launch infos like the arguments or the VM arguments
+     */
+    private LaunchInfos launchInfos;
+
+    /**
      * Basic constructor
      *
      * @param launcherClasspath
+     *            The launcher classpath containing the launcher file, and the libs folder
      * @param launcherInfos
+     *            The launcher infos containing the server name, and the main class
+     * @param launchInfos
+     *            The launch infos containing the launch infos like the arguments or the VM arguments
      */
-    public Bootstrap(LauncherClasspath launcherClasspath, LauncherInfos launcherInfos) {
+    public Bootstrap(LauncherClasspath launcherClasspath, LauncherInfos launcherInfos, LaunchInfos launchInfos) {
         this.launcherClasspath = launcherClasspath;
         this.launcherInfos = launcherInfos;
+        this.launchInfos = launchInfos;
+    }
+
+    /**
+     * Launches the launcher !
+     */
+    public Process launch() throws IOException {
+        printInfos();
+
+        ProcessBuilder pb = new ProcessBuilder();
+        ArrayList<String> commands = new ArrayList<String>();
+        commands.add(getJavaPath());
+        if (System.getProperty("os.name").toLowerCase().contains("mac"))
+            commands.addAll(Arrays.asList(getMacArgs()));
+        commands.addAll(Arrays.asList(launchInfos.getVmArgs()));
+        commands.add("-cp");
+        commands.add(constructClasspath());
+        commands.add(launcherInfos.getMainClass());
+
+        String entireCommand = "";
+        for(String cmd : commands)
+            entireCommand += cmd + "\n";
+
+        System.out.println("[OpenLauncherLib] Entire command : ");
+        System.out.println(entireCommand);
+
+        System.out.println("[OpenLauncherLib] Launching launcher");
+        pb.directory(launcherClasspath.getLauncher().getParentFile());
+        pb.command(commands);
+        Process p = pb.start();
+
+        System.out.println("[OpenLauncherLib] Successfully launched");
+        File logsFile = launcherClasspath.getLauncher().getParentFile();
+        Util.printAndWriteProcessOutput(p, logsFile);
+
+        return p;
+    }
+
+    /**
+     * Print all the bootstrap infos
+     */
+    private void printInfos() {
+        System.out.println("[OpenLauncherLib] OpenLauncherLib v2.0 Bootstrap");
+        System.out.println("[OpenLauncherLib] Generating command with : ");
+        System.out.println("[OpenLauncherLib]    Launcher Classpath :");
+        System.out.println("[OpenLauncherLib]        Launcher     : " + launcherClasspath.getLauncher().getAbsolutePath());
+        System.out.println("[OpenLauncherLib]        Libs Folder  : " + launcherClasspath.getLibsFolder().getAbsolutePath());
+        System.out.println("[OpenLauncherLib]    Launcher Infos :");
+        System.out.println("[OpenLauncherLib]        Server Name  : " + launcherInfos.getServerName());
+        System.out.println("[OpenLauncherLib]        Main Class   : " + launcherInfos.getMainClass());
+        System.out.println("[OpenLauncherLib]    Launch Infos :");
+        System.out.print("[OpenLauncherLib]        Arguments    : ");
+        for(String arg : launchInfos.getArgs())
+            System.out.print(arg);
+        System.out.print("\n[OpenLauncherLib]        VM Arguments : ");
+        for(String arg : launchInfos.getVmArgs())
+            System.out.print(arg);
+        System.out.println("[OpenLauncherLib] Generating launch command...");
+    }
+
+    /**
+     * Gets the Java executable path
+     *
+     * @return The Java executable path
+     */
+    private String getJavaPath() {
+        if (System.getProperty("os.name").toLowerCase().contains("win"))
+            return "\"" + System.getProperty("java.home") + "/bin/java"
+                    + "\"";
+        else
+            return System.getProperty("java.home") + "/bin/java";
+    }
+
+    /**
+     * Gets the mac special arguments
+     *
+     * @return The mac special arguments
+     */
+    private String[] getMacArgs() {
+        String[] macArgs = new String[] {
+                "-Xdock:name=" + launcherInfos.getServerName(),
+                "-XX:+UseConcMarkSweepGC",
+                "-XX:+CMSIncrementalMode",
+                "-XX:-UseAdaptiveSizePolicy"
+        };
+
+        return macArgs;
+    }
+
+    /**
+     * Generates the classpath with the libraries and the launcher
+     *
+     * @return The generated classpath
+     */
+    public String constructClasspath() {
+        String classpath = "";
+        ArrayList<File> libs = Util.list(launcherClasspath.getLibsFolder());
+        String separator = System.getProperty("path.separator");
+
+        for(File lib : libs)
+            classpath += lib.getAbsolutePath() + separator;
+
+        classpath += launcherClasspath.getLauncher().getAbsolutePath();
+
+        return classpath;
     }
 
     /**
@@ -67,6 +188,15 @@ public class Bootstrap {
      */
     public LauncherInfos launcherInfos() {
         return this.launcherInfos;
+    }
+
+    /**
+     * Returns the launch infos containing the launch infos like the arguments or the VM arguments
+     *
+     * @return The launch infos
+     */
+    public LaunchInfos getLaunchInfos() {
+        return this.launchInfos;
     }
 
 }
