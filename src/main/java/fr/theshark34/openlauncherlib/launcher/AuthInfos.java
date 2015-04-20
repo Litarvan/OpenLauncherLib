@@ -42,6 +42,11 @@ public class AuthInfos {
     private String accessToken;
 
     /**
+     * The uuid given by the authentication
+     */
+    private String uuid;
+
+    /**
      * Basic constructor
      *
      * @param username
@@ -49,9 +54,10 @@ public class AuthInfos {
      * @param accessToken
      *             The access token given by the authentication
      */
-    public AuthInfos(String username, String accessToken) {
+    public AuthInfos(String username, String accessToken, String uuid) {
         this.username = username;
         this.accessToken = accessToken;
+        this.uuid = uuid;
     }
 
     /**
@@ -70,6 +76,15 @@ public class AuthInfos {
      */
     public String getAccessToken() {
         return this.accessToken;
+    }
+
+    /**
+     * Returns the uuid given by the authentication
+     *
+     * @return The uuid
+     */
+    public String getUuid() {
+        return this.uuid;
     }
 
 }

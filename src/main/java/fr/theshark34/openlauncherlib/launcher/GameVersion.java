@@ -22,57 +22,53 @@ package fr.theshark34.openlauncherlib.launcher;
  * The Game Version
  *
  * <p>
- *     This class contains the specificals informations about a version
- *     of Minecraft
+ *     This contains the usuals game versions, with their properties
  * </p>
  *
  * @author TheShark34
  * @version 2.0-SNAPSHOT
  */
-public abstract class GameVersion {
+public class GameVersion {
 
-    public static final GameVersion V1_7_2_LOWER = new GameVersion() {
-        public String getVMArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
+    /**
+     * The name of the version
+     */
+    private String name;
 
-        public String getLaunchArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
-    };
+    /**
+     * The type of the version
+     */
+    private GameType gameType;
 
-    public static final GameVersion V1_7_10 = new GameVersion() {
-        public String getVMArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
+    /**
+     * Basic constructor
+     *
+     * @param name
+     *            The name of the version
+     * @param gameType
+     *            The type of the version
+     */
+    public GameVersion(String name, GameType gameType) {
+        this.name = name;
+        this.gameType = gameType;
+    }
 
-        public String getLaunchArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
-    };
+    /**
+     * Returns the name of the version
+     *
+     * @return The name of the version
+     */
+    public String getName() {
+        return this.name;
+    }
 
-    public static final GameVersion V1_8_BETTER = new GameVersion() {
-        public String getVMArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
+    /**
+     * Returns the type of the version
+     *
+     * @return The type of the version
+     */
+    public GameType getGameType() {
+        return gameType;
+    }
 
-        public String getLaunchArguments(GameLauncher gameLauncher) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("");
-            return "";
-        }
-    };
-
-    public abstract String getVMArguments(GameLauncher gameLauncher);
-    public abstract String getLaunchArguments(GameLauncher gameLauncher);
 }

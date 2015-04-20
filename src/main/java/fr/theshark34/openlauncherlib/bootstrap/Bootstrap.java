@@ -70,6 +70,8 @@ public class Bootstrap {
 
     /**
      * Launches the launcher !
+     *
+     * @return The created Process
      */
     public Process launch() throws IOException {
         printInfos();
@@ -83,6 +85,7 @@ public class Bootstrap {
         commands.add("-cp");
         commands.add(constructClasspath());
         commands.add(launcherInfos.getMainClass());
+        commands.addAll(Arrays.asList(launchInfos.getArgs()));
 
         String entireCommand = "";
         for(String cmd : commands)
@@ -97,7 +100,7 @@ public class Bootstrap {
         Process p = pb.start();
 
         System.out.println("[OpenLauncherLib] Successfully launched");
-        File logsFile = launcherClasspath.getLauncher().getParentFile();
+        File logsFile = new File(launcherClasspath.getLauncher().getParentFile(), "bootstraplogs.txt");
         Util.printAndWriteProcessOutput(p, logsFile);
 
         return p;
