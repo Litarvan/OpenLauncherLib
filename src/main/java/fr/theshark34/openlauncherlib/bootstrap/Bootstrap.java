@@ -59,6 +59,19 @@ public class Bootstrap {
      *            The launcher classpath containing the launcher file, and the libs folder
      * @param launcherInfos
      *            The launcher infos containing the server name, and the main class
+     */
+    public Bootstrap(LauncherClasspath launcherClasspath, LauncherInfos launcherInfos) {
+        this.launcherClasspath = launcherClasspath;
+        this.launcherInfos = launcherInfos;
+    }
+
+    /**
+     * Advanced constructor
+     *
+     * @param launcherClasspath
+     *            The launcher classpath containing the launcher file, and the libs folder
+     * @param launcherInfos
+     *            The launcher infos containing the server name, and the main class
      * @param launchInfos
      *            The launch infos containing the launch infos like the arguments or the VM arguments
      */
