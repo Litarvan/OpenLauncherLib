@@ -18,7 +18,7 @@
  */
 package fr.theshark34.openlauncherlib.launcher;
 
-import fr.theshark34.openlauncherlib.launcher.util.GameDir;
+import fr.theshark34.openlauncherlib.util.GameDir;
 
 import java.io.File;
 
