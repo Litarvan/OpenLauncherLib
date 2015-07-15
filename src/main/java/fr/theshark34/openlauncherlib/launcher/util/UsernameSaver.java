@@ -48,9 +48,9 @@ import java.io.IOException;
  * The default value is returned if the file doesn't exist or an exception happened
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
-public final class UsernameSaver {
+public class UsernameSaver {
 
     /**
      * The file where the username is saved/loaded

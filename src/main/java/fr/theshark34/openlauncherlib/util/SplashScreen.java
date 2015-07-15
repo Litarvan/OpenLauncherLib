@@ -29,7 +29,7 @@ import java.awt.*;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class SplashScreen extends JFrame {
 
@@ -60,7 +60,7 @@ public class SplashScreen extends JFrame {
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 class SplashPanel extends JPanel {
 

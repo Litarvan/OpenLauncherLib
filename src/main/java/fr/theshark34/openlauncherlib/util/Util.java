@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class Util {
 
@@ -87,7 +87,6 @@ public class Util {
                         reader.close();
                     }
                 } catch (IOException ioe) {
-                    ioe.printStackTrace();
                 }
             }
         }.start();
@@ -104,7 +103,6 @@ public class Util {
                         errorReader.close();
                     }
                 } catch (IOException ioe) {
-                    ioe.printStackTrace();
                 }
             }
         }.start();

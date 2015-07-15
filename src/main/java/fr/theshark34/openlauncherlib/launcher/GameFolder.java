@@ -22,7 +22,7 @@ package fr.theshark34.openlauncherlib.launcher;
  * The Game Folder containing the game folder organisation
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class GameFolder {
 

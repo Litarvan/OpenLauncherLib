@@ -31,7 +31,7 @@ import java.io.IOException;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class ErrorUtil {
 
@@ -41,7 +41,7 @@ public class ErrorUtil {
     private File gameDir;
 
     /**
-     * Basic contructor
+     * Basic constructor
      *
      * @param gameDir
      *            The directory to write the crashes
@@ -60,14 +60,14 @@ public class ErrorUtil {
      */
     public void catchError(Exception e, String message) {
         e.printStackTrace();
-        String str = "\nLe crash report se trouve dans le dossier "
+        String str = "\nThe crash report is in : "
                 + gameDir.getAbsolutePath()
-                + "bootstrap-crash-(NOMBRE).txt";
+                + "crash-(NOMBRE).txt";
         try {
             writeError(e);
         } catch (IOException e2) {
             e.printStackTrace();
-            str = "\nDe plus impossible d'ecrire le crash report :(";
+            str = "\nAnd unable to write the crash report :( : " + e2;
         }
         JOptionPane.showMessageDialog(null, message + "\n" + e + "\n" + str,
                 "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -85,7 +85,7 @@ public class ErrorUtil {
     private void writeError(Exception e) throws IOException {
         File file;
         int number = 0;
-        while ((file = new File(gameDir, "bootstrap-crash-"
+        while ((file = new File(gameDir, "crash-"
                 + number + ".txt")).exists())
             number++;
 

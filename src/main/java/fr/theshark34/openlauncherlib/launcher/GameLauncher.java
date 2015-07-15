@@ -35,7 +35,7 @@ import java.util.List;
  * </p>
  * 
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class GameLauncher {
 
@@ -102,15 +102,26 @@ public class GameLauncher {
      *            The Java VM arguments
      */
     public GameLauncher(GameInfos gameInfos, GameFolder gameFolder, AuthInfos authInfos, List<String> vmArgs) {
+        if(gameInfos == null)
+            throw new IllegalArgumentException("gameInfos == null !");
         this.gameInfos = gameInfos;
+
+        if(gameFolder == null)
+            throw new IllegalArgumentException("gameFolder == null !");
         this.gameFolder = gameFolder;
+
+        if(authInfos == null)
+            throw new IllegalArgumentException("authInfos == null !");
         this.authInfos = authInfos;
+
+        if(vmArgs == null)
+            throw new IllegalArgumentException("vmArgs == null !");
         this.vmArgs = vmArgs;
     }
 
     /**
      * Launches Minecraft !
-     *
+     *f
      * @return The created Process
      */
     public Process launch() throws IOException {
@@ -118,6 +129,7 @@ public class GameLauncher {
 
         ProcessBuilder pb = new ProcessBuilder();
         ArrayList<String> commands = new ArrayList<String>();
+
         commands.add(getJavaPath());
         if (System.getProperty("os.name").toLowerCase().contains("mac"))
             commands.addAll(Arrays.asList(getMacArgs()));
@@ -126,8 +138,16 @@ public class GameLauncher {
         commands.add("-Djava.library.path=" + new File(gameInfos.getGameDir(), gameFolder.getNativesFolder()).getAbsolutePath());
         commands.add("-cp");
         commands.add(constructClasspath());
-        commands.add(gameInfos.getGameVersion().getGameType().getMainClass(this));
+        if(gameInfos.isTweakingEnabled())
+            commands.add(GameTweak.LAUNCHWRAPPER_MAIN_CLASS);
+        else
+            commands.add(gameInfos.getGameVersion().getGameType().getMainClass(this));
         commands.addAll(gameInfos.getGameVersion().getGameType().getLaunchArgs(this));
+        if(gameInfos.isTweakingEnabled())
+            for(GameTweak tweak : gameInfos.getGameTweaks()) {
+                commands.add("--tweakClass");
+                commands.add(tweak.getName());
+            }
 
         String entireCommand = "";
         for(String cmd : commands)
@@ -158,6 +178,9 @@ public class GameLauncher {
         System.out.println("[OpenLauncherLib]        Game Version   : " + gameInfos.getGameVersion().getName());
         System.out.println("[OpenLauncherLib]        Game Dir       : " + gameInfos.getGameDir().getAbsolutePath());
         System.out.println("[OpenLauncherLib]        Server Name    : " + gameInfos.getServerName());
+        System.out.println("[OpenLauncherLib]        Game Tweaks    : " + gameInfos.getGameTweaks().length);
+        for(GameTweak tweak : gameInfos.getGameTweaks())
+            System.out.println("[OpenLauncherLib]            " + tweak.getName());
         System.out.println("[OpenLauncherLib]    Game Folder :");
         System.out.println("[OpenLauncherLib]        Assets Folder  : " + gameFolder.getAssetsFolder());
         System.out.println("[OpenLauncherLib]        Libs Folder    : " + gameFolder.getLibsFolder());

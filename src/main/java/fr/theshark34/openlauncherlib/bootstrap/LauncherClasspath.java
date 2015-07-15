@@ -28,7 +28,7 @@ import java.io.File;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class LauncherClasspath {
 

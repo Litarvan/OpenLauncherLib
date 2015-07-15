@@ -30,9 +30,39 @@ import java.util.ArrayList;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public abstract class GameType {
+
+    /**
+     * The 1.5.2 or Lower game type
+     */
+    public static final GameType V1_5_2_LOWER = new GameType() {
+        public String getName() {
+            return "1.5.2 or lower";
+        }
+
+        public String getMainClass(GameLauncher gameLauncher) {
+            return "net.minecraft.launchwrapper.Launch";
+        }
+
+        public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
+            ArrayList<String> arguments = new ArrayList<String>();
+
+            arguments.add(gameLauncher.getAuthInfos().getUsername());
+
+            arguments.add(gameLauncher.getAuthInfos().getUuid());
+
+            arguments.add("--gameDir");
+            arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
+
+            arguments.add("--assetsDir");
+            File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
+            arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
+
+            return arguments;
+        }
+    };
 
     /**
      * The 1.7.2 or Lower game type
@@ -43,10 +73,7 @@ public abstract class GameType {
         }
 
         public String getMainClass(GameLauncher gameLauncher) {
-            if(gameLauncher.getGameInfos().isForgeEnabled())
-                return "net.minecraft.launchwrapper.Launch";
-            else
-                return "net.minecraft.client.main.Main";
+            return "net.minecraft.client.main.Main";
         }
 
         public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
@@ -65,7 +92,7 @@ public abstract class GameType {
 
             arguments.add("--assetsDir");
             File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
-            arguments.add(assetsDir.getAbsolutePath());
+            arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
 
             arguments.add("--userProperties");
             arguments.add("{}");
@@ -75,11 +102,6 @@ public abstract class GameType {
 
             arguments.add("--userType");
             arguments.add("legacy");
-
-            if(gameLauncher.getGameInfos().isForgeEnabled()) {
-                arguments.add("--tweakClass");
-                arguments.add("cpw.mods.fml.common.launcher.FMLTweaker");
-            }
 
             return arguments;
         }
@@ -94,10 +116,7 @@ public abstract class GameType {
         }
 
         public String getMainClass(GameLauncher gameLauncher) {
-            if(gameLauncher.getGameInfos().isForgeEnabled())
-                return "net.minecraft.launchwrapper.Launch";
-            else
-                return "net.minecraft.client.main.Main";
+            return "net.minecraft.client.main.Main";
         }
 
         public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
@@ -129,11 +148,6 @@ public abstract class GameType {
 
             arguments.add("--userType");
             arguments.add("legacy");
-
-            if(gameLauncher.getGameInfos().isForgeEnabled()) {
-                arguments.add("--tweakClass");
-                arguments.add("cpw.mods.fml.common.launcher.FMLTweaker");
-            }
 
             return arguments;
         }
@@ -148,10 +162,7 @@ public abstract class GameType {
         }
 
         public String getMainClass(GameLauncher gameLauncher) {
-            if(gameLauncher.getGameInfos().isForgeEnabled())
-                return "net.minecraft.launchwrapper.Launch";
-            else
-                return "net.minecraft.client.main.Main";
+            return "net.minecraft.client.main.Main";
         }
 
         public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
@@ -183,11 +194,6 @@ public abstract class GameType {
 
             arguments.add("--userType");
             arguments.add("legacy");
-
-            if(gameLauncher.getGameInfos().isForgeEnabled()) {
-                arguments.add("--tweakClass");
-                arguments.add("net.minecraftforge.fml.common.launcher.FMLTweaker");
-            }
 
             return arguments;
         }

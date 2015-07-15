@@ -33,7 +33,7 @@ import java.util.Arrays;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class Bootstrap {
 

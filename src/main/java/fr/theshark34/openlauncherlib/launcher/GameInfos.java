@@ -30,7 +30,7 @@ import java.io.File;
  * </p>
  *
  * @author TheShark34
- * @version 2.0-SNAPSHOT
+ * @version 2.1-SNAPSHOT
  */
 public class GameInfos {
 
@@ -45,9 +45,14 @@ public class GameInfos {
     private File gameDir;
 
     /**
-     * If forge is enabled
+     * If the tweaking is enabled (with the LaunchWrapper)
      */
-    private boolean forgeEnabled;
+    private boolean tweakingEnabled;
+
+    /**
+     * The current tweaks (Shader, Optifine, Forge, or just Vanilla)
+     */
+    private GameTweak[] tweaks;
 
     /**
      * The Game Version containing launch informations
@@ -61,14 +66,11 @@ public class GameInfos {
      *            The server name
      * @param gameVersion
      *            The Game Version containing the launch informations
-     * @param forgeEnabled
-     *            If forge is enabled
+     * @param tweaks
+     *            The current tweaks (Shader, Optifine, Forge, or just Vanilla)
      */
-    public GameInfos(String serverName, GameVersion gameVersion, boolean forgeEnabled) {
-        this.serverName = serverName;
-        this.gameDir = GameDir.createGameDir(serverName);
-        this.gameVersion = gameVersion;
-        this.forgeEnabled = forgeEnabled;
+    public GameInfos(String serverName, GameVersion gameVersion, boolean tweakingEnabled, GameTweak[] tweaks) {
+        this(serverName, GameDir.createGameDir(serverName), gameVersion, tweakingEnabled, tweaks);
     }
 
     /**
@@ -80,14 +82,26 @@ public class GameInfos {
      *            The game directory
      * @param gameVersion
      *            The Game Version containing the launch informations
-     * @param forgeEnabled
-     *            If forge is enabled
+     * @param tweaks
+     *            The current tweaks (Shader, Optifine, Forge, or just Vanilla)
      */
-    public GameInfos(String serverName, File gameDir, GameVersion gameVersion, boolean forgeEnabled) {
+    public GameInfos(String serverName, File gameDir, GameVersion gameVersion, boolean tweakingEnabled, GameTweak[] tweaks) {
         this.serverName = serverName;
         this.gameDir = gameDir;
         this.gameVersion = gameVersion;
-        this.forgeEnabled = forgeEnabled;
+        this.tweakingEnabled = tweakingEnabled;
+        this.tweaks = tweaks;
+
+        for(GameTweak tweak : tweaks)
+            if(tweak.equals(GameTweak.FORGE)) {
+                if(tweaks.length > 1)
+                    System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweak with other tweaks, Shader tweak and Optifine tweak are ONLY FOR VANILLA, it cans cause bugs and more, the game COULD NOT START !");
+                if(gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
+                    System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweaking with a version under or equals as 1.5.2, forge is supposed to be installed in the jar (not with a tweaker), the game COULD NOT START !");
+            }
+
+        if(tweakingEnabled && gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
+            System.out.println("[OpenLauncherLib] [WARNING] You selected tweaking with a version under or equals as 1.5.2, this isn't fully supported, and could cause bugs.");
     }
 
     /**
@@ -118,12 +132,36 @@ public class GameInfos {
     }
 
     /**
-     * Returns true if forge is enabled, false if not
+     * Returns if the tweaking is enabled with the LaunchWrapper
      *
-     * @return If forge is enabled
+     * @return If the tweaking is enabled
      */
-    public boolean isForgeEnabled() {
-        return forgeEnabled;
+    public boolean isTweakingEnabled() {
+        return tweakingEnabled;
+    }
+
+    /**
+     * Returns the current tweaks (Shader, Optifine, Forge, or just Vanilla)
+     *
+     * @return The current tweaks
+     */
+    public GameTweak[] getGameTweaks() {
+        return tweaks;
+    }
+
+    /**
+     * Check if the game has a given tweak
+     *
+     * @param tweak
+     *            The tweak to check if the game has it
+     * @return True if it has, false if not
+     */
+    public boolean hasGameTweak(GameTweak tweak) {
+        for(GameTweak gameTweak : tweaks)
+            if(gameTweak.equals(tweak))
+                return true;
+
+        return false;
     }
 
 }
