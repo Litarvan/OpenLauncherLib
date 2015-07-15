@@ -146,7 +146,7 @@ public class GameLauncher {
         if(gameInfos.isTweakingEnabled())
             for(GameTweak tweak : gameInfos.getGameTweaks()) {
                 commands.add("--tweakClass");
-                commands.add(tweak.getName());
+                commands.add(tweak.getTweakClass(this));
             }
 
         String entireCommand = "";
