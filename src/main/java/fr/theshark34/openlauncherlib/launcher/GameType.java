@@ -51,7 +51,7 @@ public abstract class GameType {
 
             arguments.add(gameLauncher.getAuthInfos().getUsername());
 
-            arguments.add(gameLauncher.getAuthInfos().getUuid());
+            arguments.add("token:" + gameLauncher.getAuthInfos().getAccessToken() + ":" + gameLauncher.getAuthInfos().getUuid());
 
             arguments.add("--gameDir");
             arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
