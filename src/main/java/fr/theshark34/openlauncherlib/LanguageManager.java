@@ -33,10 +33,66 @@ import java.util.HashMap;
 public class LanguageManager {
 
     /**
+     * The ENGLISH Lang set
+     */
+    public static final HashMap<String, String> ENGLISH = new HashMap<String, String>();
+
+    /**
+     * The FRENCH Lang set
+     */
+    public static final HashMap<String, String> FRENCH = new HashMap<String, String>();
+
+    /**
      * The current language set
      */
-    private HashMap<String, String> currentLangSet;
+    private static HashMap<String, String> currentLangSet = ENGLISH;
 
+    /**
+     * Get a translated string
+     *
+     * @param key
+     *            The key of the string
+     * @return The translated string
+     */
+    public static String lang(String key) {
+        String text = currentLangSet.get(key);
+        if(text == null)
+            return ENGLISH.get(key);
+        else
+            return text;
+    }
 
+    /**
+     * Set the language
+     *
+     * @param langSet
+     *            The new language set
+     */
+    public static void setLang(HashMap<String, String> langSet) {
+        currentLangSet = langSet;
+    }
 
+    /**
+     * Return the current language, as a lang set
+     *
+     * @return The current lang set
+     */
+    public static HashMap<String, String> getCurrentLangSet() {
+        return currentLangSet;
+    }
+
+    /**
+     * Setup the default languages
+     */
+    static {
+        ENGLISH.put("options", "Options");
+        ENGLISH.put("ram", "RAM");
+        ENGLISH.put("warn", "Warning");
+        ENGLISH.put("splash-interrupted", "Splash wait time was interrupted !");
+
+        FRENCH.put("options", "Options");
+        FRENCH.put("ram", "RAM");cd 
+        ENGLISH.put("warn", "Attention");
+        ENGLISH.put("splash-interrupted", "Le temps d'attente du splash a été intérrompu !");
+    }
 }

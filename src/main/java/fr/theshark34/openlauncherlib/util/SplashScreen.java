@@ -18,6 +18,7 @@
  */
 package fr.theshark34.openlauncherlib.util;
 
+import fr.theshark34.openlauncherlib.LanguageManager;
 import javax.swing.*;
 import java.awt.*;
 
@@ -67,7 +68,7 @@ public class SplashScreen extends JFrame {
                 try {
                     sleep(time);
                 } catch (InterruptedException e) {
-                    System.err.println("[OpenLauncherLib] Warning : SplashScreen wait time was interrupted");
+                    System.err.println("[OpenLauncherLib] " + LanguageManager.lang("warn") + " : " + LanguageManager.lang("splash-interrupted"));
                 }
 
                 setVisible(false);
