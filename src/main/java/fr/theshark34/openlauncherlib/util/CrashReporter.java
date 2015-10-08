@@ -113,7 +113,14 @@ public class CrashReporter {
         return file;
     }
 
-    public String makeCrashReport(Exception e) {
+    /**
+     * Create a crash report with an exception
+     *
+     * @param e
+     *            The exception to make the crash report
+     * @return The made crash report
+     */
+    public static String makeCrashReport(Exception e) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
