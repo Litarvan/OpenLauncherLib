@@ -19,6 +19,7 @@
 package fr.theshark34.openlauncherlib.util.ramselector;
 
 import fr.theshark34.openlauncherlib.util.CrashReporter;
+import fr.theshark34.openlauncherlib.util.LogUtil;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -119,7 +120,8 @@ public class RamSelector {
             if(ramText != null)
                 return Integer.parseInt(ramText);
             else
-                System.err.println("[OpenLauncherLib] WARNING: Can't read ram : File is empty");
+                LogUtil.err("warn", "ram-empty");
+                //System.err.println("[OpenLauncherLib] WARNING: ");
         } catch (IOException e) {
             System.err.println("[OpenLauncherLib] WARNING: Can't read ram : " + e);
         } finally {

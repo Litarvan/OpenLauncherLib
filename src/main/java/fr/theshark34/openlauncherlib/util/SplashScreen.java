@@ -68,7 +68,7 @@ public class SplashScreen extends JFrame {
                 try {
                     sleep(time);
                 } catch (InterruptedException e) {
-                    System.err.println("[OpenLauncherLib] " + LanguageManager.lang("warn") + " : " + LanguageManager.lang("splash-interrupted"));
+                    LogUtil.err("warn", " : ", "splash-interrupted");
                 }
 
                 setVisible(false);

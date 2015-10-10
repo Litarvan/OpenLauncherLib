@@ -62,7 +62,7 @@ public class CrashReporter {
      *            The error message
      */
     public void catchError(Exception e, String message) {
-        System.err.println("[OpenLauncherLib] Exception catched !");
+        LogUtil.err("ex-catched");
 
         System.out.println(makeCrashReport(e));
 
@@ -72,7 +72,7 @@ public class CrashReporter {
             File report = writeError(e);
             msg = "\nThe crash report is in : " + report.getAbsolutePath() + "";
         } catch (IOException e2) {
-            System.out.println("[OpenLauncherLib] Unable to write the crash report !");
+            LogUtil.err("report-error");
             e.printStackTrace();
             msg = "\nAnd unable to write the crash report :( : " + e2;
         }
@@ -99,7 +99,7 @@ public class CrashReporter {
                 + number + ".txt")).exists())
             number++;
 
-        System.out.println("[OpenLauncherLib] Writing crash report to : " + file.getAbsolutePath());
+        LogUtil.info("writing-crash", file.getAbsolutePath());
 
         file.getParentFile().mkdirs();
 

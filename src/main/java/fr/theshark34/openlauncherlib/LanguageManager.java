@@ -57,9 +57,9 @@ public class LanguageManager {
     public static String lang(String key) {
         String text = currentLangSet.get(key);
         if(text == null)
-            return ENGLISH.get(key);
-        else
-            return text;
+            text = ENGLISH.get(key);
+
+        return text == null ? key : text;
     }
 
     /**
@@ -89,10 +89,18 @@ public class LanguageManager {
         ENGLISH.put("ram", "RAM");
         ENGLISH.put("warn", "Warning");
         ENGLISH.put("splash-interrupted", "Splash wait time was interrupted !");
+        ENGLISH.put("ex-catched", "Exception catched !");
+        ENGLISH.put("report-error", "Unable to write the crash report !");
+        ENGLISH.put("ram-empty", "Can't read ram : File is empty");
+        ENGLISH.put("writing-crash", "Writing crash report to");
 
         FRENCH.put("options", "Options");
-        FRENCH.put("ram", "RAM");cd 
-        ENGLISH.put("warn", "Attention");
-        ENGLISH.put("splash-interrupted", "Le temps d'attente du splash a été intérrompu !");
+        FRENCH.put("ram", "RAM");
+        FRENCH.put("warn", "Attention");
+        FRENCH.put("splash-interrupted", "Le temps d'attente du splash a été intérrompu !");
+        FRENCH.put("ex-catched", "Exception attrapée !");
+        FRENCH.put("report-error", "Impossible d'écrire le crash report !");
+        FRENCH.put("ram-empty", "Impossible de lire la RAM : Le fichier est vide");
+        FRENCH.put("writing-crash", "Écriture du crash report dans");
     }
 }
