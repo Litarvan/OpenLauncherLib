@@ -18,6 +18,9 @@
  */
 package fr.theshark34.openlauncherlib;
 
+import fr.theshark34.openlauncherlib.util.explorer.Explorer;
+import fr.theshark34.openlauncherlib.util.explorer.FileList;
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -97,10 +100,14 @@ public class LanguageManager {
         FRENCH.put("options", "Options");
         FRENCH.put("ram", "RAM");
         FRENCH.put("warn", "Attention");
-        FRENCH.put("splash-interrupted", "Le temps d'attente du splash a été intérrompu !");
-        FRENCH.put("ex-catched", "Exception attrapée !");
-        FRENCH.put("report-error", "Impossible d'écrire le crash report !");
+        FRENCH.put("splash-interrupted", "Le temps d'attente du splash a ï¿½tï¿½ intï¿½rrompu !");
+        FRENCH.put("ex-catched", "Exception attrapï¿½e !");
+        FRENCH.put("report-error", "Impossible d'ï¿½crire le crash report !");
         FRENCH.put("ram-empty", "Impossible de lire la RAM : Le fichier est vide");
-        FRENCH.put("writing-crash", "Écriture du crash report dans");
+        FRENCH.put("writing-crash", "ï¿½criture du crash report dans");
+
+        FileList list = new FileList();
+        list.add(Explorer.dir("libs").files().get());
+        list.add(Explorer.dir("otherlibs").sub("subdir").subs().get());
     }
 }

@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import javax.swing.JFrame;
 
 /**
@@ -46,7 +47,7 @@ public class RamSelector {
     /**
      * The class of the selector frame
      */
-    private Class<? extends AbstractOptionFrame> frameClass;
+    private Class<? extends AbstractOptionFrame> frameClass = OptionFrame.class;
 
     /**
      * The created frame
@@ -80,7 +81,17 @@ public class RamSelector {
     public JFrame display() {
         if(frame == null)
             try {
-                frame = frameClass.newInstance();
+                Constructor[] contructors = frameClass.getDeclaredConstructors();
+
+                Constructor constructor = null;
+                for(Constructor c : contructors)
+                    if(c.getParameterTypes().length == 1 && c.getParameterTypes()[0] == RamSelector.class)
+                        constructor = c;
+
+                if(constructor == null)
+                    throw new IllegalStateException("Can't load the OptionFrame class, it needs to have a constructor with just a RamSelector as argument.");
+
+                frame = (AbstractOptionFrame) constructor.newInstance(this);
             } catch (Exception e) {
                 System.err.println("[OpenLauncherLib] Can't display the Ram Selector !");
                 System.err.println(CrashReporter.makeCrashReport(e));
@@ -121,7 +132,6 @@ public class RamSelector {
                 return Integer.parseInt(ramText);
             else
                 LogUtil.err("warn", "ram-empty");
-                //System.err.println("[OpenLauncherLib] WARNING: ");
         } catch (IOException e) {
             System.err.println("[OpenLauncherLib] WARNING: Can't read ram : " + e);
         } finally {
@@ -134,6 +144,13 @@ public class RamSelector {
         }
 
         return 0;
+    }
+
+    /**
+     * Save the RAM
+     */
+    public void save() {
+
     }
 
     /**
