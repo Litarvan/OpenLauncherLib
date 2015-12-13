@@ -13,13 +13,13 @@ InternalLaunchProfile profile = new InternalLaunchProfile("fr.theshark34.MyMainC
 profile.launch();
 ```
 
-This will launch the main(String[] args) method of the fr.theshark34.MyMainClass class, after loading all the jars in the libs folder.
+This will launches the main(String[] args) method of the fr.theshark34.MyMainClass class, after loading all the jars in the libs folder.
 You can add a ClassInitializer, an object that will initialize the main class.
 You can also choose the method to invoke, and its parameters.
 
 ## External Java Launching
 
-You can launch a Java program using the external system. It launch directly the java program, to run a simple runnable jar with its librairies.
+You can launch a Java program using the external system. It launches directly the java program, to run a simple runnable jar with its librairies.
 
 ```java
 ClasspathConstructor constructor = new ClasspathConstructor();
@@ -32,22 +32,22 @@ ExternalLauncher launcher = new ExternalLauncher(profile);
 Process p = launcher.launch(); // throws LaunchException
 ```
 
-This will launch a java process with in classpath : mymainjar.jar and all the files of the libs folder.
+This will launch a java process with in classpath: mymainjar.jar and all the files of the libs folder.
 You can also add program/vm parameters, and a LaunchingEvent to customize the ProcessBuilder just before launching.
 
 ## Any Program Launching
 
 You can run any executable or command, and then use the OpenLauncherLib tools with it.
 
-    Comming soon
+    Coming soon
 
 ## Tools
 
-There is a lot of tools to use before or after the program launching.
+There are a lot of tools that can be used before or after the program launching.
 
 ### The Single Saver
 
-The Saver use Java Properties to save or load some datas. It is useful if your launch has authentication by exemple to save the user name, or things like this.
+The Saver uses Java Properties to save or load some data. It is useful if your launch has authentication by exemple to save the user name, or things like this.
 
 ```java
 Saver saver = new Saver(new File("myfile.properties"));
@@ -61,13 +61,13 @@ The data is automatically saved when you do set()
 
 You can use the Logger to activate logging for any program you want.
 
-    Comming soon
+    Coming soon
 
 ### The Process Log Manager
 
 You can use the Log Saver to save the logs to a file.
 
-    Comming soon
+    Coming soon
 
 ### The Splash Screen
 
@@ -93,7 +93,7 @@ String[] ramArguments = selector.getRamArguments();
 
 ## Minecraft
 
-There is a support for Minecraft launching, you can use these tools to create a Minecraft Launcher :
+There is a support for Minecraft launching, you can use these tools to create a Minecraft Launcher:
 
 ### Minecraft Launcher
 
@@ -111,6 +111,6 @@ launcher.launch();
 
 ### Minecraft Crash Detector
 
-The Crash Detector detect the common Minecraft crashes
+The Crash Detector detects the common Minecraft crashes
 
-    Comming soon
+    Coming soon
