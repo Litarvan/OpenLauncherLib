@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015 Adrien Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -16,40 +16,39 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.util;
+package fr.theshark34.openlauncherlib.minecraft.util;
 
 import java.io.File;
 
 /**
- * The Game Dir
+ * The Minecraft Game Dir Generator
  *
  * <p>
- *     This class contains a method to generate the game directory of
+ *     This class contains a method to generate the minecraft directory of
  *     the current OS like the default of Minecraft.
  * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-BETA
  */
-public class GameDir {
-
+public class GameDirGenerator
+{
     /**
      * Generate the game directory of the current OS by the given
      * server name, like the default of Minecraft.
      *
-     * @param serverName
-     *            The server name that will be the directory
-     *            name.
+     * @param serverName The server name that will be the directory
+     *                   name.
+     *
      * @return The generated game directory
      */
-    public static File createGameDir(String serverName) {
+    public static File createGameDir(String serverName)
+    {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win"))
-            return new File(System.getProperty("user.home")
-                    + "\\AppData\\Roaming\\." + serverName);
+            return new File(System.getenv("APPDATA") + "\\." + serverName);
         else if (os.contains("mac"))
-            return new File(System.getProperty("user.home")
-                    + "/Library/Application Support/" + serverName);
+            return new File(System.getProperty("user.home") + "/Library/Application Support/" + serverName);
         else
             return new File(System.getProperty("user.home") + "/." + serverName);
     }

@@ -16,19 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.launcher;
+package fr.theshark34.openlauncherlib.minecraft;
 
 /**
  * The Game Tweak
  *
  * <p>
- *     This class contains the 'tweak',
+ *     The Game Tweak is like a class, that patch Minecraft at launching.
+ *     If one tweak is enabled, the system will launch the launchwrapper library,
+ *     that is the library that patches the game.
+ *
+ *     One or more tweaking class will be given depending on the given Game Tweaks.
  * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-SNAPSHOT
+ * @since 2.1.0-SNAPSHOT
  */
-public abstract class GameTweak {
+public abstract class GameTweak
+{
 
     /**
      * The LaunchWrapper main class
@@ -38,15 +44,18 @@ public abstract class GameTweak {
     /**
      * The Forge GameTweak
      */
-    public static final GameTweak FORGE = new GameTweak() {
+    public static final GameTweak FORGE = new GameTweak()
+    {
         @Override
-        public String getName() {
+        public String getName()
+        {
             return "FML Tweaker";
         }
 
         @Override
-        public String getTweakClass(GameLauncher gameLauncher) {
-            if(gameLauncher.getGameInfos().getGameVersion().getName().contains("1.8"))
+        public String getTweakClass(GameInfos infos)
+        {
+            if (infos.getGameVersion().getName().contains("1.8"))
                 return "net.minecraftforge.fml.common.launcher.FMLTweaker";
             else
                 return "cpw.mods.fml.common.launcher.FMLTweaker";
@@ -56,14 +65,17 @@ public abstract class GameTweak {
     /**
      * The Optifine GameTweak
      */
-    public static final GameTweak OPTIFINE = new GameTweak() {
+    public static final GameTweak OPTIFINE = new GameTweak()
+    {
         @Override
-        public String getName() {
+        public String getName()
+        {
             return "Optifine Tweaker";
         }
 
         @Override
-        public String getTweakClass(GameLauncher gameLauncher) {
+        public String getTweakClass(GameInfos infos)
+        {
             return "optifine.OptiFineTweaker";
         }
     };
@@ -71,15 +83,36 @@ public abstract class GameTweak {
     /**
      * The Shader GameTweak
      */
-    public static final GameTweak SHADER = new GameTweak() {
+    public static final GameTweak SHADER = new GameTweak()
+    {
         @Override
-        public String getName() {
+        public String getName()
+        {
             return "Shader Tweaker";
         }
 
         @Override
-        public String getTweakClass(GameLauncher gameLauncher) {
+        public String getTweakClass(GameInfos infos)
+        {
             return "shadersmodcore.loading.SMCTweaker";
+        }
+    };
+
+    /**
+     * The AssetPatcher GameTweak
+     */
+    public static final GameTweak ASSET_PATCHER = new GameTweak()
+    {
+        @Override
+        public String getName()
+        {
+            return "Asset Patcher";
+        }
+
+        @Override
+        public String getTweakClass(GameInfos infos)
+        {
+            return "fr.theshark34.openlauncherlib.assetpatcher.AssetPatcherTweaker";
         }
     };
 
@@ -93,8 +126,10 @@ public abstract class GameTweak {
     /**
      * Return the name of the tweak class to give to the launch wrapper
      *
+     * @param infos The current GameInfos
+     *
      * @return The tweak class
      */
-    public abstract String getTweakClass(GameLauncher gameLauncher);
+    public abstract String getTweakClass(GameInfos infos);
 
 }

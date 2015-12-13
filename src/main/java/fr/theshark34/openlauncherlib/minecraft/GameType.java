@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.launcher;
+package fr.theshark34.openlauncherlib.minecraft;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,38 +26,49 @@ import java.util.ArrayList;
  *
  * <p>
  *     This class contains the specifics informations about a version
- *     of Minecraft
+ *     or a group of verison of Minecraft.
+ *
+ *     It contains its main class, and its arguments.
  * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-BETA
+ * @since 2.0.0-SNAPSHOT
  */
-public abstract class GameType {
+public abstract class GameType
+{
 
     /**
      * The 1.5.2 or Lower game type
      */
-    public static final GameType V1_5_2_LOWER = new GameType() {
-        public String getName() {
+    public static final GameType V1_5_2_LOWER = new GameType()
+    {
+        @Override
+        public String getName()
+        {
             return "1.5.2 or lower";
         }
 
-        public String getMainClass(GameLauncher gameLauncher) {
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
             return "net.minecraft.launchwrapper.Launch";
         }
 
-        public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
             ArrayList<String> arguments = new ArrayList<String>();
 
-            arguments.add(gameLauncher.getAuthInfos().getUsername());
+            arguments.add(authInfos.getUsername());
 
-            arguments.add("token:" + gameLauncher.getAuthInfos().getAccessToken() + ":" + gameLauncher.getAuthInfos().getUuid());
+            arguments.add("token:" + authInfos.getAccessToken() + ":" + authInfos.getUuid());
 
             arguments.add("--gameDir");
-            arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
+            arguments.add(infos.getGameDir().getAbsolutePath());
 
             arguments.add("--assetsDir");
-            File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
             arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
 
             return arguments;
@@ -67,38 +78,45 @@ public abstract class GameType {
     /**
      * The 1.7.2 or Lower game type
      */
-    public static final GameType V1_7_2_LOWER = new GameType() {
-        public String getName() {
+    public static final GameType V1_7_2_LOWER = new GameType()
+    {
+        @Override
+        public String getName()
+        {
             return "1.7.2 or lower";
         }
 
-        public String getMainClass(GameLauncher gameLauncher) {
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
             return "net.minecraft.client.main.Main";
         }
 
-        public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
             ArrayList<String> arguments = new ArrayList<String>();
 
-            arguments.add("--username=" + gameLauncher.getAuthInfos().getUsername());
+            arguments.add("--username=" + authInfos.getUsername());
 
             arguments.add("--accessToken");
-            arguments.add(gameLauncher.getAuthInfos().getAccessToken());
+            arguments.add(authInfos.getAccessToken());
 
             arguments.add("--version");
-            arguments.add(gameLauncher.getGameInfos().getGameVersion().getName());
+            arguments.add(infos.getGameVersion().getName());
 
             arguments.add("--gameDir");
-            arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
+            arguments.add(infos.getGameDir().getAbsolutePath());
 
             arguments.add("--assetsDir");
-            File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
             arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
 
             arguments.add("--userProperties");
             arguments.add("{}");
 
             arguments.add("--uuid");
-            arguments.add(gameLauncher.getAuthInfos().getUuid());
+            arguments.add(authInfos.getUuid());
 
             arguments.add("--userType");
             arguments.add("legacy");
@@ -110,41 +128,48 @@ public abstract class GameType {
     /**
      * The 1.7.10 Game Type
      */
-    public static final GameType V1_7_10 = new GameType() {
-        public String getName() {
+    public static final GameType V1_7_10 = new GameType()
+    {
+        @Override
+        public String getName()
+        {
             return "1.7.10";
         }
 
-        public String getMainClass(GameLauncher gameLauncher) {
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
             return "net.minecraft.client.main.Main";
         }
 
-        public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
             ArrayList<String> arguments = new ArrayList<String>();
 
-            arguments.add("--username=" + gameLauncher.getAuthInfos().getUsername());
+            arguments.add("--username=" + authInfos.getUsername());
 
             arguments.add("--accessToken");
-            arguments.add(gameLauncher.getAuthInfos().getAccessToken());
+            arguments.add(authInfos.getAccessToken());
 
             arguments.add("--version");
-            arguments.add(gameLauncher.getGameInfos().getGameVersion().getName());
+            arguments.add(infos.getGameVersion().getName());
 
             arguments.add("--gameDir");
-            arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
+            arguments.add(infos.getGameDir().getAbsolutePath());
 
             arguments.add("--assetsDir");
-            File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
             arguments.add(assetsDir.getAbsolutePath());
 
             arguments.add("--assetIndex");
-            arguments.add(gameLauncher.getGameInfos().getGameVersion().getName());
+            arguments.add(infos.getGameVersion().getName());
 
             arguments.add("--userProperties");
             arguments.add("{}");
 
             arguments.add("--uuid");
-            arguments.add(gameLauncher.getAuthInfos().getUuid());
+            arguments.add(authInfos.getUuid());
 
             arguments.add("--userType");
             arguments.add("legacy");
@@ -156,41 +181,48 @@ public abstract class GameType {
     /**
      * The 1.8 or higher Game Type
      */
-    public static final GameType V1_8_HIGHER = new GameType() {
-        public String getName() {
+    public static final GameType V1_8_HIGHER = new GameType()
+    {
+        @Override
+        public String getName()
+        {
             return "1.8 or higher";
         }
 
-        public String getMainClass(GameLauncher gameLauncher) {
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
             return "net.minecraft.client.main.Main";
         }
 
-        public ArrayList<String> getLaunchArgs(GameLauncher gameLauncher) {
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
             ArrayList<String> arguments = new ArrayList<String>();
 
-            arguments.add("--username=" + gameLauncher.getAuthInfos().getUsername());
+            arguments.add("--username=" + authInfos.getUsername());
 
             arguments.add("--accessToken");
-            arguments.add(gameLauncher.getAuthInfos().getAccessToken());
+            arguments.add(authInfos.getAccessToken());
 
             arguments.add("--version");
-            arguments.add(gameLauncher.getGameInfos().getGameVersion().getName());
+            arguments.add(infos.getGameVersion().getName());
 
             arguments.add("--gameDir");
-            arguments.add(gameLauncher.getGameInfos().getGameDir().getAbsolutePath());
+            arguments.add(infos.getGameDir().getAbsolutePath());
 
             arguments.add("--assetsDir");
-            File assetsDir = new File(gameLauncher.getGameInfos().getGameDir(), gameLauncher.getGameFolder().getAssetsFolder());
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
             arguments.add(assetsDir.getAbsolutePath());
 
             arguments.add("--assetIndex");
-            arguments.add(gameLauncher.getGameInfos().getGameVersion().getName());
+            arguments.add(infos.getGameVersion().getName());
 
             arguments.add("--userProperties");
             arguments.add("{}");
 
             arguments.add("--uuid");
-            arguments.add(gameLauncher.getAuthInfos().getUuid());
+            arguments.add(authInfos.getUuid());
 
             arguments.add("--userType");
             arguments.add("legacy");
@@ -209,20 +241,22 @@ public abstract class GameType {
     /**
      * Returns the main class of the Minecraft Game Type
      *
-     * @param gameLauncher
-     *            The current Game Launcher instance
+     * @param infos The infos of the game
+     *
      * @return The main class
      */
-    public abstract String getMainClass(GameLauncher gameLauncher);
+    public abstract String getMainClass(GameInfos infos);
 
     /**
      * Returns the launch arguments of the Minecraft Game Type
      *
-     * @param gameLauncher
-     *            The current Game Launcher instance
+     * @param infos     The infos of the game
+     * @param folder    The current GameFolder
+     * @param authInfos The current AuthInfos
+     *
      * @return The launch arguments
      */
-    public abstract ArrayList<String> getLaunchArgs(GameLauncher gameLauncher);
+    public abstract ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos);
 
 
 }

@@ -16,59 +16,62 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.bootstrap;
+package fr.theshark34.openlauncherlib.minecraft;
 
 /**
- * The Launcher Infos
+ * The Game Version
  *
  * <p>
- *     This class contains the launcher infos like the main class, and the server name.
+ *     This contains the type of version, and its precise name.
  * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-BETA
+ * @since 2.0.0-SNAPSHOT
  */
-public class LauncherInfos {
+public class GameVersion
+{
 
     /**
-     * The server name
+     * The name of the version
      */
-    private String serverName;
+    private String name;
 
     /**
-     * The launcher main class
+     * The type of the version
      */
-    private String mainClass;
+    private GameType gameType;
 
     /**
      * Basic constructor
      *
-     * @param serverName
-     *            The server name
-     * @param mainClass
-     *            The launcher main class
+     * @param name     The name of the version
+     * @param gameType The type of the version
      */
-    public LauncherInfos(String serverName, String mainClass) {
-        this.serverName = serverName;
-        this.mainClass = mainClass;
+    public GameVersion(String name, GameType gameType)
+    {
+        this.name = name;
+        this.gameType = gameType;
     }
 
     /**
-     * Returns the server name
+     * Returns the name of the version
      *
-     * @return The server name
+     * @return The name of the version
      */
-    public String getServerName() {
-        return this.serverName;
+    public String getName()
+    {
+        return this.name;
     }
 
     /**
-     * Returns the launcher main class
+     * Returns the type of the version
      *
-     * @return The launcher main class
+     * @return The type of the version
      */
-    public String getMainClass() {
-        return this.mainClass;
+    public GameType getGameType()
+    {
+        return gameType;
     }
 
 }

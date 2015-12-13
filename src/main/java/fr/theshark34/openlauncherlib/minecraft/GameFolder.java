@@ -16,16 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.launcher;
+package fr.theshark34.openlauncherlib.minecraft;
 
 /**
- * The Game Folder containing the game folder organisation
+ * The Game Folder
+ *
+ * <p>
+ *     The Game Folder contains the Minecraft folder organisation.
+ * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-BETA
+ * @since 2.0.0-SNAPSHOT
  */
-public class GameFolder {
+public class GameFolder
+{
 
+    /**
+     * The basic game folder (assets, libs, natives, minecraft.jar)
+     */
     public static final GameFolder BASIC = new GameFolder("assets", "libs", "natives", "minecraft.jar");
 
     /**
@@ -51,16 +60,13 @@ public class GameFolder {
     /**
      * The Main Constructor
      *
-     * @param assetsFolder
-     *            The name of the folder containing the assets
-     * @param libsFolder
-     *            The name of the folder containing the librairies
-     * @param nativesFolder
-     *            The name of the folder containing the natives
-     * @param mainJar
-     *            The name of the main Jar
+     * @param assetsFolder  The name of the folder containing the assets
+     * @param libsFolder    The name of the folder containing the librairies
+     * @param nativesFolder The name of the folder containing the natives
+     * @param mainJar       The name of the main Jar
      */
-    public GameFolder(String assetsFolder, String libsFolder, String nativesFolder, String mainJar) {
+    public GameFolder(String assetsFolder, String libsFolder, String nativesFolder, String mainJar)
+    {
         this.assetsFolder = assetsFolder;
         this.libsFolder = libsFolder;
         this.nativesFolder = nativesFolder;
@@ -72,7 +78,8 @@ public class GameFolder {
      *
      * @return The name of the assets folder
      */
-    public String getAssetsFolder() {
+    public String getAssetsFolder()
+    {
         return assetsFolder;
     }
 
@@ -81,7 +88,8 @@ public class GameFolder {
      *
      * @return The name of the librairies folder
      */
-    public String getLibsFolder() {
+    public String getLibsFolder()
+    {
         return libsFolder;
     }
 
@@ -90,11 +98,18 @@ public class GameFolder {
      *
      * @return The name of the natives folder
      */
-    public String getNativesFolder() {
+    public String getNativesFolder()
+    {
         return nativesFolder;
     }
 
-    public String getMainJar() {
+    /**
+     * Return the main minecraft jar
+     *
+     * @return The main jar
+     */
+    public String getMainJar()
+    {
         return mainJar;
     }
 

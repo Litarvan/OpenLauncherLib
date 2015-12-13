@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.launcher;
+package fr.theshark34.openlauncherlib.minecraft;
 
 /**
  * The Auth Infos
@@ -27,9 +27,11 @@ package fr.theshark34.openlauncherlib.launcher;
  * </p>
  *
  * @author TheShark34
- * @version 2.1-SNAPSHOT
+ * @version 3.0.0-BETA
+ * @since 2.0.0-SNAPSHOT
  */
-public class AuthInfos {
+public class AuthInfos
+{
 
     /**
      * The player username
@@ -49,12 +51,12 @@ public class AuthInfos {
     /**
      * Basic constructor
      *
-     * @param username
-     *             The player username
-     * @param accessToken
-     *             The access token given by the authentication
+     * @param username    The player username
+     * @param accessToken The access token given by the authentication
+     * @param uuid        The player UUID
      */
-    public AuthInfos(String username, String accessToken, String uuid) {
+    public AuthInfos(String username, String accessToken, String uuid)
+    {
         this.username = username;
         this.accessToken = accessToken;
         this.uuid = uuid;
@@ -65,7 +67,8 @@ public class AuthInfos {
      *
      * @return The player username
      */
-    public String getUsername() {
+    public String getUsername()
+    {
         return this.username;
     }
 
@@ -74,7 +77,8 @@ public class AuthInfos {
      *
      * @return The access token
      */
-    public String getAccessToken() {
+    public String getAccessToken()
+    {
         return this.accessToken;
     }
 
@@ -83,7 +87,8 @@ public class AuthInfos {
      *
      * @return The uuid
      */
-    public String getUuid() {
+    public String getUuid()
+    {
         return this.uuid;
     }
 
