@@ -101,7 +101,7 @@ You can use the Minecraft Launcher to create internal/external launch profile fo
 
 ```java
 GameInfos infos = new GameInfos("MyMinecraft", new GameVersion("1.7.2", GameType.V1_7_2_LOWER), new GameTweak[] {GameTweak.FORGE});
-AuthInfos authInfos = new AuthInfos("PlayerUsername, "token", "uuid");
+AuthInfos authInfos = new AuthInfos("PlayerUsername", "token", "uuid");
 
 InternalLaunchProfile profile = MinecraftLauncher.createInternalProfile(infos, GameFolder.BASIC, authInfos);
 InternalLauncher launcher = new InternalLauncher(profile);
