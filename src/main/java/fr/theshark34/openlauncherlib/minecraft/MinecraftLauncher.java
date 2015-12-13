@@ -26,6 +26,8 @@ import fr.theshark34.openlauncherlib.internal.InternalLaunchProfile;
 import fr.theshark34.openlauncherlib.util.LogUtil;
 import fr.theshark34.openlauncherlib.util.explorer.Explorer;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -65,11 +67,20 @@ public class MinecraftLauncher
 
         List<String> arguments = infos.getGameVersion().getGameType().getLaunchArgs(infos, folder, authInfos);
 
+        if(infos.getGameTweaks() != null)
+            for (GameTweak tweak : infos.getGameTweaks())
+            {
+                arguments.add("--tweakClass");
+                arguments.add(tweak.getTweakClass(infos));
+            }
+
         String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? infos.getGameVersion().getGameType().getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
         String[] args = arguments.toArray(new String[arguments.size()]);
 
         InternalLaunchProfile profile = new InternalLaunchProfile(mainClass, args);
         profile.setClasspath(libs);
+
+        System.setProperty("fml.ignoreInvalidMinecraftCertificates", "true");
 
         LogUtil.info("nat");
         try
@@ -99,7 +110,7 @@ public class MinecraftLauncher
      */
     public static ExternalLaunchProfile createExternalProfile(GameInfos infos, GameFolder folder, AuthInfos authInfos) throws LaunchException
     {
-        LogUtil.info("mc-int", infos.getGameVersion().getName());
+        LogUtil.info("mc-ext", infos.getGameVersion().getName());
         LogUtil.info("mc-check", infos.getGameDir().getAbsolutePath());
 
         checkFolder(folder, infos.getGameDir());
@@ -110,10 +121,19 @@ public class MinecraftLauncher
         constructor.add(Explorer.dir(infos.getGameDir()).sub(folder.getLibsFolder()).allRecursive().files().match("^(.*\\.((jar)$))*$").get());
         constructor.add(Explorer.dir(infos.getGameDir()).get(folder.getMainJar()));
 
-        String mainClass = infos.getGameVersion().getGameType().getMainClass(infos);
+        String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? infos.getGameVersion().getGameType().getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
         String classpath = constructor.make();
         List<String> args = infos.getGameVersion().getGameType().getLaunchArgs(infos, folder, authInfos);
-        List<String> vmArgs = Collections.singletonList("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
+        List<String> vmArgs = new ArrayList<String>();
+        vmArgs.add("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
+        vmArgs.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+
+        if(infos.getGameTweaks() != null)
+            for (GameTweak tweak : infos.getGameTweaks())
+            {
+                args.add("--tweakClass");
+                args.add(tweak.getTweakClass(infos));
+            }
 
         ExternalLaunchProfile profile = new ExternalLaunchProfile(mainClass, classpath, vmArgs, args, true, infos.getServerName(), infos.getGameDir());
 

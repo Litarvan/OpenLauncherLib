@@ -52,10 +52,12 @@ public class CrashReporter
     /**
      * Basic constructor
      *
+     * @param name The project name
      * @param dir The directory to write the crashes
      */
-    public CrashReporter(File dir)
+    public CrashReporter(String name, File dir)
     {
+        this.name = name;
         this.dir = dir;
     }
 
@@ -113,28 +115,43 @@ public class CrashReporter
         FileWriter fw = new FileWriter(file);
 
         fw.write(makeCrashReport(name, e));
-        fw.write(e.toString());
 
         fw.close();
 
         return file;
     }
 
+    /**
+     * Return the crash directory
+     * @return The crash dir
+     */
     public File getDir()
     {
         return dir;
     }
 
+    /**
+     * Set the directory where are the crashes
+     * @param dir The crash dir
+     */
     public void setDir(File dir)
     {
         this.dir = dir;
     }
 
+    /**
+     * Return the reporter name
+     * @return The name
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * Set the reporter name
+     * @param name The new name
+     */
     public void setName(String name)
     {
         this.name = name;
@@ -153,17 +170,27 @@ public class CrashReporter
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
-        String report = "# " + projectName + " Crash Report\n" +
-                        "#\n" +
-                        "# At : " + dateFormat.format(date) + "\n" +
-                        "#\n" +
-                        "# Exception : " + e.getClass().getSimpleName() + "\n";
+        String report = "# " + projectName + " Crash Report\n\r" +
+                        "#\n\r" +
+                        "# At : " + dateFormat.format(date) + "\n\r" +
+                        "#\n\r" +
+                        "# Exception : " + e.getClass().getSimpleName() + "\n\r";
 
-        report += "\n# " + e.toString();
+        report += "\n\r# " + e.toString();
 
         StackTraceElement[] stackTrace = e.getStackTrace();
         for (StackTraceElement element : stackTrace)
-            report += "\n#     " + element;
+            report += "\n\r#     " + element;
+
+        Throwable cause = e.getCause();
+        if (cause != null)
+        {
+            report += "\n\r# Caused by: " + cause.toString();
+
+            StackTraceElement[] causeStackTrace = cause.getStackTrace();
+            for (StackTraceElement element : causeStackTrace)
+                report += "\n\r#     " + element;
+        }
 
         return report;
     }

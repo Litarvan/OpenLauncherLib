@@ -21,7 +21,9 @@ package fr.theshark34.openlauncherlib.internal;
 import fr.theshark34.openlauncherlib.LaunchException;
 import fr.theshark34.openlauncherlib.util.LogUtil;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -99,11 +101,9 @@ public class InternalLauncher implements ClassInitializer
             }
 
         Class<?> theClass;
-        Object initClass;
         try
         {
             theClass = ClassLoader.getSystemClassLoader().loadClass(profile.getTargetClass());
-            initClass = initializer.init(theClass);
         }
         catch (Exception e)
         {
@@ -137,6 +137,20 @@ public class InternalLauncher implements ClassInitializer
             throw e instanceof UnknownMethodException ? (UnknownMethodException) e : new UnknownMethodException(profile.getTargetMethod(), e);
         }
 
+
+        Object initClass = null;
+        if (!Modifier.isStatic(method.getModifiers()))
+            try
+            {
+                initClass = initializer.init(theClass);
+            }
+            catch (Throwable t)
+            {
+                throw new LaunchException("Can't initialize the main class", t);
+            }
+
+        method.setAccessible(true);
+
         long totalTime = System.currentTimeMillis() - start;
         int seconds = (int) (totalTime / 1000) % 60;
         int minutes = (int) ((totalTime / (1000 * 60)) % 60);
@@ -150,9 +164,19 @@ public class InternalLauncher implements ClassInitializer
         {
             return method.invoke(initClass, profile.getParameters());
         }
-        catch (Exception e)
+        catch (InvocationTargetException e)
         {
-            throw new LaunchException("Invoked method returned an exception", e);
+            Throwable thrown = e.getTargetException();
+            if (thrown instanceof ExceptionInInitializerError)
+            {
+                ExceptionInInitializerError initError = (ExceptionInInitializerError) thrown;
+                thrown = initError.getException();
+            }
+            throw new LaunchException("Invoked method returned an exception", thrown);
+        }
+        catch (IllegalAccessException e)
+        {
+            throw new LaunchException("This is not supposed to happen", e);
         }
     }
 
