@@ -24,7 +24,6 @@ import fr.theshark34.openlauncherlib.util.LogUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * The External Launcher

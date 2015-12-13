@@ -16,24 +16,54 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.external;
+package fr.theshark34.openlauncherlib.internal;
 
 import fr.theshark34.openlauncherlib.LanguageManager;
 import fr.theshark34.openlauncherlib.LaunchException;
 
+/**
+ * The Classpath Exception
+ *
+ * <p>
+ *     An exception thrown when the Classpath fails somewhere
+ * </p>
+ *
+ * @author TheShark34
+ * @version 3.0.0-BETA
+ */
 public class ClasspathException extends LaunchException
 {
+    /**
+     * When a JAR is not found
+     */
     public static final int JAR_NOT_FOUND_ERROR = 0;
+
+    /**
+     * When a JAR can't be load
+     */
     public static final int JAR_LOADING_ERROR = 1;
 
+    /**
+     * The Classpath Exception
+     *
+     * @param type The type of exception (need to be ClasspathException.JAR_NOT_FOUND_ERROR or JAR_LOADING_ERROR)
+     * @param str  The message
+     */
     public ClasspathException(int type, String str)
     {
         super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ? LanguageManager.lang("load-fail", ":", str) : str));
     }
 
+    /**
+     * The Classpath Exception with a cause
+     *
+     * @param type The type of exception (need to be ClasspathException.JAR_NOT_FOUND_ERROR or JAR_LOADING_ERROR)
+     * @param str  The message
+     * @param t    The cause
+     */
     public ClasspathException(int type, String str, Throwable t)
     {
-        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ?  LanguageManager.lang("load-fail", ":", str) : str), t);
+        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ? LanguageManager.lang("load-fail", ":", str) : str), t);
     }
 
 

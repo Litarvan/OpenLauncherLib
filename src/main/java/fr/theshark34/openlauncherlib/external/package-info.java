@@ -27,7 +27,7 @@
  *
  * Code example :
  *
- * <pre>
+ * <pre>{@code
  *     ClasspathConstructor constructor = new ClasspathConstructor();
  *     constructor.add(new File("mymainjar.jar"));
  *     constructor.add(Explorer.dir("libs").files());
@@ -37,7 +37,7 @@
  *
  *     Process p = launcher.launch(); // throws LaunchException
  *     // Process is now launched =)
- * </pre>
+ * }</pre>
  *
  * You can also give programs/VM parameters.
  *

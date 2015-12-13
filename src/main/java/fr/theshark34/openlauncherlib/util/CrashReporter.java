@@ -18,13 +18,13 @@
  */
 package fr.theshark34.openlauncherlib.util;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  * The Crash Reporter
@@ -36,7 +36,8 @@ import java.util.Date;
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class CrashReporter {
+public class CrashReporter
+{
 
     /**
      * The directory to write the crashes
@@ -51,32 +52,34 @@ public class CrashReporter {
     /**
      * Basic constructor
      *
-     * @param dir
-     *            The directory to write the crashes
+     * @param dir The directory to write the crashes
      */
-    public CrashReporter(File dir) {
+    public CrashReporter(File dir)
+    {
         this.dir = dir;
     }
 
     /**
      * Catch an error and write it to a crash
      *
-     * @param e
-     *            The error to catch
-     * @param message
-     *            The error message
+     * @param e       The error to catch
+     * @param message The error message
      */
-    public void catchError(Exception e, String message) {
+    public void catchError(Exception e, String message)
+    {
         LogUtil.err("ex-caught");
 
         System.out.println(makeCrashReport(name, e));
 
         String msg;
 
-        try {
+        try
+        {
             File report = writeError(e);
             msg = "\nThe crash report is in : " + report.getAbsolutePath() + "";
-        } catch (IOException e2) {
+        }
+        catch (IOException e2)
+        {
             LogUtil.err("report-error");
             e.printStackTrace();
             msg = "\nAnd unable to write the crash report :( : " + e2;
@@ -90,18 +93,17 @@ public class CrashReporter {
     /**
      * Write a stacktrace to a file
      *
-     * @param e
-     *            The exception
-     * @throws IOException
-     *            If it failed to write the crash
+     * @param e The exception
      *
      * @return The file where the crash was saved
+     *
+     * @throws IOException If it failed to write the crash
      */
-    public File writeError(Exception e) throws IOException {
+    public File writeError(Exception e) throws IOException
+    {
         File file;
         int number = 0;
-        while ((file = new File(dir, "crash-"
-                + number + ".txt")).exists())
+        while ((file = new File(dir, "crash-" + number + ".txt")).exists())
             number++;
 
         LogUtil.info("writing-crash", file.getAbsolutePath());
@@ -116,32 +118,6 @@ public class CrashReporter {
         fw.close();
 
         return file;
-    }
-
-    /**
-     * Create a crash report with an exception
-     *
-     * @param e
-     *            The exception to make the crash report
-     * @return The made crash report
-     */
-    public static String makeCrashReport(String projectName, Exception e) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-
-        String report = "# " + projectName + " Crash Report\n" +
-                "#\n" +
-                "# At : " + dateFormat.format(date) + "\n" +
-                "#\n" +
-                "# Exception : " + e.getClass().getSimpleName() + "\n";
-
-        report += "\n# " + e.toString();
-
-        StackTraceElement[] stackTrace = e.getStackTrace();
-        for (StackTraceElement element : stackTrace)
-            report += "\n#     " + element;
-
-        return report;
     }
 
     public File getDir()
@@ -162,5 +138,33 @@ public class CrashReporter {
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    /**
+     * Create a crash report with an exception
+     *
+     * @param e           The exception to make the crash report
+     * @param projectName The name of your project
+     *
+     * @return The made crash report
+     */
+    public static String makeCrashReport(String projectName, Exception e)
+    {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+
+        String report = "# " + projectName + " Crash Report\n" +
+                        "#\n" +
+                        "# At : " + dateFormat.format(date) + "\n" +
+                        "#\n" +
+                        "# Exception : " + e.getClass().getSimpleName() + "\n";
+
+        report += "\n# " + e.toString();
+
+        StackTraceElement[] stackTrace = e.getStackTrace();
+        for (StackTraceElement element : stackTrace)
+            report += "\n#     " + element;
+
+        return report;
     }
 }

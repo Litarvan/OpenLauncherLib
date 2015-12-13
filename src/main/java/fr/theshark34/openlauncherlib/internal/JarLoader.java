@@ -18,7 +18,6 @@
  */
 package fr.theshark34.openlauncherlib.internal;
 
-import fr.theshark34.openlauncherlib.external.ClasspathException;
 import fr.theshark34.openlauncherlib.util.explorer.FileList;
 import java.io.File;
 import java.lang.reflect.Method;

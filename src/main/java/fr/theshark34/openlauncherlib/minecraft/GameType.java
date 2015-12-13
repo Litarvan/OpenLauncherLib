@@ -43,16 +43,19 @@ public abstract class GameType
      */
     public static final GameType V1_5_2_LOWER = new GameType()
     {
+        @Override
         public String getName()
         {
             return "1.5.2 or lower";
         }
 
+        @Override
         public String getMainClass(GameInfos infos)
         {
             return "net.minecraft.launchwrapper.Launch";
         }
 
+        @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
             ArrayList<String> arguments = new ArrayList<String>();
@@ -77,16 +80,19 @@ public abstract class GameType
      */
     public static final GameType V1_7_2_LOWER = new GameType()
     {
+        @Override
         public String getName()
         {
             return "1.7.2 or lower";
         }
 
+        @Override
         public String getMainClass(GameInfos infos)
         {
             return "net.minecraft.client.main.Main";
         }
 
+        @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
             ArrayList<String> arguments = new ArrayList<String>();
@@ -124,16 +130,19 @@ public abstract class GameType
      */
     public static final GameType V1_7_10 = new GameType()
     {
+        @Override
         public String getName()
         {
             return "1.7.10";
         }
 
+        @Override
         public String getMainClass(GameInfos infos)
         {
             return "net.minecraft.client.main.Main";
         }
 
+        @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
             ArrayList<String> arguments = new ArrayList<String>();
@@ -174,16 +183,19 @@ public abstract class GameType
      */
     public static final GameType V1_8_HIGHER = new GameType()
     {
+        @Override
         public String getName()
         {
             return "1.8 or higher";
         }
 
+        @Override
         public String getMainClass(GameInfos infos)
         {
             return "net.minecraft.client.main.Main";
         }
 
+        @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
             ArrayList<String> arguments = new ArrayList<String>();
@@ -238,7 +250,9 @@ public abstract class GameType
     /**
      * Returns the launch arguments of the Minecraft Game Type
      *
-     * @param infos The infos of the game
+     * @param infos     The infos of the game
+     * @param folder    The current GameFolder
+     * @param authInfos The current AuthInfos
      *
      * @return The launch arguments
      */

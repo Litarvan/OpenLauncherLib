@@ -29,11 +29,11 @@
  *
  * Code example :
  *
- * <pre>
- *     List classpath = Explorer.dir("libs").files().match("^(.*\.((jar)$))*$").get();
+ * <pre>{@code
+ *     List<File> classpath = Explorer.dir("libs").files().match("^(.*\.((jar)$))*$").get();
  *     InternalLaunchProfile profile = new InternalLaunchProfile("fr.theshark34.MyMainClass", classpath);
  *     profile.launch();
- * </pre>
+ * }</pre>
  *
  * This will launch the main(String[] args) of the given class.
  * You can also choose the method to launch, and its parameters.

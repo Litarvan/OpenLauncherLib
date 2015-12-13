@@ -27,9 +27,9 @@ import javax.swing.WindowConstants;
 
 /**
  * The Splash Screen
- * <p/>
+ *
  * <p>
- * This class cans create a splash screen with an image.
+ *     This class cans create a splash screen with an image.
  * </p>
  *
  * @author TheShark34
@@ -105,7 +105,7 @@ public class SplashScreen extends JFrame
 
     /**
      * Set the background transparent
-     * <p/>
+     *
      * Warning : Works only for Java 7+ (but just doesn't do anything with Java 6 or less)
      */
     public void setTransparent()
@@ -129,9 +129,9 @@ public class SplashScreen extends JFrame
 
 /**
  * The Splash Panel
- * <p/>
+ *
  * <p>
- * The container of a SplashScreen with an image in background
+ *     The container of a SplashScreen with an image in background
  * </p>
  *
  * @author TheShark34

@@ -22,18 +22,43 @@ import fr.theshark34.openlauncherlib.util.explorer.FileList;
 import java.io.File;
 import java.util.List;
 
+/**
+ * The Classpath Constructor
+ *
+ * <p>
+ *     A FileList but that can construct a classpath String (libs.jar;test.jar;libs/myjar.jar)
+ *     (with : instead of ; on Mac and Linux)
+ * </p>
+ *
+ * @see FileList
+ * @author TheShark34
+ * @version 3.0.0-BETA
+ */
 public class ClasspathConstructor extends FileList
 {
+    /**
+     * Empty Classpath Constructor
+     */
     public ClasspathConstructor()
     {
         super();
     }
 
+    /**
+     * Classpath Constructor with pre-defined files
+     *
+     * @param classPath The files to add
+     */
     public ClasspathConstructor(List<File> classPath)
     {
         super(classPath);
     }
 
+    /**
+     * Make the classpath
+     *
+     * @return Something like libs.jar;test.jar;libs/myjar.jar (with : instead of ; on Mac and Linux)
+     */
     public String make()
     {
         String classPath = "";

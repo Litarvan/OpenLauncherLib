@@ -28,8 +28,8 @@
  *
  * Without the API :
  *
- * <pre>
- *     List finalFiles = new ArrayList();
+ * <pre>{@code
+ *     List<File> finalFiles = new ArrayList<File>();
  *
  *     File directory = new File("directory");
  *     if (!directory.exists() || !directory.isDirectory())
@@ -44,14 +44,14 @@
  *            finalFiles.add(f);
  *
  *     // Working, but not recursively :/
- * </pre>
+ * }</pre>
  *
  * With the API :
  *
- * <pre>
- *     List finalFiles = Explorer.dir("directory").allRecursive().files().match("^(.*\.((jar)$))*$").get();
+ * <pre>{@code
+ *     List<File> finalFiles = Explorer.dir("directory").allRecursive().files().match("^(.*\.((jar)$))*$").get();
  *     // And this is recursive ! It also drop a FailException (extends RuntimeException) if something failed !
- * </pre>
+ * }</pre>
  *
  * @see fr.theshark34.openlauncherlib.FailException
  * @author TheShark34

@@ -22,9 +22,9 @@ import java.util.HashMap;
 
 /**
  * The Abstract Option Frame
- * <p/>
+ *
  * <p>
- * The base class to use with the Ram Selector to select RAM.
+ *     The base class to use with the Ram Selector to select RAM.
  * </p>
  *
  * @author TheShark34
