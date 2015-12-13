@@ -7,9 +7,11 @@
 
 You can launch a Java program using the internal system. It loads some given jars, then it cans launch any method from any class you wan't, it can be non-static, so it will use the constructor you want.
 
+```java
     List classpath = Explorer.dir("libs").files().match("^(.*\.((jar)$))*$").get();
     InternalLaunchProfile profile = new InternalLaunchProfile("fr.theshark34.MyMainClass", classpath);
     profile.launch();
+```
 
 This will launch the main(String[] args) method of the fr.theshark34.MyMainClass class, after loading all the jars in the libs folder.
 You can add a ClassInitializer, an object that will initialize the main class.
@@ -19,6 +21,7 @@ You can also choose the method to invoke, and its parameters.
 
 You can launch a Java program using the external system. It launch directly the java program, to run a simple runnable jar with its librairies.
 
+```java
     ClasspathConstructor constructor = new ClasspathConstructor();
     constructor.add(new File("mymainjar.jar"));
     constructor.add(Explorer.dir("libs").files());
@@ -27,6 +30,7 @@ You can launch a Java program using the external system. It launch directly the 
     ExternalLauncher launcher = new ExternalLauncher(profile);
 
     Process p = launcher.launch(); // throws LaunchException
+```
 
 This will launch a java process with in classpath : mymainjar.jar and all the files of the libs folder.
 You can also add program/vm parameters, and a LaunchingEvent to customize the ProcessBuilder just before launching.
@@ -45,9 +49,11 @@ There is a lot of tools to use before or after the program launching.
 
 The Saver use Java Properties to save or load some datas. It is useful if your launch has authentication by exemple to save the user name, or things like this.
 
+```java
     Saver saver = new Saver(new File("myfile.properties"));
     saver.set("username", "jack");
     String age = saver.get("age");
+```
 
 The data is automatically saved when you do set()
 
@@ -67,19 +73,23 @@ You can use the Log Saver to save the logs to a file.
 
 The Splash Screen can be used to display a simple splash that you can personalize.
 
+```java
     SplashScreen splash = new SplashScreen("MySplashTitle", mySplashImage);
     splash.add(new JProgressBar());
     splash.displayFor(5000L);
+```
 
 ### The Ram Selector
 
 The Ram Selector can be used to display a Ram Choosing Frame easily
 
+```java
     RamSelector selector = new RamSelector(new File("ram.txt"));
     selector.display();
 
     // Then when your launching
     String[] ramArguments = selector.getRamArguments();
+```
 
 ## Minecraft
 
@@ -89,6 +99,7 @@ There is a support for Minecraft launching, you can use these tools to create a 
 
 You can use the Minecraft Launcher to create internal/external launch profile for Minecraft
 
+```java
     GameInfos infos = new GameInfos("MyMinecraft", new GameVersion("1.7.2", GameType.V1_7_2_LOWER), new GameTweak[] {GameTweak.FORGE});
     AuthInfos authInfos = new AuthInfos("PlayerUsername, "token", "uuid");
 
@@ -96,6 +107,7 @@ You can use the Minecraft Launcher to create internal/external launch profile fo
     InternalLauncher launcher = new InternalLauncher(profile);
 
     launcher.launch();
+```
 
 ### Minecraft Crash Detector
 
