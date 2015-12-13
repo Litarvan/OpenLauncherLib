@@ -5,7 +5,7 @@
 
 ## Internal Java Launching
 
-You can launch a Java program using the internal system. It loads some given jars, then it cans launch any method from any class you wan't, it can be non-static, so it will use the constructor you want.
+You can launch a Java program using the internal system. It loads some given jars, then it can launch any method from any class you want, it can be non-static, so it will use the constructor you want.
 
 ```java
 List classpath = Explorer.dir("libs").files().match("^(.*\.((jar)$))*$").get();
