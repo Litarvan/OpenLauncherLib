@@ -44,6 +44,11 @@ public class CrashReporter {
     private File dir;
 
     /**
+     * The reporter name
+     */
+    private String name;
+
+    /**
      * Basic constructor
      *
      * @param dir
@@ -62,9 +67,9 @@ public class CrashReporter {
      *            The error message
      */
     public void catchError(Exception e, String message) {
-        LogUtil.err("ex-catched");
+        LogUtil.err("ex-caught");
 
-        System.out.println(makeCrashReport(e));
+        System.out.println(makeCrashReport(name, e));
 
         String msg;
 
@@ -105,7 +110,7 @@ public class CrashReporter {
 
         FileWriter fw = new FileWriter(file);
 
-        fw.write(makeCrashReport(e));
+        fw.write(makeCrashReport(name, e));
         fw.write(e.toString());
 
         fw.close();
@@ -120,11 +125,11 @@ public class CrashReporter {
      *            The exception to make the crash report
      * @return The made crash report
      */
-    public static String makeCrashReport(Exception e) {
+    public static String makeCrashReport(String projectName, Exception e) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
-        String report = "# OpenLauncherLib Crash Report\n" +
+        String report = "# " + projectName + " Crash Report\n" +
                 "#\n" +
                 "# At : " + dateFormat.format(date) + "\n" +
                 "#\n" +
@@ -139,4 +144,23 @@ public class CrashReporter {
         return report;
     }
 
+    public File getDir()
+    {
+        return dir;
+    }
+
+    public void setDir(File dir)
+    {
+        this.dir = dir;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 }

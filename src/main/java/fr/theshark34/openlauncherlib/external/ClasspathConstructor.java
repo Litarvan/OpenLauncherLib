@@ -16,38 +16,31 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.external;
 
-/**
- * The Fail Exception
- *
- * <p>
- *     Best exception ever made
- * </p>
- *
- * @author TheShark34
- * @version 3.0.0-BETA
- */
-public class FailException extends RuntimeException
+import fr.theshark34.openlauncherlib.util.explorer.FileList;
+import java.io.File;
+import java.util.List;
+
+public class ClasspathConstructor extends FileList
 {
-    /**
-     * Normal constructor
-     *
-     * @param message The message
-     */
-    public FailException(String message)
+    public ClasspathConstructor()
     {
-        super("Ups ! Looks like you failed : " + message);
+        super();
     }
 
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
+    public ClasspathConstructor(List<File> classPath)
     {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(classPath);
+    }
+
+    public String make()
+    {
+        String classPath = "";
+
+        for (int i = 0; i < files.size(); i++)
+            classPath += files.get(i).getAbsolutePath() + (i + 1 == files.size() ? "" : File.pathSeparator);
+
+        return classPath;
     }
 }

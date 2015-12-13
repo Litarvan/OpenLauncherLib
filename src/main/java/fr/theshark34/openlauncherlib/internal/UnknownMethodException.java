@@ -16,38 +16,40 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.internal;
+
+import fr.theshark34.openlauncherlib.LaunchException;
 
 /**
- * The Fail Exception
+ * The Unknown Method Exception
  *
  * <p>
- *     Best exception ever made
+ *     Thrown when the given target method is not found
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public class UnknownMethodException extends LaunchException
 {
     /**
-     * Normal constructor
+     * The Unknown method exception
      *
      * @param message The message
      */
-    public FailException(String message)
+    public UnknownMethodException(String message)
     {
-        super("Ups ! Looks like you failed : " + message);
+        super(message);
     }
 
     /**
-     * Constructor with a cause
+     * The Unknown method exception
      *
      * @param message The message
-     * @param cause   The cause
+     * @param t       The cause
      */
-    public FailException(String message, Throwable cause)
+    public UnknownMethodException(String message, Throwable t)
     {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(message, t);
     }
 }

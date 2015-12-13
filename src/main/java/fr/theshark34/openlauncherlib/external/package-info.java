@@ -16,38 +16,32 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
 
 /**
- * The Fail Exception
+ * The External Launching package
  *
  * <p>
- *     Best exception ever made
+ *     The external launching is the launching method that create a java Process
+ *     to launch a Java program.
  * </p>
+ *
+ * Code example :
+ *
+ * <pre>
+ *     ClasspathConstructor constructor = new ClasspathConstructor();
+ *     constructor.add(new File("mymainjar.jar"));
+ *     constructor.add(Explorer.dir("libs").files());
+ *
+ *     ExternalLaunchProfile profile = new ExternalLaunchProfile("fr.theshark34.MyClass", classpath.make());
+ *     ExternalLauncher launcher = new ExternalLauncher(profile);
+ *
+ *     Process p = launcher.launch(); // throws LaunchException
+ *     // Process is now launched =)
+ * </pre>
+ *
+ * You can also give programs/VM parameters.
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
-{
-    /**
-     * Normal constructor
-     *
-     * @param message The message
-     */
-    public FailException(String message)
-    {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
-    }
-}
+package fr.theshark34.openlauncherlib.external;

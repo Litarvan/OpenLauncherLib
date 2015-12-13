@@ -16,38 +16,30 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.internal;
+
+import fr.theshark34.openlauncherlib.LaunchException;
 
 /**
- * The Fail Exception
+ * The Unknown Main Class Exception
  *
  * <p>
- *     Best exception ever made
+ *     Thrown when the main class is not found
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public class UnknownMainClassException extends LaunchException
 {
     /**
-     * Normal constructor
+     * The Unknown main class exception
      *
      * @param message The message
+     * @param t       The cause
      */
-    public FailException(String message)
+    public UnknownMainClassException(String message, Throwable t)
     {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(message, t);
     }
 }

@@ -41,9 +41,7 @@ public final class LogUtil {
      *            All the strings keys to translate
      */
     public static void message(boolean err, String... messages) {
-        String message = "[OpenLauncherLib]";
-        for(String m : messages)
-            message += " " + LanguageManager.lang(message);
+        String message = "[OpenLauncherLib] " + LanguageManager.lang(messages);
 
         if(err)
             System.err.println(message);

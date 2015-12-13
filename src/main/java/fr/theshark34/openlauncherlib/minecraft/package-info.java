@@ -16,38 +16,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
 
 /**
- * The Fail Exception
+ * The Minecraft API
  *
  * <p>
- *     Best exception ever made
+ *     Makes you able to launch any Minecraft version easily with
+ *     the Internal/External system.
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
-{
-    /**
-     * Normal constructor
-     *
-     * @param message The message
-     */
-    public FailException(String message)
-    {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
-    }
-}
+package fr.theshark34.openlauncherlib.minecraft;

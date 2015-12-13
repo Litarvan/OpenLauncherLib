@@ -94,7 +94,7 @@ public class RamSelector {
                 frame = (AbstractOptionFrame) constructor.newInstance(this);
             } catch (Exception e) {
                 System.err.println("[OpenLauncherLib] Can't display the Ram Selector !");
-                System.err.println(CrashReporter.makeCrashReport(e));
+                System.err.println(CrashReporter.makeCrashReport("OpenLauncherLib Ram Selector", e));
 
                 return null;
             }

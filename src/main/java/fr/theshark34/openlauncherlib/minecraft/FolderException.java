@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015 TheShark34
  *
  * This file is part of the OpenLauncherLib.
 
@@ -16,38 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.minecraft;
+
+import fr.theshark34.openlauncherlib.LaunchException;
 
 /**
- * The Fail Exception
+ * The Folder Exception
  *
  * <p>
- *     Best exception ever made
+ *     An exception thrown when the folder is badly made.
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public class FolderException extends LaunchException
 {
     /**
-     * Normal constructor
+     * The Folder Exception
      *
      * @param message The message
      */
-    public FailException(String message)
+    public FolderException(String message)
     {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(message);
     }
 }

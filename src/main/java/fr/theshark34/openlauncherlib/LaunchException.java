@@ -19,25 +19,25 @@
 package fr.theshark34.openlauncherlib;
 
 /**
- * The Fail Exception
+ * The Launch Exception
  *
  * <p>
- *     Best exception ever made
+ *     An exception thrown when launching.
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public class LaunchException extends Exception
 {
     /**
      * Normal constructor
      *
      * @param message The message
      */
-    public FailException(String message)
+    public LaunchException(String message)
     {
-        super("Ups ! Looks like you failed : " + message);
+        super(message);
     }
 
     /**
@@ -46,8 +46,8 @@ public class FailException extends RuntimeException
      * @param message The message
      * @param cause   The cause
      */
-    public FailException(String message, Throwable cause)
+    public LaunchException(String message, Throwable cause)
     {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(message, cause);
     }
 }

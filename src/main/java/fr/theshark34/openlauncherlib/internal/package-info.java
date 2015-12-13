@@ -16,38 +16,30 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
 
 /**
- * The Fail Exception
+ * The Internal Launching Method
  *
  * <p>
- *     Best exception ever made
+ *     Launch a program by adding the jars to the current classpath and
+ *     then launching manually a method of the target class.
+ *
+ *     A lot faster than the external method.
  * </p>
+ *
+ * Code example :
+ *
+ * <pre>
+ *     List classpath = Explorer.dir("libs").files().match("^(.*\.((jar)$))*$").get();
+ *     InternalLaunchProfile profile = new InternalLaunchProfile("fr.theshark34.MyMainClass", classpath);
+ *     profile.launch();
+ * </pre>
+ *
+ * This will launch the main(String[] args) of the given class.
+ * You can also choose the method to launch, and its parameters.
+ * And, you can receive what it returned.
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
-{
-    /**
-     * Normal constructor
-     *
-     * @param message The message
-     */
-    public FailException(String message)
-    {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
-    }
-}
+package fr.theshark34.openlauncherlib.internal;

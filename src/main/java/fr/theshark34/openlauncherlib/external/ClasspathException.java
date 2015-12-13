@@ -16,38 +16,25 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.external;
 
-/**
- * The Fail Exception
- *
- * <p>
- *     Best exception ever made
- * </p>
- *
- * @author TheShark34
- * @version 3.0.0-BETA
- */
-public class FailException extends RuntimeException
+import fr.theshark34.openlauncherlib.LanguageManager;
+import fr.theshark34.openlauncherlib.LaunchException;
+
+public class ClasspathException extends LaunchException
 {
-    /**
-     * Normal constructor
-     *
-     * @param message The message
-     */
-    public FailException(String message)
+    public static final int JAR_NOT_FOUND_ERROR = 0;
+    public static final int JAR_LOADING_ERROR = 1;
+
+    public ClasspathException(int type, String str)
     {
-        super("Ups ! Looks like you failed : " + message);
+        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ? LanguageManager.lang("load-fail", ":", str) : str));
     }
 
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
+    public ClasspathException(int type, String str, Throwable t)
     {
-        super("Ups ! Looks like you failed : " + message, cause);
+        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ?  LanguageManager.lang("load-fail", ":", str) : str), t);
     }
+
+
 }

@@ -16,38 +16,26 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.external;
 
 /**
- * The Fail Exception
+ * The Before Launching Event
  *
  * <p>
- *     Best exception ever made
+ *     Event that can be set to the external launching system that
+ *     will be launched just before the process is started.
+ *     Useful to customize the ProcessBuilder.
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public interface BeforeLaunchingEvent
 {
     /**
-     * Normal constructor
+     * The onLaunching event
      *
-     * @param message The message
+     * @param builder The current process builder after that it was configured
      */
-    public FailException(String message)
-    {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
-     *
-     * @param message The message
-     * @param cause   The cause
-     */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
-    }
+    void onLaunching(ProcessBuilder builder);
 }

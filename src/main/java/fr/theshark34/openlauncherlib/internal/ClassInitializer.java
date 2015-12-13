@@ -16,38 +16,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib;
+package fr.theshark34.openlauncherlib.internal;
 
 /**
- * The Fail Exception
+ * The Class Initializer
  *
  * <p>
- *     Best exception ever made
+ *     Object used to init the main class
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class FailException extends RuntimeException
+public interface ClassInitializer
 {
     /**
-     * Normal constructor
+     * Init the main class
      *
-     * @param message The message
-     */
-    public FailException(String message)
-    {
-        super("Ups ! Looks like you failed : " + message);
-    }
-
-    /**
-     * Constructor with a cause
+     * @param toInit The class to init
      *
-     * @param message The message
-     * @param cause   The cause
+     * @return The initialized class
+     *
+     * @throws IllegalAccessException If it thrown one
+     * @throws InstantiationException If it thrown one
      */
-    public FailException(String message, Throwable cause)
-    {
-        super("Ups ! Looks like you failed : " + message, cause);
-    }
+    Object init(Class<?> toInit) throws IllegalAccessException, InstantiationException;
 }

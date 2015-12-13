@@ -18,31 +18,34 @@
  */
 package fr.theshark34.openlauncherlib.util;
 
-import fr.theshark34.openlauncherlib.LanguageManager;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 /**
  * The Splash Screen
- *
+ * <p/>
  * <p>
- *     This class cans create a splash screen with an image.
+ * This class cans create a splash screen with an image.
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-SNAPSHOT
  */
-public class SplashScreen extends JFrame {
+public class SplashScreen extends JFrame
+{
 
     /**
      * Basic Constructor
      *
-     * @param title
-     *            The Window title
-     * @param image
-     *            The splash image
+     * @param title The Window title
+     * @param image The splash image
      */
-    public SplashScreen(String title, Image image) {
+    public SplashScreen(String title, Image image)
+    {
         this.setTitle(title);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -54,20 +57,25 @@ public class SplashScreen extends JFrame {
     /**
      * Display the splash, wait a given time, then hide the splash.
      *
-     * @param time
-     *            The time to wait before hiding the splash
+     * @param time The time to wait before hiding the splash
      *
      * @return The created Thread
      */
-    public Thread displayFor(final long time) {
-        Thread thread = new Thread() {
+    public Thread displayFor(final long time)
+    {
+        Thread thread = new Thread()
+        {
             @Override
-            public void run() {
+            public void run()
+            {
                 setVisible(true);
 
-                try {
+                try
+                {
                     sleep(time);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e)
+                {
                     LogUtil.err("warn", " : ", "splash-interrupted");
                 }
 
@@ -82,23 +90,26 @@ public class SplashScreen extends JFrame {
     /**
      * Displays the splash (same as setVisible(true))
      */
-    public void display() {
+    public void display()
+    {
         this.setVisible(true);
     }
 
     /**
      * Hide the splash (same as setVisible(false))
      */
-    public void stop() {
+    public void stop()
+    {
         this.setVisible(false);
     }
 
     /**
      * Set the background transparent
-     *
+     * <p/>
      * Warning : Works only for Java 7+ (but just doesn't do anything with Java 6 or less)
      */
-    public void setTransparent() {
+    public void setTransparent()
+    {
         this.setBackground(new Color(0, 0, 0, 0));
         this.getContentPane().setBackground(new Color(0, 0, 0, 0));
     }
@@ -109,7 +120,8 @@ public class SplashScreen extends JFrame {
      * @return The current SplashPanel instance
      */
     @Override
-    public SplashPanel getContentPane() {
+    public SplashPanel getContentPane()
+    {
         return (SplashPanel) super.getContentPane();
     }
 
@@ -117,15 +129,16 @@ public class SplashScreen extends JFrame {
 
 /**
  * The Splash Panel
- *
+ * <p/>
  * <p>
- *     The container of a SplashScreen with an image in background
+ * The container of a SplashScreen with an image in background
  * </p>
  *
  * @author TheShark34
  * @version 3.0.0-SNAPSHOT
  */
-class SplashPanel extends JPanel {
+class SplashPanel extends JPanel
+{
 
     /**
      * The splash image
@@ -135,15 +148,16 @@ class SplashPanel extends JPanel {
     /**
      * Basic constructor
      *
-     * @param image
-     *            The splash image
+     * @param image The splash image
      */
-    public SplashPanel(Image image) {
+    public SplashPanel(Image image)
+    {
         this.image = image;
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g)
+    {
         g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
     }
 

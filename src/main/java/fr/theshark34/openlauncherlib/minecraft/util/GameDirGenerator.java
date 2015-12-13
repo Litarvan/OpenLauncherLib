@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with the OpenLauncherLib.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.theshark34.openlauncherlib.util;
+package fr.theshark34.openlauncherlib.minecraft.util;
 
 import java.io.File;
 
@@ -31,25 +31,24 @@ import java.io.File;
  * @author TheShark34
  * @version 3.0.0-BETA
  */
-public class GameDirGenerator {
-
+public class GameDirGenerator
+{
     /**
      * Generate the game directory of the current OS by the given
      * server name, like the default of Minecraft.
      *
-     * @param serverName
-     *            The server name that will be the directory
-     *            name.
+     * @param serverName The server name that will be the directory
+     *                   name.
+     *
      * @return The generated game directory
      */
-    public static File createGameDir(String serverName) {
+    public static File createGameDir(String serverName)
+    {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win"))
-            return new File(System.getProperty("user.home")
-                    + "\\AppData\\Roaming\\." + serverName);
+            return new File(System.getenv("APPDATA") + "\\." + serverName);
         else if (os.contains("mac"))
-            return new File(System.getProperty("user.home")
-                    + "/Library/Application Support/" + serverName);
+            return new File(System.getProperty("user.home") + "/Library/Application Support/" + serverName);
         else
             return new File(System.getProperty("user.home") + "/." + serverName);
     }
