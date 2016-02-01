@@ -168,6 +168,9 @@ public class RamSelector
      */
     public void save()
     {
+	if (frame == null)
+            return;
+
         BufferedWriter bw = null;
         try
         {
