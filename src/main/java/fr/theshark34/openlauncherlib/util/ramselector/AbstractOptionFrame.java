@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -27,11 +27,12 @@ import javax.swing.JFrame;
  *     The base class to use with the Ram Selector to select RAM.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
-public abstract class AbstractOptionFrame extends JFrame {
-
+public abstract class AbstractOptionFrame extends JFrame
+{
     /**
      * The current RAM Selector
      */
@@ -40,10 +41,10 @@ public abstract class AbstractOptionFrame extends JFrame {
     /**
      * The Abstract Option Frame
      *
-     * @param selector
-     *            The current RAM Selector
+     * @param selector The current RAM Selector
      */
-    public AbstractOptionFrame(RamSelector selector) {
+    public AbstractOptionFrame(RamSelector selector)
+    {
         this.selector = selector;
     }
 
@@ -52,25 +53,26 @@ public abstract class AbstractOptionFrame extends JFrame {
      *
      * @return The current RAM selector
      */
-    public RamSelector getSelector() {
+    public RamSelector getSelector()
+    {
         return selector;
     }
-
-    /**
-     * Set the selected RAM (as index of RamSelector.RAM_ARRAY)
-     *
-     * @param index
-     *            The selected RAM index
-     * @see #getSelectedIndex()
-     */
-    public abstract void setSelectedIndex(int index);
 
     /**
      * Return the selected RAM (as index of RamSelector.RAM_ARRAY)
      *
      * @return The selected RAM index
+     *
      * @see #setSelectedIndex(int)
      */
     public abstract int getSelectedIndex();
 
+    /**
+     * Set the selected RAM (as index of RamSelector.RAM_ARRAY)
+     *
+     * @param index The selected RAM index
+     *
+     * @see #getSelectedIndex()
+     */
+    public abstract void setSelectedIndex(int index);
 }

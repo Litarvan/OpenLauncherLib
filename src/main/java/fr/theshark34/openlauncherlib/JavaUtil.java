@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -27,8 +27,9 @@ import java.lang.reflect.Field;
  *     Contains some useful things about the launching
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class JavaUtil
 {

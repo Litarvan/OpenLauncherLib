@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -33,8 +33,8 @@ import java.io.InputStreamReader;
  *     Manager logs of a Process by printing and/or writing them.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
  * @see Process
  */
 public class ProcessLogManager extends Thread

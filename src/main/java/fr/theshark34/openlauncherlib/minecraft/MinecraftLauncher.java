@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -38,8 +38,9 @@ import java.util.List;
  *     Contains some methods to create internal/external launch profile for Minecraft.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class MinecraftLauncher
 {
@@ -127,6 +128,7 @@ public class MinecraftLauncher
         List<String> vmArgs = new ArrayList<String>();
         vmArgs.add("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
         vmArgs.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+        vmArgs.add("-Dfml.ignorePatchDiscrepancies=true");
 
         if(infos.getGameTweaks() != null)
             for (GameTweak tweak : infos.getGameTweaks())

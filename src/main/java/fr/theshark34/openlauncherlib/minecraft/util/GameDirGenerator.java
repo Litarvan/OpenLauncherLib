@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -28,8 +28,9 @@ import java.io.File;
  *     the current OS like the default of Minecraft.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 2.0.0-BETA
  */
 public class GameDirGenerator
 {
@@ -46,7 +47,7 @@ public class GameDirGenerator
     {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win"))
-            return new File(System.getenv("APPDATA") + "\\." + serverName);
+            return new File(System.getProperty("user.home") + "\\AppData\\Roaming\\." + serverName);
         else if (os.contains("mac"))
             return new File(System.getProperty("user.home") + "/Library/Application Support/" + serverName);
         else

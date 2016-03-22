@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -29,13 +29,12 @@ package fr.theshark34.openlauncherlib.minecraft;
  *     One or more tweaking class will be given depending on the given Game Tweaks.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-SNAPSHOT
+ * @author Litarvan
+ * @version 3.0.2-SNAPSHOT
  * @since 2.1.0-SNAPSHOT
  */
 public abstract class GameTweak
 {
-
     /**
      * The LaunchWrapper main class
      */
@@ -55,7 +54,7 @@ public abstract class GameTweak
         @Override
         public String getTweakClass(GameInfos infos)
         {
-            if (infos.getGameVersion().getName().contains("1.8"))
+            if (infos.getGameVersion().getGameType().equals(GameType.V1_8_HIGHER))
                 return "net.minecraftforge.fml.common.launcher.FMLTweaker";
             else
                 return "cpw.mods.fml.common.launcher.FMLTweaker";
@@ -94,25 +93,10 @@ public abstract class GameTweak
         @Override
         public String getTweakClass(GameInfos infos)
         {
-            return "shadersmodcore.loading.SMCTweaker";
-        }
-    };
-
-    /**
-     * The AssetPatcher GameTweak
-     */
-    public static final GameTweak ASSET_PATCHER = new GameTweak()
-    {
-        @Override
-        public String getName()
-        {
-            return "Asset Patcher";
-        }
-
-        @Override
-        public String getTweakClass(GameInfos infos)
-        {
-            return "fr.theshark34.openlauncherlib.assetpatcher.AssetPatcherTweaker";
+            if (infos.getGameVersion().getName().contains("1.8"))
+                return "shadersmod.launch.SMCTweaker";
+            else
+                return "shadersmodcore.loading.SMCTweaker";
         }
     };
 
@@ -131,5 +115,4 @@ public abstract class GameTweak
      * @return The tweak class
      */
     public abstract String getTweakClass(GameInfos infos);
-
 }

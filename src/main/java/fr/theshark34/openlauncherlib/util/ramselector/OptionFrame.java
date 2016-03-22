@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -29,11 +29,12 @@ import javax.swing.JLabel;
  *     The default Option Frame for the Ram Selector
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
-public class OptionFrame extends AbstractOptionFrame {
-
+public class OptionFrame extends AbstractOptionFrame
+{
     /**
      * The Label "RAM : "
      */
@@ -47,10 +48,10 @@ public class OptionFrame extends AbstractOptionFrame {
     /**
      * The Option Frame
      *
-     * @param selector
-     *            The current Ram Selector
+     * @param selector The current Ram Selector
      */
-    public OptionFrame(RamSelector selector) {
+    public OptionFrame(RamSelector selector)
+    {
         super(selector);
 
         this.setTitle(LanguageManager.lang("options"));
@@ -69,13 +70,14 @@ public class OptionFrame extends AbstractOptionFrame {
     }
 
     @Override
-    public void setSelectedIndex(int index) {
-        ramBox.setSelectedIndex(index);
-    }
-
-    @Override
-    public int getSelectedIndex() {
+    public int getSelectedIndex()
+    {
         return ramBox.getSelectedIndex();
     }
 
+    @Override
+    public void setSelectedIndex(int index)
+    {
+        ramBox.setSelectedIndex(index);
+    }
 }

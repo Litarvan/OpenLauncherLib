@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -19,7 +19,6 @@
 package fr.theshark34.openlauncherlib.external;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,8 +28,9 @@ import java.util.List;
  *     Contains the informations about an external launching.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class ExternalLaunchProfile
 {
@@ -59,7 +59,7 @@ public class ExternalLaunchProfile
     /**
      * If the error stream need to be redirected
      */
-    private boolean redirectErrorStream = false;
+    private boolean redirectErrorStream = true;
 
     /**
      * The mac dock name (optional)

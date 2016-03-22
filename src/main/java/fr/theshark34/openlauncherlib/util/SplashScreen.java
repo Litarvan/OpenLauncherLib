@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -32,8 +32,9 @@ import javax.swing.WindowConstants;
  *     This class cans create a splash screen with an image.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-SNAPSHOT
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class SplashScreen extends JFrame
 {
@@ -134,8 +135,9 @@ public class SplashScreen extends JFrame
  *     The container of a SplashScreen with an image in background
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-SNAPSHOT
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 class SplashPanel extends JPanel
 {

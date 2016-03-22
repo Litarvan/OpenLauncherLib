@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -27,23 +27,23 @@ import fr.theshark34.openlauncherlib.LanguageManager;
  *     Useful to print some messages :p
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
-public final class LogUtil {
-
+public final class LogUtil
+{
     /**
      * Print a message, with some translated strings
      *
-     * @param err
-     *            If it is an error message
-     * @param messages
-     *            All the strings keys to translate
+     * @param err      If it is an error message
+     * @param messages All the strings keys to translate
      */
-    public static void message(boolean err, String... messages) {
+    public static void message(boolean err, String... messages)
+    {
         String message = "[OpenLauncherLib] " + LanguageManager.lang(messages);
 
-        if(err)
+        if (err)
             System.err.println(message);
         else
             System.out.println(message);
@@ -52,41 +52,40 @@ public final class LogUtil {
     /**
      * Print a message, with [OpenLauncherLib] before
      *
-     * @param message
-     *            The message to print
+     * @param message The message to print
      */
-    public static void rawInfo(String message) {
+    public static void rawInfo(String message)
+    {
         System.out.println("[OpenLauncherLib] " + message);
     }
 
     /**
      * Print an error message, with [OpenLauncherLib] before
      *
-     * @param message
-     *           The message to print
+     * @param message The message to print
      */
-    public static void rawErr(String message) {
+    public static void rawErr(String message)
+    {
         System.err.println("[OpenLauncherLib] " + message);
     }
 
     /**
      * Print an info message, with some translated strings
      *
-     * @param messages
-     *            All the strings keys to translate
+     * @param messages All the strings keys to translate
      */
-    public static void info(String... messages) {
+    public static void info(String... messages)
+    {
         message(false, messages);
     }
 
     /**
      * Print an error message, with some translated strings
      *
-     * @param messages
-     *            All the strings keys to translate
+     * @param messages All the strings keys to translate
      */
-    public static void err(String... messages) {
+    public static void err(String... messages)
+    {
         message(true, messages);
     }
-
 }

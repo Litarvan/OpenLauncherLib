@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -25,11 +25,11 @@ import java.io.File;
  * The Game Infos
  *
  * <p>
- *     The Game Infos like the server name, if forge is enabled, etc...
+ *     The Game Infos like the server name, the version, the tweaks, etc...
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-SNAPSHOT
+ * @author Litarvan
+ * @version 3.0.2-SNAPSHOT
  * @since 2.0.0-SNAPSHOT
  */
 public class GameInfos
@@ -150,5 +150,4 @@ public class GameInfos
 
         return false;
     }
-
 }

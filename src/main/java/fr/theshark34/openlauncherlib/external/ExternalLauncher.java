@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -21,6 +21,7 @@ package fr.theshark34.openlauncherlib.external;
 import fr.theshark34.openlauncherlib.JavaUtil;
 import fr.theshark34.openlauncherlib.LaunchException;
 import fr.theshark34.openlauncherlib.util.LogUtil;
+import fr.theshark34.openlauncherlib.util.ProcessLogManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,8 +33,9 @@ import java.util.Arrays;
  *     Launch a program using java command launched by a ProcessBuilder.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class ExternalLauncher
 {
@@ -50,6 +52,11 @@ public class ExternalLauncher
      * @see ExternalLaunchProfile
      */
     private ExternalLaunchProfile profile;
+
+    /**
+     * If the logs are enabled
+     */
+    private boolean logsEnabled = true;
 
     /**
      * The External Launcher
@@ -76,6 +83,24 @@ public class ExternalLauncher
     {
         this.profile = profile;
         this.launchingEvent = launchingEvent;
+    }
+
+    /**
+     * @return If the logs are enabled
+     */
+    public boolean isLogsEnabled()
+    {
+        return logsEnabled;
+    }
+
+    /**
+     * Sets the logs enabled or not
+     *
+     * @param logsEnabled If the logs will be enabled
+     */
+    public void setLogsEnabled(boolean logsEnabled)
+    {
+        this.logsEnabled = logsEnabled;
     }
 
     /**
@@ -119,7 +144,7 @@ public class ExternalLauncher
         builder.command(commands);
 
         String entireCommand = "";
-        for(String command : commands)
+        for (String command : commands)
             entireCommand += command + " ";
 
         LogUtil.info("ent", ":", entireCommand);
@@ -127,7 +152,15 @@ public class ExternalLauncher
 
         try
         {
-            return builder.start();
+            Process p = builder.start();
+
+            if (logsEnabled)
+            {
+                ProcessLogManager manager = new ProcessLogManager(p.getInputStream());
+                manager.start();
+            }
+
+            return p;
         }
         catch (IOException e)
         {

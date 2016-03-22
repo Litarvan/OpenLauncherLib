@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -25,8 +25,8 @@ package fr.theshark34.openlauncherlib.minecraft;
  *     The Game Folder contains the Minecraft folder organisation.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
  * @since 2.0.0-SNAPSHOT
  */
 public class GameFolder

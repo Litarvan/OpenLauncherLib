@@ -1,8 +1,8 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
-
+ *
  * The OpenLauncherLib is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -32,8 +32,9 @@ import java.util.Properties;
  *     Save some things to a file.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-SNAPSHOT
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  */
 public class Saver
 {

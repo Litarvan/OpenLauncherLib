@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Adrien Navratil
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -37,8 +37,9 @@ import java.io.File;
  *
  * The Explorer is extending ExploredDirectory, so you can use .files() or .subs() etc...
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
+ * @since 3.0.0-BETA
  * @see ExploredDirectory
  */
 public class Explorer extends ExploredDirectory

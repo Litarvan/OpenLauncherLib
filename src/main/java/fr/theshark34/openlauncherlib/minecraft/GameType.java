@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 TheShark34
+ * Copyright 2015-2016 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -31,13 +31,12 @@ import java.util.ArrayList;
  *     It contains its main class, and its arguments.
  * </p>
  *
- * @author TheShark34
- * @version 3.0.0-BETA
+ * @author Litarvan
+ * @version 3.0.2-BETA
  * @since 2.0.0-SNAPSHOT
  */
 public abstract class GameType
 {
-
     /**
      * The 1.5.2 or Lower game type
      */
@@ -216,7 +215,10 @@ public abstract class GameType
             arguments.add(assetsDir.getAbsolutePath());
 
             arguments.add("--assetIndex");
-            arguments.add(infos.getGameVersion().getName());
+            if (infos.getGameVersion().getName().contains("1.8"))
+                arguments.add("1.8");
+            else
+                arguments.add("1.9");
 
             arguments.add("--userProperties");
             arguments.add("{}");
@@ -257,6 +259,4 @@ public abstract class GameType
      * @return The launch arguments
      */
     public abstract ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos);
-
-
 }
