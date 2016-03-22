@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-group = 'fr.theshark34.openlauncherlib'
-version = '3.0.1-BETA'
+group = 'fr.litarvan.openlauncherlib'
+version = '3.0.2-BETA'
 archivesBaseName = 'openlauncherlib'
 
 sourceCompatibility = 1.6
@@ -12,6 +12,6 @@ targetCompatibility = 1.6
 compileJava.options.encoding = 'Cp1252'
 
 jar {
-	from "LICENSE"
-	from "LICENSE.LESSER"
+    from "LICENSE"
+    from "LICENSE.LESSER"
 }
