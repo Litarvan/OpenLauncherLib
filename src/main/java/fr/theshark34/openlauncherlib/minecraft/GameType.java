@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-BETA
+ * @version 3.0.3-BETA
  * @since 2.0.0-SNAPSHOT
  */
 public abstract class GameType
@@ -215,10 +215,9 @@ public abstract class GameType
             arguments.add(assetsDir.getAbsolutePath());
 
             arguments.add("--assetIndex");
-            if (infos.getGameVersion().getName().contains("1.8"))
-                arguments.add("1.8");
-            else
-                arguments.add("1.9");
+
+            String version = infos.getGameVersion().getName();
+            arguments.add(version.substring(0, version.lastIndexOf('.')));
 
             arguments.add("--userProperties");
             arguments.add("{}");
