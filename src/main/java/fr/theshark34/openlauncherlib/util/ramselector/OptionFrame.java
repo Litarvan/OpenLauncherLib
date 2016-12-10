@@ -50,6 +50,7 @@ public class OptionFrame extends AbstractOptionFrame
      *
      * @param selector The current Ram Selector
      */
+    @SuppressWarnings("unchecked")
     public OptionFrame(RamSelector selector)
     {
         super(selector);
