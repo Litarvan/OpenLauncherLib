@@ -20,6 +20,7 @@ package fr.theshark34.openlauncherlib.minecraft;
 
 import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * The Game Infos
@@ -29,7 +30,7 @@ import java.io.File;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-SNAPSHOT
+ * @version 3.0.4-SNAPSHOT
  * @since 2.0.0-SNAPSHOT
  */
 public class GameInfos
@@ -82,17 +83,39 @@ public class GameInfos
         this.tweaks = tweaks;
 
         if (tweaks != null)
+        {
+            boolean forge = false;
+            boolean shaderOrOptifine = false;
+
             for (GameTweak tweak : tweaks)
                 if (tweak.equals(GameTweak.FORGE))
                 {
-                    if (tweaks.length > 1)
-                        System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweak with other tweaks, Shader tweak and Optifine tweak are ONLY FOR VANILLA, it cans cause bugs and more, the game COULD NOT START !");
                     if (gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
                         System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweaking with a version under or equals as 1.5.2, forge is supposed to be installed in the jar (not with a tweaker), the game COULD NOT START !");
+
+                    forge = true;
+                }
+                else if (tweak.equals(GameTweak.OPTIFINE) || tweak.equals(GameTweak.SHADER))
+                {
+                    shaderOrOptifine = true;
                 }
 
-        if (tweaks != null && tweaks.length > 0 && gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
-            System.out.println("[OpenLauncherLib] [WARNING] You selected tweaking with a version under or equals as 1.5.2, this isn't fully supported, and could cause bugs.");
+            if (tweaks.length > 0 && gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
+                System.out.println("[OpenLauncherLib] [WARNING] You selected tweaking with a version under or equals as 1.5.2, this isn't fully supported, and could cause bugs.");
+
+            if (shaderOrOptifine && forge)
+            {
+                System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweak with Optifine/Shader, they are ONLY FOR VANILLA, the game wil probably not start, so for security, Optifine/Shader was/were disabled");
+
+                ArrayList<GameTweak> tweakList = new ArrayList<GameTweak>();
+
+                for (GameTweak tweak : tweaks)
+                    if (!tweak.equals(GameTweak.OPTIFINE) && !tweak.equals(GameTweak.SHADER))
+                        tweakList.add(tweak);
+
+                this.tweaks = tweakList.toArray(new GameTweak[tweakList.size()]);
+            }
+        }
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 Adrien "Litarvan" Navratil
+ * Copyright 2015-2017 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -32,7 +32,7 @@ import java.util.ArrayList;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.3-BETA
+ * @version 3.0.4-BETA
  * @since 2.0.0-SNAPSHOT
  */
 public abstract class GameType
@@ -151,6 +151,9 @@ public abstract class GameType
             arguments.add("--accessToken");
             arguments.add(authInfos.getAccessToken());
 
+            arguments.add("--clientToken");
+            arguments.add(authInfos.getClientToken());
+
             arguments.add("--version");
             arguments.add(infos.getGameVersion().getName());
 
@@ -204,6 +207,9 @@ public abstract class GameType
             arguments.add("--accessToken");
             arguments.add(authInfos.getAccessToken());
 
+            arguments.add("--clientToken");
+            arguments.add(authInfos.getClientToken());
+
             arguments.add("--version");
             arguments.add(infos.getGameVersion().getName());
 
@@ -217,7 +223,16 @@ public abstract class GameType
             arguments.add("--assetIndex");
 
             String version = infos.getGameVersion().getName();
-            arguments.add(version.substring(0, version.lastIndexOf('.')));
+
+            int first = version.indexOf('.');
+            int second = version.lastIndexOf('.');
+
+            if (first != second)
+            {
+                version = version.substring(0, version.lastIndexOf('.'));
+            }
+
+            arguments.add(version);
 
             arguments.add("--userProperties");
             arguments.add("{}");

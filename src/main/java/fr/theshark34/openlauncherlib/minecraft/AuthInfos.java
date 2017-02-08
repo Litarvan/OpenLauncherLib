@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 Adrien "Litarvan" Navratil
+ * Copyright 2015-2017 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -27,12 +27,11 @@ package fr.theshark34.openlauncherlib.minecraft;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-BETA
+ * @version 3.0.4-BETA
  * @since 2.0.0-SNAPSHOT
  */
 public class AuthInfos
 {
-
     /**
      * The player username
      */
@@ -42,6 +41,11 @@ public class AuthInfos
      * The access token given by the authentication
      */
     private String accessToken;
+
+    /**
+     * The (optional) client token given to the Authenticator
+     */
+    private String clientToken;
 
     /**
      * The uuid given by the authentication
@@ -63,8 +67,22 @@ public class AuthInfos
     }
 
     /**
-     * Returns the player username
+     * Basic constructor
      *
+     * @param username    The player username
+     * @param accessToken The access token given by the authentication
+     * @param clientToken The (optional) client token given to the Authenticator
+     * @param uuid        The player UUID
+     */
+    public AuthInfos(String username, String accessToken, String clientToken, String uuid)
+    {
+        this.username = username;
+        this.accessToken = accessToken;
+        this.clientToken = clientToken;
+        this.uuid = uuid;
+    }
+
+    /**
      * @return The player username
      */
     public String getUsername()
@@ -73,9 +91,7 @@ public class AuthInfos
     }
 
     /**
-     * Returns the access token given by the authentication
-     *
-     * @return The access token
+     * @return The access token given by the authentication
      */
     public String getAccessToken()
     {
@@ -83,13 +99,18 @@ public class AuthInfos
     }
 
     /**
-     * Returns the uuid given by the authentication
-     *
-     * @return The uuid
+     * @return The (optional) client token given to the Authenticator
+     */
+    public String getClientToken()
+    {
+        return clientToken;
+    }
+
+    /**
+     * @return The uuid given by the authentication
      */
     public String getUuid()
     {
         return this.uuid;
     }
-
 }

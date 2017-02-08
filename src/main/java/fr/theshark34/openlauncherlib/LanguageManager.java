@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 Adrien "Litarvan" Navratil
+ * Copyright 2015-2017 Adrien "Litarvan" Navratil
  *
  * This file is part of the OpenLauncherLib.
 
@@ -28,7 +28,7 @@ import java.util.HashMap;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-BETA
+ * @version 3.0.4-BETA
  * @since 3.0.0-BETA
  */
 public class LanguageManager
@@ -53,8 +53,8 @@ public class LanguageManager
      */
     static
     {
-        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.0-BETA by TheShark34 - Internal Launching System");
-        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.0-BETA by TheShark34 - External Launching System");
+        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.4-BETA by Adrien 'Litarvan' Navratil - Internal Launching System");
+        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.4-BETA by Adrien 'Litarvan' Navratil - External Launching System");
         ENGLISH.put("options", "Options");
         ENGLISH.put("ram", "RAM");
         ENGLISH.put("warn", "Warning");
@@ -81,8 +81,8 @@ public class LanguageManager
         ENGLISH.put("done", "Done");
         ENGLISH.put("ent", "Entire command");
 
-        FRENCH.put("hi-int", "OpenLauncherLib 3.0.0-BETA par TheShark34 - Systeme de lancement interne");
-        FRENCH.put("hi-ext", "OpenLauncherLib 3.0.0-BETA par TheShark34 - Systeme de lancement externe");
+        FRENCH.put("hi-int", "OpenLauncherLib 3.0.4-BETA par Adrien 'Litarvan' Navratil - Systeme de lancement interne");
+        FRENCH.put("hi-ext", "OpenLauncherLib 3.0.4-BETA par Adrien 'Litarvan' Navratil - Systeme de lancement externe");
         FRENCH.put("options", "Options");
         FRENCH.put("ram", "RAM");
         FRENCH.put("warn", "Attention");
