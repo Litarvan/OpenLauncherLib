@@ -44,5 +44,4 @@
  * @since 3.0.0-BETA
  * @deprecated Use {@link fr.theshark34.openlauncherlib.external}, it crashes when used with Java 9
  */
-@Deprecated
 package fr.theshark34.openlauncherlib.internal;
