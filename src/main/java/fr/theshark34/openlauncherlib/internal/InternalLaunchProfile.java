@@ -31,8 +31,9 @@ import java.util.List;
  *
  * @author Litarvan
  * @version 3.0.2-BETA
- * @since 3.0.0-BETA
+ * @deprecated Use {@link fr.theshark34.openlauncherlib.external.ExternalLaunchProfile} instead, this one isn't compatible with Java 9
  */
+@Deprecated
 public class InternalLaunchProfile
 {
     /**

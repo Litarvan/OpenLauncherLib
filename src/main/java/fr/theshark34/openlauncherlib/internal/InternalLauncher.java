@@ -40,7 +40,9 @@ import java.util.Date;
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
+ * @deprecated Use {@link fr.theshark34.openlauncherlib.external.ExternalLauncher} instead, this one isn't compatible with Java 9
  */
+@Deprecated
 public class InternalLauncher implements ClassInitializer
 {
     /**
@@ -90,6 +92,11 @@ public class InternalLauncher implements ClassInitializer
      */
     public Object launch() throws LaunchException
     {
+        System.err.println("##########################################################");
+        System.err.println("  WARNING : Internal Launching doesn't work with Java 9");
+        System.err.println("  --> YOU SHOULD USE EXTERNAL LAUNCHING INSTEAD");
+        System.err.println("##########################################################");
+
         LogUtil.info("hi-int");
         LogUtil.info("launching", ":", new Date(System.currentTimeMillis()).toString());
         long start = System.currentTimeMillis();

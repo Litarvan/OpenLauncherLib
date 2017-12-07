@@ -28,7 +28,7 @@ import java.lang.reflect.Field;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-BETA
+ * @version 3.0.4-BETA
  * @since 3.0.0-BETA
  */
 public class JavaUtil
@@ -40,7 +40,7 @@ public class JavaUtil
      */
     public static String[] getSpecialArgs()
     {
-        return new String[]{"-XX:+UseConcMarkSweepGC", "-XX:+CMSIncrementalMode", "-XX:-UseAdaptiveSizePolicy"};
+        return new String[]{"-XX:-UseAdaptiveSizePolicy"};
     }
 
     /**

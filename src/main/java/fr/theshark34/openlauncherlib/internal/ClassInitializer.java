@@ -28,7 +28,9 @@ package fr.theshark34.openlauncherlib.internal;
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
+ * @deprecated
  */
+@Deprecated
 public interface ClassInitializer
 {
     /**

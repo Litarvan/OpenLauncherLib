@@ -30,7 +30,9 @@ import fr.theshark34.openlauncherlib.LaunchException;
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
+ * @deprecated
  */
+@Deprecated
 public class UnknownMainClassException extends LaunchException
 {
     /**

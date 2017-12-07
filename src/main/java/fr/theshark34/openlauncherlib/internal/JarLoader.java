@@ -35,8 +35,9 @@ import java.util.List;
  *
  * @author Litarvan
  * @version 3.0.2-BETA
- * @since 3.0.0-BETA
+ * @deprecated Crash when used with Java 9
  */
+@Deprecated
 public class JarLoader
 {
     /**

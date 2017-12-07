@@ -42,5 +42,7 @@
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
+ * @deprecated Use {@link fr.theshark34.openlauncherlib.external}, it crashes when used with Java 9
  */
+@Deprecated
 package fr.theshark34.openlauncherlib.internal;

@@ -54,7 +54,10 @@ public class MinecraftLauncher
      * @return The generated profile
      *
      * @throws LaunchException If it failed
+     *
+     * @deprecated Use {@link #createExternalProfile(GameInfos, GameFolder, AuthInfos)} instead
      */
+    @Deprecated
     public static InternalLaunchProfile createInternalProfile(GameInfos infos, GameFolder folder, AuthInfos authInfos) throws LaunchException
     {
         LogUtil.info("mc-int", infos.getGameVersion().getName());
