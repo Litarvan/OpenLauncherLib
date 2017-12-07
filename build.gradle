@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-group = 'fr.litarvan.openlauncherlib'
+group = 'fr.litarvan'
 version = '3.0.4'
 archivesBaseName = 'openlauncherlib'
 
