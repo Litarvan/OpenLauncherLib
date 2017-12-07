@@ -151,8 +151,11 @@ public abstract class GameType
             arguments.add("--accessToken");
             arguments.add(authInfos.getAccessToken());
 
-            arguments.add("--clientToken");
-            arguments.add(authInfos.getClientToken());
+            if (authInfos.getClientToken() != null)
+            {
+                arguments.add("--clientToken");
+                arguments.add(authInfos.getClientToken());
+            }
 
             arguments.add("--version");
             arguments.add(infos.getGameVersion().getName());
@@ -207,8 +210,11 @@ public abstract class GameType
             arguments.add("--accessToken");
             arguments.add(authInfos.getAccessToken());
 
-            arguments.add("--clientToken");
-            arguments.add(authInfos.getClientToken());
+            if (authInfos.getClientToken() != null)
+            {
+                arguments.add("--clientToken");
+                arguments.add(authInfos.getClientToken());
+            }
 
             arguments.add("--version");
             arguments.add(infos.getGameVersion().getName());

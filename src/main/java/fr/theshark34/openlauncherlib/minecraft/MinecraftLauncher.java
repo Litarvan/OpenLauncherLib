@@ -39,7 +39,7 @@ import java.util.List;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.2-BETA
+ * @version 3.0.4-BETA
  * @since 3.0.0-BETA
  */
 public class MinecraftLauncher
@@ -116,6 +116,11 @@ public class MinecraftLauncher
     {
         LogUtil.info("mc-ext", infos.getGameVersion().getName());
         LogUtil.info("mc-check", infos.getGameDir().getAbsolutePath());
+
+        if (authInfos == null)
+        {
+            throw new IllegalArgumentException("authInfos == null");
+        }
 
         checkFolder(folder, infos.getGameDir());
 
