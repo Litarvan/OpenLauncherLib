@@ -40,7 +40,7 @@ public class JavaUtil
      */
     public static String[] getSpecialArgs()
     {
-        return new String[]{"-XX:-UseAdaptiveSizePolicy"};
+        return new String[]{"-XX:+UseConcMarkSweepGC -XX:-UseAdaptiveSizePolicy"};
     }
 
     /**
