@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 group = 'fr.litarvan.openlauncherlib'
-version = '3.0.4-BETA'
+version = '3.0.4'
 archivesBaseName = 'openlauncherlib'
 
 sourceCompatibility = 1.6

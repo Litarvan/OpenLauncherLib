@@ -28,7 +28,7 @@ import java.lang.reflect.Field;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.4-BETA
+ * @version 3.0.4
  * @since 3.0.0-BETA
  */
 public class JavaUtil

@@ -27,7 +27,7 @@ package fr.theshark34.openlauncherlib.minecraft;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.4-BETA
+ * @version 3.0.4
  * @since 2.0.0-SNAPSHOT
  */
 public class AuthInfos

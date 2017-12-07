@@ -19,6 +19,7 @@
 package fr.theshark34.openlauncherlib;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 /**
  * The Abstract Option Frame
@@ -28,7 +29,7 @@ import java.util.HashMap;
  * </p>
  *
  * @author Litarvan
- * @version 3.0.4-BETA
+ * @version 3.0.4
  * @since 3.0.0-BETA
  */
 public class LanguageManager
@@ -53,8 +54,8 @@ public class LanguageManager
      */
     static
     {
-        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.4-BETA by Adrien 'Litarvan' Navratil - Internal Launching System");
-        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.4-BETA by Adrien 'Litarvan' Navratil - External Launching System");
+        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.4 by Adrien 'Litarvan' Navratil - Internal Launching System");
+        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.4 by Adrien 'Litarvan' Navratil - External Launching System");
         ENGLISH.put("options", "Options");
         ENGLISH.put("ram", "RAM");
         ENGLISH.put("warn", "Warning");
@@ -81,8 +82,8 @@ public class LanguageManager
         ENGLISH.put("done", "Done");
         ENGLISH.put("ent", "Entire command");
 
-        FRENCH.put("hi-int", "OpenLauncherLib 3.0.4-BETA par Adrien 'Litarvan' Navratil - Systeme de lancement interne");
-        FRENCH.put("hi-ext", "OpenLauncherLib 3.0.4-BETA par Adrien 'Litarvan' Navratil - Systeme de lancement externe");
+        FRENCH.put("hi-int", "OpenLauncherLib 3.0.4 par Adrien 'Litarvan' Navratil - Systeme de lancement interne");
+        FRENCH.put("hi-ext", "OpenLauncherLib 3.0.4 par Adrien 'Litarvan' Navratil - Systeme de lancement externe");
         FRENCH.put("options", "Options");
         FRENCH.put("ram", "RAM");
         FRENCH.put("warn", "Attention");
@@ -152,5 +153,14 @@ public class LanguageManager
     public static HashMap<String, String> getCurrentLangSet()
     {
         return currentLangSet;
+    }
+
+    // Setting system lang
+    static
+    {
+        if (Locale.getDefault().getLanguage().toLowerCase().startsWith("fr"))
+        {
+            setLang(FRENCH);
+        }
     }
 }
