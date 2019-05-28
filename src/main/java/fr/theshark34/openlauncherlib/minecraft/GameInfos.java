@@ -19,6 +19,8 @@
 package fr.theshark34.openlauncherlib.minecraft;
 
 import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
+import fr.theshark34.openlauncherlib.util.LogUtil;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -86,31 +88,39 @@ public class GameInfos
         {
             boolean forge = false;
             boolean shaderOrOptifine = false;
+			if (gameVersion.getGameType() == GameType.V1_13_HIGHER_FORGE)
+				if (tweaks.length == 1 && tweaks[0] == GameTweak.FORGE)
+					tweaks = new GameTweak[0];
+				else if (tweaks.length != 0)
+					LogUtil.info("tweak-deprec");
 
             for (GameTweak tweak : tweaks)
                 if (tweak.equals(GameTweak.FORGE))
                 {
-                    if (gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
-                        System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweaking with a version under or equals as 1.5.2, forge is supposed to be installed in the jar (not with a tweaker), the game COULD NOT START !");
+                    if (gameVersion.getGameType() == GameType.V1_5_2_LOWER)
+                    	LogUtil.info("forge-old");
 
                     forge = true;
                 }
-                else if (tweak.equals(GameTweak.OPTIFINE) || tweak.equals(GameTweak.SHADER))
+                else if (tweak == GameTweak.OPTIFINE || tweak == GameTweak.SHADER)
                 {
                     shaderOrOptifine = true;
                 }
 
-            if (tweaks.length > 0 && gameVersion.getGameType().equals(GameType.V1_5_2_LOWER))
-                System.out.println("[OpenLauncherLib] [WARNING] You selected tweaking with a version under or equals as 1.5.2, this isn't fully supported, and could cause bugs.");
+            if (forge || gameVersion.getGameType() == GameType.V1_13_HIGHER_FORGE)
+            	LogUtil.info("support-forge");
+
+			if (tweaks.length > 0 && gameVersion.getGameType() == GameType.V1_5_2_LOWER)
+				LogUtil.info("old-tweaking");
 
             if (shaderOrOptifine && forge)
             {
-                System.out.println("[OpenLauncherLib] [WARNING] You selected Forge tweak with Optifine/Shader, they are ONLY FOR VANILLA, the game wil probably not start, so for security, Optifine/Shader was/were disabled");
+            	LogUtil.info("forge-optifine");
 
                 ArrayList<GameTweak> tweakList = new ArrayList<GameTweak>();
 
                 for (GameTweak tweak : tweaks)
-                    if (!tweak.equals(GameTweak.OPTIFINE) && !tweak.equals(GameTweak.SHADER))
+                    if (tweak != GameTweak.OPTIFINE && tweak != GameTweak.SHADER)
                         tweakList.add(tweak);
 
                 this.tweaks = tweakList.toArray(new GameTweak[tweakList.size()]);

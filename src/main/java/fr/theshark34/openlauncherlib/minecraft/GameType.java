@@ -238,6 +238,9 @@ public abstract class GameType
                 version = version.substring(0, version.lastIndexOf('.'));
             }
 
+            if (infos.getGameVersion().getName().equals("1.13.1") || infos.getGameVersion().getName().equals("1.13.2"))
+            	version = "1.13.1";
+
             arguments.add(version);
 
             arguments.add("--userProperties");
@@ -252,6 +255,81 @@ public abstract class GameType
             return arguments;
         }
     };
+
+	/**
+	 * This is a workaround until a new version of the lib using versions JSON is published
+	 */
+	public static final GameType V1_13_HIGHER_FORGE = new GameType()
+	{
+		@Override
+		public String getName()
+		{
+			return "1.13 or higher with Forge";
+		}
+
+		@Override
+		public String getMainClass(GameInfos infos)
+		{
+			return "cpw.mods.modlauncher.Launcher";
+		}
+
+		@Override
+		public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+		{
+			ArrayList<String> arguments = new ArrayList<String>();
+
+			arguments.add("--username=" + authInfos.getUsername());
+
+			arguments.add("--accessToken");
+			arguments.add(authInfos.getAccessToken());
+
+			if (authInfos.getClientToken() != null)
+			{
+				arguments.add("--clientToken");
+				arguments.add(authInfos.getClientToken());
+			}
+
+			arguments.add("--version");
+			arguments.add(infos.getGameVersion().getName());
+
+			arguments.add("--gameDir");
+			arguments.add(infos.getGameDir().getAbsolutePath());
+
+			arguments.add("--assetsDir");
+			File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+			arguments.add(assetsDir.getAbsolutePath());
+
+			arguments.add("--assetIndex");
+
+			arguments.add("1.13.1");
+
+			arguments.add("--userProperties");
+			arguments.add("{}");
+
+			arguments.add("--uuid");
+			arguments.add(authInfos.getUuid());
+
+			arguments.add("--userType");
+			arguments.add("legacy");
+
+			arguments.add("--launchTarget");
+			arguments.add("fmlclient");
+
+			arguments.add("--fml.forgeVersion");
+			arguments.add("25.0.219");
+
+			arguments.add("--fml.mcVersion");
+			arguments.add("1.13.2");
+
+			arguments.add("--fml.forgeGroup");
+			arguments.add("net.minecraftforge");
+
+			arguments.add("--fml.mcpVersion");
+			arguments.add("20190213.203750");
+
+			return arguments;
+		}
+	};
 
     /**
      * The name of the Game Type

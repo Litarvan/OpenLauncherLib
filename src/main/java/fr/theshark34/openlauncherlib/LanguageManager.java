@@ -54,8 +54,8 @@ public class LanguageManager
      */
     static
     {
-        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.4 by Adrien 'Litarvan' Navratil - Internal Launching System");
-        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.4 by Adrien 'Litarvan' Navratil - External Launching System");
+        ENGLISH.put("hi-int", "OpenLauncherLib 3.0.5 by Adrien 'Litarvan' Navratil - Internal Launching System");
+        ENGLISH.put("hi-ext", "OpenLauncherLib 3.0.5 by Adrien 'Litarvan' Navratil - External Launching System");
         ENGLISH.put("options", "Options");
         ENGLISH.put("ram", "RAM");
         ENGLISH.put("warn", "Warning");
@@ -81,15 +81,20 @@ public class LanguageManager
         ENGLISH.put("nat", "Loading the natives");
         ENGLISH.put("done", "Done");
         ENGLISH.put("ent", "Entire command");
+        ENGLISH.put("support-forge", "Forge is a free open source library, consider supporting them at http://patreon.com/lexmanos");
+        ENGLISH.put("old-tweak", "WARNING: You selected tweaking with a version under or equals as 1.5.2, this isn't fully supported, and could cause bugs.");
+	    ENGLISH.put("forge-optifine", "WARNING: You selected Forge tweak with Optifine/Shader, they are ONLY FOR VANILLA, the game wil probably not start, so for security, Optifine/Shader was/were disabled");
+		ENGLISH.put("tweak-deprec", "WARNING: You selected GameTweaks other than forge with Minecraft 1.13 or greater, the tweaking system has been deleted since, game will probably not start");
+		ENGLISH.put("forge-old", "WARNING: You selected Forge tweaking with a version under or equals as 1.5.2, forge is supposed to be installed in the jar (not with a tweaker), the game MAY NOT START !");
 
         FRENCH.put("hi-int", "OpenLauncherLib 3.0.4 par Adrien 'Litarvan' Navratil - Systeme de lancement interne");
         FRENCH.put("hi-ext", "OpenLauncherLib 3.0.4 par Adrien 'Litarvan' Navratil - Systeme de lancement externe");
         FRENCH.put("options", "Options");
         FRENCH.put("ram", "RAM");
         FRENCH.put("warn", "Attention");
-        FRENCH.put("splash-interrupted", "Le temps d'attente du splash a été interrompu !");
+        FRENCH.put("splash-interrupted", "Le temps d'attente du splash a ete interrompu !");
         FRENCH.put("ex-caught", "Exception attrapee !");
-        FRENCH.put("report-error", "Impossible d'écrire le crash report !");
+        FRENCH.put("report-error", "Impossible d'ecrire le crash report !");
         FRENCH.put("ram-empty", "Impossible de lire la RAM : Le fichier est vide");
         FRENCH.put("writing-crash", "Ecriture du crash report dans");
         FRENCH.put("load-fail", "Impossible de charger le jar");
@@ -109,7 +114,12 @@ public class LanguageManager
         FRENCH.put("nat", "Chargement des natives");
         FRENCH.put("done", "Termine");
         FRENCH.put("ent", "Commande entiere");
-    }
+		FRENCH.put("support-forge", "Forge est une librairie open source, supportez son developpement sur https://patreon.com/lexmanos");
+		FRENCH.put("old-tweak", "ATTENTION: Vous avez choisi d'utiliser le tweaking avec une version inferieure ou egale a la 1.5.2, ce n'est pas vraiment supporte, des bugs peuvent survenir");
+		FRENCH.put("forge-optifine", "ATTENTION: Vous avez selectionne les tweaks Forge avec Optifine/Shader, ces derniers sont SEULEMENT POUR LE VANILLA, le jeu ne demarrera sûrement pas, donc Optifine/Shader ont ete desactives");
+		FRENCH.put("tweak-deprec", "ATTENTION: Vous avez selectione des GameTweaks autre que Forge avec Minecraft 1.13 ou superieur, le systeme de tweaking a ete supprime depuis, le jeu ne demarrera probablement pas");
+		FRENCH.put("forge-old", "ATTENTION: Vous avez selectionne le tweak Forge avec une version inferieure ou egale a la 1.5.2, forge est sense être installe a l'interieur du jar (et non pas via tweaking), le jeu POURAIT NE PAS DEMARRER !");
+	}
 
     /**
      * Get a translated string

@@ -139,11 +139,11 @@ public class MinecraftLauncher
         vmArgs.add("-Dfml.ignorePatchDiscrepancies=true");
 
         if(infos.getGameTweaks() != null)
-            for (GameTweak tweak : infos.getGameTweaks())
-            {
-                args.add("--tweakClass");
-                args.add(tweak.getTweakClass(infos));
-            }
+			for (GameTweak tweak : infos.getGameTweaks())
+			{
+				args.add("--tweakClass");
+				args.add(tweak.getTweakClass(infos));
+			}
 
         ExternalLaunchProfile profile = new ExternalLaunchProfile(mainClass, classpath, vmArgs, args, true, infos.getServerName(), infos.getGameDir());
 

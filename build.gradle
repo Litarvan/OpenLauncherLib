@@ -4,7 +4,7 @@ apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
 group = 'fr.litarvan'
-version = '3.0.4'
+version = '3.0.5'
 archivesBaseName = 'openlauncherlib'
 
 sourceCompatibility = 1.6
