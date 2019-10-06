@@ -1,6 +1,5 @@
 # Ignore useless gradle stuff
 .gradle/
-gradle-wrapper.properties
 
 # Ignore binaries
 build/
