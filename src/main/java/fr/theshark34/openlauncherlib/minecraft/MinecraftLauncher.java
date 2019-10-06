@@ -26,10 +26,9 @@ import fr.theshark34.openlauncherlib.internal.InternalLaunchProfile;
 import fr.theshark34.openlauncherlib.util.LogUtil;
 import fr.theshark34.openlauncherlib.util.explorer.ExploredDirectory;
 import fr.theshark34.openlauncherlib.util.explorer.Explorer;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
