@@ -29,15 +29,14 @@ import javax.swing.WindowConstants;
  * The Splash Screen
  *
  * <p>
- *     This class cans create a splash screen with an image.
+ * This class cans create a splash screen with an image.
  * </p>
  *
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
  */
-public class SplashScreen extends JFrame
-{
+public class SplashScreen extends JFrame {
 
     /**
      * Basic Constructor
@@ -45,8 +44,7 @@ public class SplashScreen extends JFrame
      * @param title The Window title
      * @param image The splash image
      */
-    public SplashScreen(String title, Image image)
-    {
+    public SplashScreen(String title, Image image) {
         this.setTitle(title);
         this.setUndecorated(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -59,24 +57,17 @@ public class SplashScreen extends JFrame
      * Display the splash, wait a given time, then hide the splash.
      *
      * @param time The time to wait before hiding the splash
-     *
      * @return The created Thread
      */
-    public Thread displayFor(final long time)
-    {
-        Thread thread = new Thread()
-        {
+    public Thread displayFor(final long time) {
+        Thread thread = new Thread() {
             @Override
-            public void run()
-            {
+            public void run() {
                 setVisible(true);
 
-                try
-                {
+                try {
                     sleep(time);
-                }
-                catch (InterruptedException e)
-                {
+                } catch (InterruptedException e) {
                     LogUtil.err("warn", " : ", "splash-interrupted");
                 }
 
@@ -91,28 +82,26 @@ public class SplashScreen extends JFrame
     /**
      * Displays the splash (same as setVisible(true))
      */
-    public void display()
-    {
+    public void display() {
         this.setVisible(true);
     }
 
     /**
      * Hide the splash (same as setVisible(false))
      */
-    public void stop()
-    {
+    public void stop() {
         this.setVisible(false);
     }
 
     /**
      * Set the background transparent
-     *
+     * <p>
      * Warning : Works only for Java 7+ (but just doesn't do anything with Java 6 or less)
      */
-    public void setTransparent()
-    {
-        this.setBackground(new Color(0, 0, 0, 0));
-        this.getContentPane().setBackground(new Color(0, 0, 0, 0));
+    public void setTransparent() {
+        Color transparent = new Color(0, 0, 0, 0);
+        this.setBackground(transparent);
+        this.getContentPane().setBackground(transparent);
     }
 
     /**
@@ -121,8 +110,7 @@ public class SplashScreen extends JFrame
      * @return The current SplashPanel instance
      */
     @Override
-    public SplashPanel getContentPane()
-    {
+    public SplashPanel getContentPane() {
         return (SplashPanel) super.getContentPane();
     }
 
@@ -132,15 +120,14 @@ public class SplashScreen extends JFrame
  * The Splash Panel
  *
  * <p>
- *     The container of a SplashScreen with an image in background
+ * The container of a SplashScreen with an image in background
  * </p>
  *
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
  */
-class SplashPanel extends JPanel
-{
+class SplashPanel extends JPanel {
 
     /**
      * The splash image
@@ -152,14 +139,12 @@ class SplashPanel extends JPanel
      *
      * @param image The splash image
      */
-    public SplashPanel(Image image)
-    {
+    public SplashPanel(Image image) {
         this.image = image;
     }
 
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
     }
 
