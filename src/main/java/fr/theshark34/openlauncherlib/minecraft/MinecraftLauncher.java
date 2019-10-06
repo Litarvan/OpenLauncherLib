@@ -24,6 +24,7 @@ import fr.theshark34.openlauncherlib.external.ClasspathConstructor;
 import fr.theshark34.openlauncherlib.external.ExternalLaunchProfile;
 import fr.theshark34.openlauncherlib.internal.InternalLaunchProfile;
 import fr.theshark34.openlauncherlib.util.LogUtil;
+import fr.theshark34.openlauncherlib.util.explorer.ExploredDirectory;
 import fr.theshark34.openlauncherlib.util.explorer.Explorer;
 import java.io.File;
 import java.util.ArrayList;
@@ -130,15 +131,17 @@ public class MinecraftLauncher
 
         LogUtil.info("mc-cp");
 
-        ClasspathConstructor constructor = new ClasspathConstructor();
-        constructor.add(Explorer.dir(infos.getGameDir()).sub(folder.getLibsFolder()).allRecursive().files().match("^(.*\\.((jar)$))*$").get());
-        constructor.add(Explorer.dir(infos.getGameDir()).get(folder.getMainJar()));
+        final ExploredDirectory exploredDirectory = Explorer.dir(infos.getGameDir());
+        ClasspathConstructor constructor = new ClasspathConstructor() {{
+            add(exploredDirectory.sub(folder.getLibsFolder()).allRecursive().files().match("^(.*\\.((jar)$))*$").get());
+            add(exploredDirectory.get(folder.getMainJar()));
+        }};
 
         String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? infos.getGameVersion().getGameType().getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
         String classpath = constructor.make();
         List<String> args = infos.getGameVersion().getGameType().getLaunchArgs(infos, folder, authInfos);
         List<String> vmArgs = new ArrayList<String>() {{
-            add("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
+            add("-Djava.library.path=" + exploredDirectory.sub(folder.getNativesFolder()).get().getAbsolutePath());
             add("-Dfml.ignoreInvalidMinecraftCertificates=true");
             add("-Dfml.ignorePatchDiscrepancies=true");
         }};
