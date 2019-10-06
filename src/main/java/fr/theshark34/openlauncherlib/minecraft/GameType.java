@@ -40,6 +40,7 @@ public abstract class GameType
     /**
      * The 1.5.2 or Lower game type
      */
+    @SuppressWarnings("unused")
     public static final GameType V1_5_2_LOWER = new GameType()
     {
         @Override
@@ -57,26 +58,25 @@ public abstract class GameType
         @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
-            ArrayList<String> arguments = new ArrayList<String>();
+            return new ArrayList<String>() {{
+                add(authInfos.getUsername());
 
-            arguments.add(authInfos.getUsername());
+                add("token:" + authInfos.getAccessToken() + ":" + authInfos.getUuid());
 
-            arguments.add("token:" + authInfos.getAccessToken() + ":" + authInfos.getUuid());
+                add("--gameDir");
+                add(infos.getGameDir().getAbsolutePath());
 
-            arguments.add("--gameDir");
-            arguments.add(infos.getGameDir().getAbsolutePath());
-
-            arguments.add("--assetsDir");
-            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-            arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
-
-            return arguments;
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                add("--assetsDir");
+                add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
+            }};
         }
     };
 
     /**
      * The 1.7.2 or Lower game type
      */
+    @SuppressWarnings("unused")
     public static final GameType V1_7_2_LOWER = new GameType()
     {
         @Override
@@ -94,39 +94,38 @@ public abstract class GameType
         @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
-            ArrayList<String> arguments = new ArrayList<String>();
+            return new ArrayList<String>() {{
+                add("--username=" + authInfos.getUsername());
 
-            arguments.add("--username=" + authInfos.getUsername());
+                add("--accessToken");
+                add(authInfos.getAccessToken());
 
-            arguments.add("--accessToken");
-            arguments.add(authInfos.getAccessToken());
+                add("--version");
+                add(infos.getGameVersion().getName());
 
-            arguments.add("--version");
-            arguments.add(infos.getGameVersion().getName());
+                add("--gameDir");
+                add(infos.getGameDir().getAbsolutePath());
 
-            arguments.add("--gameDir");
-            arguments.add(infos.getGameDir().getAbsolutePath());
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                add("--assetsDir");
+                add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
 
-            arguments.add("--assetsDir");
-            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-            arguments.add(assetsDir.getAbsolutePath() + "/virtual/legacy/");
+                add("--userProperties");
+                add("{}");
 
-            arguments.add("--userProperties");
-            arguments.add("{}");
+                add("--uuid");
+                add(authInfos.getUuid());
 
-            arguments.add("--uuid");
-            arguments.add(authInfos.getUuid());
-
-            arguments.add("--userType");
-            arguments.add("legacy");
-
-            return arguments;
+                add("--userType");
+                add("legacy");
+            }};
         }
     };
 
     /**
      * The 1.7.10 Game Type
      */
+    @SuppressWarnings("unused")
     public static final GameType V1_7_10 = new GameType()
     {
         @Override
@@ -144,48 +143,47 @@ public abstract class GameType
         @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
-            ArrayList<String> arguments = new ArrayList<String>();
+            return new ArrayList<String>() {{
+                add("--username=" + authInfos.getUsername());
 
-            arguments.add("--username=" + authInfos.getUsername());
+                add("--accessToken");
+                add(authInfos.getAccessToken());
 
-            arguments.add("--accessToken");
-            arguments.add(authInfos.getAccessToken());
+                if (authInfos.getClientToken() != null)
+                {
+                    add("--clientToken");
+                    add(authInfos.getClientToken());
+                }
 
-            if (authInfos.getClientToken() != null)
-            {
-                arguments.add("--clientToken");
-                arguments.add(authInfos.getClientToken());
-            }
+                add("--version");
+                add(infos.getGameVersion().getName());
 
-            arguments.add("--version");
-            arguments.add(infos.getGameVersion().getName());
+                add("--gameDir");
+                add(infos.getGameDir().getAbsolutePath());
 
-            arguments.add("--gameDir");
-            arguments.add(infos.getGameDir().getAbsolutePath());
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                add("--assetsDir");
+                add(assetsDir.getAbsolutePath());
 
-            arguments.add("--assetsDir");
-            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-            arguments.add(assetsDir.getAbsolutePath());
+                add("--assetIndex");
+                add(infos.getGameVersion().getName());
 
-            arguments.add("--assetIndex");
-            arguments.add(infos.getGameVersion().getName());
+                add("--userProperties");
+                add("{}");
 
-            arguments.add("--userProperties");
-            arguments.add("{}");
+                add("--uuid");
+                add(authInfos.getUuid());
 
-            arguments.add("--uuid");
-            arguments.add(authInfos.getUuid());
-
-            arguments.add("--userType");
-            arguments.add("legacy");
-
-            return arguments;
+                add("--userType");
+                add("legacy");
+            }};
         }
     };
 
     /**
      * The 1.8 or higher Game Type
      */
+    @SuppressWarnings("unused")
     public static final GameType V1_8_HIGHER = new GameType()
     {
         @Override
@@ -203,62 +201,59 @@ public abstract class GameType
         @Override
         public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
         {
-            ArrayList<String> arguments = new ArrayList<String>();
+            return new ArrayList<String>() {{
+                add("--username=" + authInfos.getUsername());
 
-            arguments.add("--username=" + authInfos.getUsername());
+                add("--accessToken");
+                add(authInfos.getAccessToken());
 
-            arguments.add("--accessToken");
-            arguments.add(authInfos.getAccessToken());
+                if (authInfos.getClientToken() != null)
+                {
+                    add("--clientToken");
+                    add(authInfos.getClientToken());
+                }
 
-            if (authInfos.getClientToken() != null)
-            {
-                arguments.add("--clientToken");
-                arguments.add(authInfos.getClientToken());
-            }
+                add("--version");
+                add(infos.getGameVersion().getName());
 
-            arguments.add("--version");
-            arguments.add(infos.getGameVersion().getName());
+                add("--gameDir");
+                add(infos.getGameDir().getAbsolutePath());
 
-            arguments.add("--gameDir");
-            arguments.add(infos.getGameDir().getAbsolutePath());
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                add("--assetsDir");
+                add(assetsDir.getAbsolutePath());
 
-            arguments.add("--assetsDir");
-            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-            arguments.add(assetsDir.getAbsolutePath());
+                add("--assetIndex");
 
-            arguments.add("--assetIndex");
+                String version = infos.getGameVersion().getName();
+                int first = version.indexOf('.');
+                int second = version.lastIndexOf('.');
 
-            String version = infos.getGameVersion().getName();
+                if (first != second)
+                {
+                    version = version.substring(0, version.lastIndexOf('.'));
+                }
+                if (infos.getGameVersion().getName().equals("1.13.1") || infos.getGameVersion().getName().equals("1.13.2"))
+                    version = "1.13.1";
 
-            int first = version.indexOf('.');
-            int second = version.lastIndexOf('.');
+                add(version);
 
-            if (first != second)
-            {
-                version = version.substring(0, version.lastIndexOf('.'));
-            }
+                add("--userProperties");
+                add("{}");
 
-            if (infos.getGameVersion().getName().equals("1.13.1") || infos.getGameVersion().getName().equals("1.13.2"))
-            	version = "1.13.1";
+                add("--uuid");
+                add(authInfos.getUuid());
 
-            arguments.add(version);
-
-            arguments.add("--userProperties");
-            arguments.add("{}");
-
-            arguments.add("--uuid");
-            arguments.add(authInfos.getUuid());
-
-            arguments.add("--userType");
-            arguments.add("legacy");
-
-            return arguments;
+                add("--userType");
+                add("legacy");
+            }};
         }
     };
 
 	/**
 	 * This is a workaround until a new version of the lib using versions JSON is published
 	 */
+	@SuppressWarnings("unused")
 	public static final GameType V1_13_HIGHER_FORGE = new GameType()
 	{
 		@Override
@@ -276,58 +271,55 @@ public abstract class GameType
 		@Override
 		public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
 		{
-			ArrayList<String> arguments = new ArrayList<String>();
+			return new ArrayList<String>() {{
+                add("--username=" + authInfos.getUsername());
 
-			arguments.add("--username=" + authInfos.getUsername());
+                add("--accessToken");
+                add(authInfos.getAccessToken());
 
-			arguments.add("--accessToken");
-			arguments.add(authInfos.getAccessToken());
+                if (authInfos.getClientToken() != null)
+                {
+                    add("--clientToken");
+                    add(authInfos.getClientToken());
+                }
 
-			if (authInfos.getClientToken() != null)
-			{
-				arguments.add("--clientToken");
-				arguments.add(authInfos.getClientToken());
-			}
+                add("--version");
+                add(infos.getGameVersion().getName());
 
-			arguments.add("--version");
-			arguments.add(infos.getGameVersion().getName());
+                add("--gameDir");
+                add(infos.getGameDir().getAbsolutePath());
 
-			arguments.add("--gameDir");
-			arguments.add(infos.getGameDir().getAbsolutePath());
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                add("--assetsDir");
+                add(assetsDir.getAbsolutePath());
 
-			arguments.add("--assetsDir");
-			File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-			arguments.add(assetsDir.getAbsolutePath());
+                add("--assetIndex");
+                add("1.13.1");
 
-			arguments.add("--assetIndex");
+                add("--userProperties");
+                add("{}");
 
-			arguments.add("1.13.1");
+                add("--uuid");
+                add(authInfos.getUuid());
 
-			arguments.add("--userProperties");
-			arguments.add("{}");
+                add("--userType");
+                add("legacy");
 
-			arguments.add("--uuid");
-			arguments.add(authInfos.getUuid());
+                add("--launchTarget");
+                add("fmlclient");
 
-			arguments.add("--userType");
-			arguments.add("legacy");
+                add("--fml.forgeVersion");
+                add("25.0.219");
 
-			arguments.add("--launchTarget");
-			arguments.add("fmlclient");
+                add("--fml.mcVersion");
+                add("1.13.2");
 
-			arguments.add("--fml.forgeVersion");
-			arguments.add("25.0.219");
+                add("--fml.forgeGroup");
+                add("net.minecraftforge");
 
-			arguments.add("--fml.mcVersion");
-			arguments.add("1.13.2");
-
-			arguments.add("--fml.forgeGroup");
-			arguments.add("net.minecraftforge");
-
-			arguments.add("--fml.mcpVersion");
-			arguments.add("20190213.203750");
-
-			return arguments;
+                add("--fml.mcpVersion");
+                add("20190213.203750");
+            }};
 		}
 	};
 
