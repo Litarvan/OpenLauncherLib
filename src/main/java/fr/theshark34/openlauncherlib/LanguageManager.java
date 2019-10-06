@@ -25,15 +25,14 @@ import java.util.Locale;
  * The Abstract Option Frame
  *
  * <p>
- *     The base class to use with the Ram Selector to select RAM.
+ * The base class to use with the Ram Selector to select RAM.
  * </p>
  *
  * @author Litarvan
  * @version 3.0.4
  * @since 3.0.0-BETA
  */
-public class LanguageManager
-{
+public class LanguageManager {
     /**
      * The ENGLISH Lang set
      */
@@ -119,24 +118,23 @@ public class LanguageManager
      * Get a translated string
      *
      * @param keys The key of the string
-     *
      * @return The translated string
      */
-    public static String lang(String... keys)
-    {
-        String total = "";
+    public static String lang(String... keys) {
+        StringBuilder total = new StringBuilder();
         String text;
 
-        for (String key : keys)
-        {
+        for (String key : keys) {
             text = currentLangSet.get(key);
             if (text == null)
                 text = ENGLISH.get(key);
+            if (text == null)
+                text = key;
 
-            total += (text == null ? key : text) + " ";
+            total.append(text).append(" ");
         }
 
-        return total;
+        return total.toString();
     }
 
     /**
@@ -144,8 +142,7 @@ public class LanguageManager
      *
      * @param langSet The new language set
      */
-    public static void setLang(HashMap<String, String> langSet)
-    {
+    public static void setLang(HashMap<String, String> langSet) {
         currentLangSet = langSet;
     }
 
@@ -154,16 +151,13 @@ public class LanguageManager
      *
      * @return The current lang set
      */
-    public static HashMap<String, String> getCurrentLangSet()
-    {
+    public static HashMap<String, String> getCurrentLangSet() {
         return currentLangSet;
     }
 
     // Setting system lang
-    static
-    {
-        if (Locale.getDefault().getLanguage().toLowerCase().startsWith("fr"))
-        {
+    static {
+        if (Locale.getDefault().getLanguage().toLowerCase().startsWith("fr")) {
             setLang(FRENCH);
         }
     }
