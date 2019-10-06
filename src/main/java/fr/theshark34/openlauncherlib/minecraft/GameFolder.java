@@ -35,6 +35,7 @@ public class GameFolder
     /**
      * The basic game folder (assets, libs, natives, minecraft.jar)
      */
+    @SuppressWarnings("unused")
     public static final GameFolder BASIC = new GameFolder("assets", "libs", "natives", "minecraft.jar");
 
     /**
