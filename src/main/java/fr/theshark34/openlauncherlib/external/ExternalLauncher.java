@@ -115,22 +115,24 @@ public class ExternalLauncher
         LogUtil.info("hi-ext");
 
         ProcessBuilder builder = new ProcessBuilder();
-        ArrayList<String> commands = new ArrayList<String>();
-        commands.add(JavaUtil.getJavaCommand());
-        commands.addAll(Arrays.asList(JavaUtil.getSpecialArgs()));
+        ArrayList<String> commands = new ArrayList<String>() {{
+            add(JavaUtil.getJavaCommand());
+            addAll(Arrays.asList(JavaUtil.getSpecialArgs()));
 
-        if (profile.getMacDockName() != null && System.getProperty("os.name").toLowerCase().contains("mac"))
-            commands.add(JavaUtil.macDockName(profile.getMacDockName()));
-        if (profile.getVmArgs() != null)
-            commands.addAll(profile.getVmArgs());
+            if (profile.getMacDockName() != null && System.getProperty("os.name").toLowerCase().contains("mac"))
+                add(JavaUtil.macDockName(profile.getMacDockName()));
+            if (profile.getVmArgs() != null)
+                addAll(profile.getVmArgs());
 
-        commands.add("-cp");
-        commands.add(profile.getClassPath());
+            add("-cp");
+            add(profile.getClassPath());
 
-        commands.add(profile.getMainClass());
+            add(profile.getMainClass());
 
-        if (profile.getArgs() != null)
-            commands.addAll(profile.getArgs());
+            if (profile.getArgs() != null)
+                addAll(profile.getArgs());
+        }};
+
 
         if (profile.getDirectory() != null)
             builder.directory(profile.getDirectory());
@@ -143,11 +145,11 @@ public class ExternalLauncher
 
         builder.command(commands);
 
-        String entireCommand = "";
+        StringBuilder entireCommand = new StringBuilder();
         for (String command : commands)
-            entireCommand += command + " ";
+            entireCommand.append(command).append(" ");
 
-        LogUtil.info("ent", ":", entireCommand);
+        LogUtil.info("ent", ":", entireCommand.toString());
         LogUtil.info("start", profile.getMainClass());
 
         try
