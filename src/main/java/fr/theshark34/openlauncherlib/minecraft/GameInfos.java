@@ -123,7 +123,7 @@ public class GameInfos
                     if (tweak != GameTweak.OPTIFINE && tweak != GameTweak.SHADER)
                         tweakList.add(tweak);
 
-                this.tweaks = tweakList.toArray(new GameTweak[tweakList.size()]);
+                this.tweaks = tweakList.toArray(new GameTweak[0]);
             }
         }
     }
