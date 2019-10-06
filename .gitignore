@@ -1,13 +1,20 @@
+# Ignore useless gradle stuff
 .gradle/
+gradle-wrapper.properties
 
+# Ignore binaries
 build/
-.idea
+*.class
+*.jar
+
+# Ignore useless IntelliJ generated stuff
+.idea/
 *.iml
 *.ipr
 *.iws
 
+# Ignore useless MacOS files
 .DS_Store
-*/.DS_Store
 
+# Ignore useless Windows files
 Thumbs.db
-*/Thumbs.db
