@@ -56,7 +56,7 @@ public abstract class GameType
         }
 
         @Override
-        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        public ArrayList<String> getLaunchArgs(final GameInfos infos, final GameFolder folder, final AuthInfos authInfos)
         {
             return new ArrayList<String>() {{
                 add(authInfos.getUsername());
@@ -92,7 +92,7 @@ public abstract class GameType
         }
 
         @Override
-        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        public ArrayList<String> getLaunchArgs(final GameInfos infos, final GameFolder folder, final AuthInfos authInfos)
         {
             return new ArrayList<String>() {{
                 add("--username=" + authInfos.getUsername());
@@ -141,7 +141,7 @@ public abstract class GameType
         }
 
         @Override
-        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        public ArrayList<String> getLaunchArgs(final GameInfos infos, final GameFolder folder, final AuthInfos authInfos)
         {
             return new ArrayList<String>() {{
                 add("--username=" + authInfos.getUsername());
@@ -199,7 +199,7 @@ public abstract class GameType
         }
 
         @Override
-        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        public ArrayList<String> getLaunchArgs(final GameInfos infos, final GameFolder folder, final AuthInfos authInfos)
         {
             return new ArrayList<String>() {{
                 add("--username=" + authInfos.getUsername());
@@ -269,7 +269,7 @@ public abstract class GameType
 		}
 
 		@Override
-		public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+		public ArrayList<String> getLaunchArgs(final GameInfos infos, final GameFolder folder, final AuthInfos authInfos)
 		{
 			return new ArrayList<String>() {{
                 add("--username=" + authInfos.getUsername());

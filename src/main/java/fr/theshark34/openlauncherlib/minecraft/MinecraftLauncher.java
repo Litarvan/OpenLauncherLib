@@ -60,16 +60,20 @@ public class MinecraftLauncher
     @Deprecated
     public static InternalLaunchProfile createInternalProfile(GameInfos infos, GameFolder folder, AuthInfos authInfos) throws LaunchException
     {
-        LogUtil.info("mc-int", infos.getGameVersion().getName());
-        LogUtil.info("mc-check", infos.getGameDir().getAbsolutePath());
+        File gameDir = infos.getGameDir();
+        GameVersion gameVersion = infos.getGameVersion();
 
-        checkFolder(folder, infos.getGameDir());
+        LogUtil.info("mc-int", gameVersion.getName());
+        LogUtil.info("mc-check", gameDir.getAbsolutePath());
+
+        checkFolder(folder, gameDir);
 
         LogUtil.info("mc-cp");
-        List<File> libs = Explorer.dir(infos.getGameDir()).sub(folder.getLibsFolder()).allRecursive().files().match("^(.*\\.((jar)$))*$").get();
-        libs.add(Explorer.dir(infos.getGameDir()).get(folder.getMainJar()));
+        List<File> libs = Explorer.dir(gameDir).sub(folder.getLibsFolder()).allRecursive().files().match("^(.*\\.((jar)$))*$").get();
+        libs.add(Explorer.dir(gameDir).get(folder.getMainJar()));
 
-        List<String> arguments = infos.getGameVersion().getGameType().getLaunchArgs(infos, folder, authInfos);
+        GameType gameType = gameVersion.getGameType();
+        List<String> arguments = gameType.getLaunchArgs(infos, folder, authInfos);
 
         if(infos.getGameTweaks() != null)
             for (GameTweak tweak : infos.getGameTweaks())
@@ -78,8 +82,8 @@ public class MinecraftLauncher
                 arguments.add(tweak.getTweakClass(infos));
             }
 
-        String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? infos.getGameVersion().getGameType().getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
-        String[] args = arguments.toArray(new String[arguments.size()]);
+        String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? gameType.getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
+        String[] args = arguments.toArray(new String[0]);
 
         InternalLaunchProfile profile = new InternalLaunchProfile(mainClass, args);
         profile.setClasspath(libs);
@@ -89,7 +93,7 @@ public class MinecraftLauncher
         LogUtil.info("nat");
         try
         {
-            JavaUtil.setLibraryPath(new File(infos.getGameDir(), folder.getNativesFolder()).getAbsolutePath());
+            JavaUtil.setLibraryPath(new File(gameDir, folder.getNativesFolder()).getAbsolutePath());
         }
         catch (Exception e)
         {
@@ -112,7 +116,7 @@ public class MinecraftLauncher
      *
      * @throws LaunchException If it failed
      */
-    public static ExternalLaunchProfile createExternalProfile(GameInfos infos, GameFolder folder, AuthInfos authInfos) throws LaunchException
+    public static ExternalLaunchProfile createExternalProfile(final GameInfos infos, final GameFolder folder, AuthInfos authInfos) throws LaunchException
     {
         LogUtil.info("mc-ext", infos.getGameVersion().getName());
         LogUtil.info("mc-check", infos.getGameDir().getAbsolutePath());
@@ -133,10 +137,11 @@ public class MinecraftLauncher
         String mainClass = infos.getGameTweaks() == null || infos.getGameTweaks().length == 0 ? infos.getGameVersion().getGameType().getMainClass(infos) : GameTweak.LAUNCHWRAPPER_MAIN_CLASS;
         String classpath = constructor.make();
         List<String> args = infos.getGameVersion().getGameType().getLaunchArgs(infos, folder, authInfos);
-        List<String> vmArgs = new ArrayList<String>();
-        vmArgs.add("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
-        vmArgs.add("-Dfml.ignoreInvalidMinecraftCertificates=true");
-        vmArgs.add("-Dfml.ignorePatchDiscrepancies=true");
+        List<String> vmArgs = new ArrayList<String>() {{
+            add("-Djava.library.path=" + Explorer.dir(infos.getGameDir()).sub(folder.getNativesFolder()).get().getAbsolutePath());
+            add("-Dfml.ignoreInvalidMinecraftCertificates=true");
+            add("-Dfml.ignorePatchDiscrepancies=true");
+        }};
 
         if(infos.getGameTweaks() != null)
 			for (GameTweak tweak : infos.getGameTweaks())
