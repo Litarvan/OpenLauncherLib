@@ -54,3 +54,11 @@ publishing {
         }
     }
 }
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.json:json:20190722'
+}
