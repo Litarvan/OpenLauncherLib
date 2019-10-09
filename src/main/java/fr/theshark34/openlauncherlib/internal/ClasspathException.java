@@ -18,8 +18,8 @@
  */
 package fr.theshark34.openlauncherlib.internal;
 
-import fr.theshark34.openlauncherlib.LanguageManager;
 import fr.theshark34.openlauncherlib.LaunchException;
+import fr.theshark34.openlauncherlib.util.LogUtil;
 
 /**
  * The Classpath Exception
@@ -54,7 +54,15 @@ public class ClasspathException extends LaunchException
      */
     public ClasspathException(int type, String str)
     {
-        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ? LanguageManager.lang("load-fail", ":", str) : str));
+        super(type == JAR_NOT_FOUND_ERROR
+                ? (LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "jar-notfound") + " : " + LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), str) + " " + str)
+                :
+                (
+                    type == JAR_LOADING_ERROR
+                        ? (LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "load-fail") + " : " + LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), str))
+                        : str
+                )
+        );
     }
 
     /**
@@ -66,7 +74,15 @@ public class ClasspathException extends LaunchException
      */
     public ClasspathException(int type, String str, Throwable t)
     {
-        super(type == JAR_NOT_FOUND_ERROR ? LanguageManager.lang("jar-notfound", ":", str) + str : (type == JAR_LOADING_ERROR ? LanguageManager.lang("load-fail", ":", str) : str), t);
+        super(type == JAR_NOT_FOUND_ERROR
+                ? (LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "jar-notfound") + " : " + LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), str) + " " + str)
+                :
+                (
+                        type == JAR_LOADING_ERROR
+                                ? (LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "load-fail") + " : " + LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), str))
+                                : str
+                )
+        , t);
     }
 
 

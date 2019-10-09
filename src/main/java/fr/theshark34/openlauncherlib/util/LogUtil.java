@@ -18,7 +18,14 @@
  */
 package fr.theshark34.openlauncherlib.util;
 
-import fr.theshark34.openlauncherlib.LanguageManager;
+import fr.theshark34.openlauncherlib.configuration.core.DefaultConfigurationManager;
+import fr.theshark34.openlauncherlib.language.api.LanguageInfo;
+import fr.theshark34.openlauncherlib.language.api.LanguageManager;
+import fr.theshark34.openlauncherlib.language.api.LanguageTypes;
+import fr.theshark34.openlauncherlib.language.core.DefaultLanguageManager;
+
+import java.util.Locale;
+import java.util.logging.Logger;
 
 /**
  * The Log Util
@@ -30,9 +37,57 @@ import fr.theshark34.openlauncherlib.LanguageManager;
  * @author Litarvan
  * @version 3.0.2-BETA
  * @since 3.0.0-BETA
+ *
+ * Modified by NeutronStars.
  */
 public final class LogUtil
 {
+    /**
+     * Instance of LanguageManager
+     */
+    private static final LanguageManager LANGUAGE_MANAGER = new DefaultLanguageManager(Logger.getLogger("OpenLauncherLib"), new DefaultConfigurationManager(Logger.getLogger("OpenLauncherLib")));
+
+    /**
+     * Instance of Identifier.
+     */
+    private static final LanguageInfo IDENTIFIER = new LanguageInfo()
+    {
+        @Override
+        public String get()
+        {
+            return "OpenLauncherLib";
+        }
+    };
+
+    static {
+        LANGUAGE_MANAGER.registerLanguage(IDENTIFIER, LanguageTypes.EN, "/assets/languages/");
+        LANGUAGE_MANAGER.registerLanguage(IDENTIFIER, LanguageTypes.FR, "/assets/languages/");
+
+        if (Locale.getDefault().getLanguage().toLowerCase().startsWith("fr")) {
+            LANGUAGE_MANAGER.setDefaultLanguage(LANGUAGE_MANAGER.getLanguage(LanguageTypes.FR));
+        }else {
+            LANGUAGE_MANAGER.setDefaultLanguage(LANGUAGE_MANAGER.getLanguage(LanguageTypes.EN));
+        }
+    }
+
+    /**
+     * Retrieve the LanguageManager.
+     * @return the language manager.
+     */
+    public static LanguageManager getLanguageManager()
+    {
+        return LANGUAGE_MANAGER;
+    }
+
+    /**
+     * Retrieve the identifier.
+     * @return the identifier.
+     */
+    public static LanguageInfo getIdentifier()
+    {
+        return IDENTIFIER;
+    }
+
     /**
      * Print a message, with some translated strings
      *
@@ -41,12 +96,15 @@ public final class LogUtil
      */
     public static void message(boolean err, String... messages)
     {
-        String message = "[OpenLauncherLib] " + LanguageManager.lang(messages);
+        StringBuilder builder = new StringBuilder("[OpenLauncherLib]");
+        for(String node : messages){
+            builder.append(" ").append(LANGUAGE_MANAGER.getDefaultLanguage().get(IDENTIFIER, node));
+        }
 
         if (err)
-            System.err.println(message);
+            System.err.println(builder.toString());
         else
-            System.out.println(message);
+            System.out.println(builder.toString());
     }
 
     /**

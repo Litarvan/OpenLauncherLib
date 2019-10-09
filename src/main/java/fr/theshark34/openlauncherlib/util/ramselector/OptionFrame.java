@@ -18,7 +18,10 @@
  */
 package fr.theshark34.openlauncherlib.util.ramselector;
 
-import fr.theshark34.openlauncherlib.LanguageManager;
+import fr.theshark34.openlauncherlib.language.api.LanguageInfo;
+import fr.theshark34.openlauncherlib.language.api.LanguageManager;
+import fr.theshark34.openlauncherlib.util.LogUtil;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
@@ -55,13 +58,13 @@ public class OptionFrame extends AbstractOptionFrame
     {
         super(selector);
 
-        this.setTitle(LanguageManager.lang("options"));
+        this.setTitle(LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "options"));
         this.setResizable(false);
         this.setSize(275, 100);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
 
-        ramLabel = new JLabel(LanguageManager.lang("ram") + " : ");
+        ramLabel = new JLabel(LogUtil.getLanguageManager().getDefaultLanguage().get(LogUtil.getIdentifier(), "ram") + " : ");
         ramLabel.setBounds(15, 20, 45, 25);
         this.add(ramLabel);
 
