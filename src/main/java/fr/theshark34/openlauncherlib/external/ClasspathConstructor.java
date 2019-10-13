@@ -62,11 +62,11 @@ public class ClasspathConstructor extends FileList
      */
     public String make()
     {
-        String classPath = "";
+        StringBuilder classPath = new StringBuilder();
 
         for (int i = 0; i < files.size(); i++)
-            classPath += files.get(i).getAbsolutePath() + (i + 1 == files.size() ? "" : File.pathSeparator);
+            classPath.append(files.get(i).getAbsolutePath()).append(i + 1 == files.size() ? "" : File.pathSeparator);
 
-        return classPath;
+        return classPath.toString();
     }
 }
