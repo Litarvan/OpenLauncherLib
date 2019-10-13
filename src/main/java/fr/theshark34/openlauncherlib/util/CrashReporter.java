@@ -171,28 +171,26 @@ public class CrashReporter
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
 
-        String report = "# " + projectName + " Crash Report\n\r" +
-                        "#\n\r" +
-                        "# At : " + dateFormat.format(date) + "\n\r" +
-                        "#\n\r" +
-                        "# Exception : " + e.getClass().getSimpleName() + "\n\r";
-
-        report += "\n\r# " + e.toString();
+        StringBuilder report = new StringBuilder()
+                .append("# ").append(projectName).append(" Crash Report\n\r")
+                .append("#\n\r# At : ").append(dateFormat.format(date)).append("\n\r")
+                .append("#\n\r# Exception : ").append(e.getClass().getSimpleName()).append("\n\r")
+                .append("\n\r# ").append(e.toString());
 
         StackTraceElement[] stackTrace = e.getStackTrace();
         for (StackTraceElement element : stackTrace)
-            report += "\n\r#     " + element;
+            report.append("\n\r#     ").append(element);
 
         Throwable cause = e.getCause();
         if (cause != null)
         {
-            report += "\n\r# Caused by: " + cause.toString();
+            report.append("\n\r# Caused by: ").append(cause);
 
             StackTraceElement[] causeStackTrace = cause.getStackTrace();
             for (StackTraceElement element : causeStackTrace)
-                report += "\n\r#     " + element;
+                report.append("\n\r#     ").append(element);
         }
 
-        return report;
+        return report.toString();
     }
 }
