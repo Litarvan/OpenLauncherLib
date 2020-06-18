@@ -88,7 +88,7 @@ public class GameInfos
         {
             boolean forge = false;
             boolean shaderOrOptifine = false;
-			if (gameVersion.getGameType() == GameType.V1_13_FORGE)
+			if (gameVersion.getGameType().getName().equals("1.13+ with Forge"))
 				if (tweaks.length == 1 && tweaks[0] == GameTweak.FORGE)
 					tweaks = new GameTweak[0];
 				else if (tweaks.length != 0)
@@ -107,7 +107,7 @@ public class GameInfos
                     shaderOrOptifine = true;
                 }
 
-            if (forge || gameVersion.getGameType() == GameType.V1_13_FORGE)
+            if (forge || gameVersion.getGameType().getName().equals("1.13+ with Forge"))
             	LogUtil.info("support-forge");
 
 			if (tweaks.length > 0 && gameVersion.getGameType() == GameType.V1_5_2_LOWER)
