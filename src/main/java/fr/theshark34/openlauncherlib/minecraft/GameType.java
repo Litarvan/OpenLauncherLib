@@ -256,80 +256,81 @@ public abstract class GameType
         }
     };
 
-	/**
-	 * This is a workaround until a new version of the lib using versions JSON is published
-	 */
-	public static final GameType V1_13_HIGHER_FORGE = new GameType()
-	{
-		@Override
-		public String getName()
-		{
-			return "1.13 or higher with Forge";
-		}
+	public static GameType create1_13_Higher(final String assetIndex, final String forgeVersion, final String mcVersion, final String mcpVersion) {
+        return new GameType()
+        {
+            
+            @Override
+            public String getName()
+            {
+                return "1.13+ with Forge";
+            }
 
-		@Override
-		public String getMainClass(GameInfos infos)
-		{
-			return "cpw.mods.modlauncher.Launcher";
-		}
+            @Override
+            public String getMainClass(GameInfos infos)
+            {
+                return "cpw.mods.modlauncher.Launcher";
+            }
 
-		@Override
-		public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
-		{
-			ArrayList<String> arguments = new ArrayList<String>();
+            @Override
+            public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+            {
+                ArrayList<String> arguments = new ArrayList<String>();
 
-			arguments.add("--username=" + authInfos.getUsername());
+                arguments.add("--username=" + authInfos.getUsername());
 
-			arguments.add("--accessToken");
-			arguments.add(authInfos.getAccessToken());
+                arguments.add("--accessToken");
+                arguments.add(authInfos.getAccessToken());
 
-			if (authInfos.getClientToken() != null)
-			{
-				arguments.add("--clientToken");
-				arguments.add(authInfos.getClientToken());
-			}
+                if (authInfos.getClientToken() != null)
+                {
+                    arguments.add("--clientToken");
+                    arguments.add(authInfos.getClientToken());
+                }
 
-			arguments.add("--version");
-			arguments.add(infos.getGameVersion().getName());
+                arguments.add("--version");
+                arguments.add(infos.getGameVersion().getName());
 
-			arguments.add("--gameDir");
-			arguments.add(infos.getGameDir().getAbsolutePath());
+                arguments.add("--gameDir");
+                arguments.add(infos.getGameDir().getAbsolutePath());
 
-			arguments.add("--assetsDir");
-			File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
-			arguments.add(assetsDir.getAbsolutePath());
+                arguments.add("--assetsDir");
+                File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+                arguments.add(assetsDir.getAbsolutePath());
 
-			arguments.add("--assetIndex");
+                arguments.add("--assetIndex");
 
-			arguments.add("1.13.1");
+                arguments.add(assetIndex);
 
-			arguments.add("--userProperties");
-			arguments.add("{}");
+                arguments.add("--userProperties");
+                arguments.add("{}");
 
-			arguments.add("--uuid");
-			arguments.add(authInfos.getUuid());
+                arguments.add("--uuid");
+                arguments.add(authInfos.getUuid());
 
-			arguments.add("--userType");
-			arguments.add("legacy");
+                arguments.add("--userType");
+                arguments.add("legacy");
 
-			arguments.add("--launchTarget");
-			arguments.add("fmlclient");
+                arguments.add("--launchTarget");
+                arguments.add("fmlclient");
 
-			arguments.add("--fml.forgeVersion");
-			arguments.add("25.0.219");
+                arguments.add("--fml.forgeVersion");
+                arguments.add(forgeVersion);
 
-			arguments.add("--fml.mcVersion");
-			arguments.add("1.13.2");
+                arguments.add("--fml.mcVersion");
+                arguments.add(mcVersion);
 
-			arguments.add("--fml.forgeGroup");
-			arguments.add("net.minecraftforge");
+                arguments.add("--fml.forgeGroup");
+                arguments.add("net.minecraftforge");
 
-			arguments.add("--fml.mcpVersion");
-			arguments.add("20190213.203750");
+                arguments.add("--fml.mcpVersion");
+                arguments.add(mcpVersion);
 
-			return arguments;
-		}
-	};
+                return arguments;
+            }
+        };
+	    
+	}
 
     /**
      * The name of the Game Type
