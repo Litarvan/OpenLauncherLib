@@ -3,62 +3,50 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
-group = 'fr.litarvan'
-version = '3.0.5'
-archivesBaseName = 'openlauncherlib'
+group = 'fr.theshark34.s-update'
+version = '3.1.1-BETA'
+archivesBaseName = 's-update'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-compileJava.options.encoding = 'Cp1252'
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.3.1'
+    implementation 'net.wytrem:wylog:2.0'
+    implementation 'org.slf4j:slf4j-api:2.0.0-alpha2'
+
+}
 
 jar {
-    from "LICENSE"
-    from "LICENSE.LESSER"
+	from "LICENSE"
+	from "LICENSE.LESSER"
 }
 
-task javadocJar(type: Jar) {
-    classifier = 'javadoc'
-    from javadoc
-}
-
-task sourcesJar(type: Jar) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives javadocJar, sourcesJar
+task fatjar(type: Jar) {
+    from {
+    	configurations.compile.collect {
+    		it.isDirectory() ? it : zipTree(it)
+    	}
+    }
+    
+    with jar
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId group
-            artifactId archivesBaseName
-            version = version
+            groupId = 'fr.theshark34'
+            artifactId = 's-update'
+            version = '3.1.1-BETA'
 
             from components.java
-
-            artifact sourcesJar {
-                classifier 'sources'
-            }
-
-            artifact javadocJar
         }
     }
-
-    repositories {
-        maven {
-            url "$buildDir/repo"
-        }
-    }
-}
-
-repositories {
-    jcenter()
-}
-
-dependencies {
-    compile 'org.json:json:20190722'
 }
