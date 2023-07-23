@@ -378,7 +378,7 @@ public abstract class GameType
             arguments.add("--assetIndex");
 
             // Update the asset index version for 1.16 or higher
-            arguments.add("1.16.1");
+            arguments.add("1.16");
 
             arguments.add("--userProperties");
             arguments.add("{}");
