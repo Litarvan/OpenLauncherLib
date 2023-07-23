@@ -38,7 +38,7 @@ import java.util.ArrayList;
 public abstract class GameType
 {
     /**
-     * The 1.5.2 or Lower game type
+     * The 1.5.2 or Lower game type | Forge
      */
     public static final GameType V1_5_2_LOWER = new GameType()
     {
@@ -75,7 +75,7 @@ public abstract class GameType
     };
 
     /**
-     * The 1.7.2 or Lower game type
+     * The 1.7.2 or Lower game type | Forge
      */
     public static final GameType V1_7_2_LOWER = new GameType()
     {
@@ -125,7 +125,7 @@ public abstract class GameType
     };
 
     /**
-     * The 1.7.10 Game Type
+     * The 1.7.10 Game Type | Forge
      */
     public static final GameType V1_7_10 = new GameType()
     {
@@ -184,7 +184,7 @@ public abstract class GameType
     };
 
     /**
-     * The 1.8 or higher Game Type
+     * The 1.8 or higher Game Type | Forge
      */
     public static final GameType V1_8_HIGHER = new GameType()
     {
@@ -330,6 +330,178 @@ public abstract class GameType
 			return arguments;
 		}
 	};
+
+    /**
+     * The 1.16 or Higher Game Type | Forge
+     */
+
+    public static final GameType V1_16_HIGHER_FORGE = new GameType()
+    {
+        @Override
+        public String getName()
+        {
+            return "1.16 or higher with Forge";
+        }
+
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
+            return "cpw.mods.modlauncher.Launcher";
+        }
+
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
+            ArrayList<String> arguments = new ArrayList<String>();
+
+            arguments.add("--username=" + authInfos.getUsername());
+
+            arguments.add("--accessToken");
+            arguments.add(authInfos.getAccessToken());
+
+            if (authInfos.getClientToken() != null)
+            {
+                arguments.add("--clientToken");
+                arguments.add(authInfos.getClientToken());
+            }
+
+            arguments.add("--version");
+            arguments.add(infos.getGameVersion().getName());
+
+            arguments.add("--gameDir");
+            arguments.add(infos.getGameDir().getAbsolutePath());
+
+            arguments.add("--assetsDir");
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+            arguments.add(assetsDir.getAbsolutePath());
+
+            arguments.add("--assetIndex");
+
+            // Update the asset index version for 1.16 or higher
+            arguments.add("1.16.1");
+
+            arguments.add("--userProperties");
+            arguments.add("{}");
+
+            arguments.add("--uuid");
+            arguments.add(authInfos.getUuid());
+
+            arguments.add("--userType");
+            arguments.add("legacy");
+
+            arguments.add("--launchTarget");
+            arguments.add("fmlclient");
+
+            arguments.add("--fml.forgeVersion");
+            // Update the Forge version for 1.16 or higher
+            arguments.add("32.0.108");
+
+            arguments.add("--fml.mcVersion");
+            // Update the Minecraft version for 1.16 or higher
+            arguments.add("1.16.1");
+            arguments.add"1.16.2");
+            arguments.add("1.16.5");
+
+            arguments.add("--fml.forgeGroup");
+            arguments.add("net.minecraftforge");
+
+            arguments.add("--fml.mcpVersion");
+            arguments.add("20210115.111550");
+
+            return arguments;
+        }
+    };
+
+
+    /**
+     * Fabric Version supported
+     * @return Fabric Version
+     *
+     * 1.19
+     * @Not-avalaible 1.20
+     */
+
+
+
+    /**
+     * The 1.19 or Higher Game Type | Fabric
+     */
+
+    public static final GameType V1_19_HIGHER_FABRIC = new GameType()
+    {
+        @Override
+        public String getName()
+        {
+            return "1.19 or higher with Fabric";
+        }
+
+        @Override
+        public String getMainClass(GameInfos infos)
+        {
+            return "net.fabricmc.loader.launch.knot.KnotClient";
+        }
+
+        @Override
+        public ArrayList<String> getLaunchArgs(GameInfos infos, GameFolder folder, AuthInfos authInfos)
+        {
+            ArrayList<String> arguments = new ArrayList<String>();
+
+            arguments.add("--username=" + authInfos.getUsername());
+
+            arguments.add("--accessToken");
+            arguments.add(authInfos.getAccessToken());
+
+            if (authInfos.getClientToken() != null)
+            {
+                arguments.add("--clientToken");
+                arguments.add(authInfos.getClientToken());
+            }
+
+            arguments.add("--version");
+            arguments.add(infos.getGameVersion().getName());
+
+            arguments.add("--gameDir");
+            arguments.add(infos.getGameDir().getAbsolutePath());
+
+            arguments.add("--assetsDir");
+            File assetsDir = new File(infos.getGameDir(), folder.getAssetsFolder());
+            arguments.add(assetsDir.getAbsolutePath());
+
+            arguments.add("--assetIndex");
+            // Update the asset index version for 1.19 or higher
+            arguments.add("1.19");
+
+            // Update the asset index version for 1.19 or higher
+            arguments.add("1.19.1");
+            arguments.add("1.19.2");
+
+            arguments.add("--userProperties");
+            arguments.add("{}");
+
+            arguments.add("--uuid");
+            arguments.add(authInfos.getUuid());
+
+            arguments.add("--userType");
+            arguments.add("legacy");
+
+            arguments.add("--tweakClass");
+            arguments.add("net.fabricmc.loader.launch.knot.KnotClientTweaker");
+
+            return arguments;
+        }
+    };
+
+    /**
+     * The 1.20 or Higher Game Type | Fabric
+     *
+     * For the future, not available.
+     */
+
+
+
+
+
+
 
     /**
      * The name of the Game Type
