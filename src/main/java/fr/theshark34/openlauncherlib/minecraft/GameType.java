@@ -399,7 +399,7 @@ public abstract class GameType
             arguments.add("--fml.mcVersion");
             // Update the Minecraft version for 1.16 or higher
             arguments.add("1.16.1");
-            arguments.add"1.16.2");
+            arguments.add("1.16.2");
             arguments.add("1.16.5");
 
             arguments.add("--fml.forgeGroup");
