@@ -1,3 +1,5 @@
+# This library is not being kept up to date anymore, [a still maintained fork can be found here](https://github.com/FlowArg/OpenLauncherLib)
+
 ![OpenLauncherLib logo](http://image.noelshack.com/fichiers/2015/17/1429612277-oolbaniere.png)
 =====
 
